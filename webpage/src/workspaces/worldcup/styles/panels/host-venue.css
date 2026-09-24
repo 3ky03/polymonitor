@@ -1,0 +1,14 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-host-venue-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-venue-ref-panel {
+  --wc-panel-accent: #d8ad36;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-city-strip button,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-venue-fixtures span {
+  border-radius: 8px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-city-strip button.active {
+  border-color: rgba(216, 173, 54, 0.48);
+  background: rgba(38, 31, 18, 0.8);
+}

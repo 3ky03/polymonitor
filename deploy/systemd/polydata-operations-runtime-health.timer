@@ -1,0 +1,12 @@
+[Unit]
+Description=Collect Polymonitor GCP runtime health every minute
+
+[Timer]
+OnCalendar=*-*-* *:*:30
+AccuracySec=1s
+RandomizedDelaySec=2s
+Persistent=true
+Unit=polydata-operations-runtime-health.service
+
+[Install]
+WantedBy=timers.target

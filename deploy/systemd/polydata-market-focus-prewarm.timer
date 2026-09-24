@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh active market focus tiles every 45 seconds
+
+[Timer]
+OnBootSec=30s
+OnUnitInactiveSec=45s
+AccuracySec=5s
+Persistent=true
+Unit=polydata-market-focus-prewarm.service
+
+[Install]
+WantedBy=polydata-gcp.target

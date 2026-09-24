@@ -1,0 +1,15 @@
+[Unit]
+Description=polyData World Cup live seed cache (results + intel, 5m)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/worldcup_live_watcher.py --watch --interval "${POLYDATA_WORLDCUP_LIVE_WATCH_INTERVAL_SECONDS:-300}"'
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

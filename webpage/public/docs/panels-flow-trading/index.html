@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flow &amp; Trading Panels - polyData Documentation</title>
+<meta content="polyData panels for OrderFilled flow, whale activity, alpha signals, crypto pressure, and tradeable market movement." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-flow-trading/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-flow-trading/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/panels-flow-trading/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a class="active" href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/panels-cpi/">CPI</a>
+<a href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>Flow &amp; Trading Panels</h1>
+<p>These panels explain who is trading, where fills are clustering, whether liquidity is thin or real, and which external trading venues may be pressuring Polymarket probabilities. They are built around OrderFilled rows, wallet flow, cross-market signals, and crypto or finance pressure boards.</p>
+<h2 id="orderfilled-flow">OrderFilled Flow</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orderfilled Flow</strong><br/><code>global-orderfilled</code></td>
+<td>Cross-market latest on-chain OrderFilled activity with market, side, price, size, and recency context.</td>
+<td>Use it as the live tape for the whole platform, then pivot into the specific market that is moving.</td>
+</tr>
+<tr>
+<td><strong>Whale Tracker</strong><br/><code>whale-tracker</code></td>
+<td>Largest recent on-chain trades, emphasizing high-notional or high-impact wallet behavior.</td>
+<td>Use it to detect concentrated flow that may not be obvious from price history alone.</td>
+</tr>
+<tr>
+<td><strong>Flow Watch</strong><br/><code>suspicious-flow</code></td>
+<td>Oracle-adjacent and large live trade flow that deserves extra review.</td>
+<td>Use it when a market is near close, near resolution, or moving on unusual fill activity.</td>
+</tr>
+<tr>
+<td><strong>PolySignal</strong><br/><code>polybeats-feed</code></td>
+<td>Smart-money flow, wallet history, and explainable market briefs.</td>
+<td>Use it to connect wallet activity with a readable market thesis instead of staring at raw addresses.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="signals">Signal Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Alpha Signal</strong><br/><code>alpha-signal</code></td>
+<td>Cross-source heuristic signal stack combining price action, flow, external content, and market context.</td>
+<td>Use it as a triage layer: it does not replace research, but it tells you which markets deserve attention first.</td>
+</tr>
+<tr>
+<td><strong>AI Special Markets</strong><br/><code>sample-chain-trades</code></td>
+<td>Market-wide AI radar for unusual, high-attention, and fast-moving markets.</td>
+<td>Use it to find special situations that are not captured by a single category filter.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="crypto-finance-flow">Crypto and Finance Flow</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Crypto Watch</strong><br/><code>crypto-watch</code></td>
+<td>Crypto spot trends and sparklines across major assets.</td>
+<td>Use it when crypto prices are likely to explain probability movement in crypto-linked Polymarket markets.</td>
+</tr>
+<tr>
+<td><strong>Crypto Funding Watch</strong><br/><code>crypto-funding-watch</code></td>
+<td>Cross-venue perpetual funding heatmap with long/short crowding bias.</td>
+<td>Use it to identify crowded positioning before it appears in prediction-market odds.</td>
+</tr>
+<tr>
+<td><strong>Crypto Perps</strong><br/><code>crypto-perp-funding</code></td>
+<td>Crypto perpetual funding pressure list.</td>
+<td>Use it as a compact ranking of markets where derivatives positioning is most stretched.</td>
+</tr>
+<tr>
+<td><strong>TradFi Perps</strong><br/><code>tradfi-perp-radar</code></td>
+<td>Tokenized stock, index, and commodity perpetual radar.</td>
+<td>Use it to connect synthetic-market pressure to Polymarket questions about equities, indices, and commodities.</td>
+</tr>
+<tr>
+<td><strong>Crypto ETF</strong><br/><code>crypto-etf-flow</code></td>
+<td>BTC and ETH ETF flow proxy board.</td>
+<td>Use it for institutional flow context around Bitcoin, Ethereum, and ETF-related event markets.</td>
+</tr>
+<tr>
+<td><strong>Fear &amp; Greed</strong><br/><code>crypto-fear-greed</code></td>
+<td>Crypto sentiment gauge with price drivers.</td>
+<td>Use it to distinguish broad sentiment pressure from market-specific news.</td>
+</tr>
+<tr>
+<td><strong>Stablecoins</strong><br/><code>stablecoin-monitor</code></td>
+<td>Stablecoin peg and supply monitor.</td>
+<td>Use it when market movement depends on crypto liquidity, depeg risk, or stablecoin supply changes.</td>
+</tr>
+<tr>
+<td><strong>DeFi Token Watch</strong><br/><code>defi-token-watch</code></td>
+<td>Compact DeFi token tape with price, 24h move, and weekly trend.</td>
+<td>Use it to monitor protocol tokens that may affect DeFi, governance, or exploit-related markets.</td>
+</tr>
+<tr>
+<td><strong>DeFi Yields</strong><br/><code>defi-yield-monitor</code></td>
+<td>Protocol APY and TVL watch board.</td>
+<td>Use it to track yield stress, capital rotation, and protocol-level risk appetite.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#orderfilled-flow">OrderFilled Flow</a>
+<a href="#signals">Signal Panels</a>
+<a href="#crypto-finance-flow">Crypto and Finance Flow</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

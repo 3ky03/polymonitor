@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData quant frontend price-history build shard %i
+After=network-online.target polydata-db-reverse-tunnel.service polydata-quant-price-build-runner.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" -m quant.build_runner --daemon --source-mode frontend --skip-maintenance --since-ts "${POLYDATA_QUANT_PRICE_BUILD_SINCE_TS:-1756684800}" --token-limit "${POLYDATA_QUANT_FRONTEND_TOKEN_LIMIT:-40}" --frontend-token-limit "${POLYDATA_QUANT_FRONTEND_TOKEN_LIMIT:-40}" --sleep-seconds "${POLYDATA_QUANT_FRONTEND_SLEEP_SECONDS:-5}" --frontend-min-orderfilled-trades "${POLYDATA_QUANT_FRONTEND_MIN_ORDERFILLED_TRADES:-1000}" --frontend-window-seconds "${POLYDATA_QUANT_FRONTEND_WINDOW_SECONDS:-604800}" --frontend-overlap-seconds "${POLYDATA_QUANT_FRONTEND_OVERLAP_SECONDS:-21600}" --frontend-lag-seconds "${POLYDATA_QUANT_FRONTEND_LAG_SECONDS:-120}" --fidelity-minutes "${POLYDATA_QUANT_FRONTEND_FIDELITY_MINUTES:-1}" --shard-index "%i" --shard-count "${POLYDATA_QUANT_FRONTEND_SHARD_COUNT:-2}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run polyData market-wide Agent snapshot seed on a bounded schedule
+
+[Timer]
+OnCalendar=*-*-* 09:17:00 Asia/Shanghai
+RandomizedDelaySec=30min
+Persistent=false
+
+[Install]
+WantedBy=timers.target

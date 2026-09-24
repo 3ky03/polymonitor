@@ -1,0 +1,32 @@
+{
+  "displayName": "Polymonitor unavailable for two checks",
+  "combiner": "OR",
+  "enabled": true,
+  "conditions": [
+    {
+      "displayName": "Public health failed twice",
+      "conditionThreshold": {
+        "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\"",
+        "comparison": "COMPARISON_LT",
+        "thresholdValue": 1,
+        "duration": "120s",
+        "aggregations": [
+          {
+            "alignmentPeriod": "60s",
+            "perSeriesAligner": "ALIGN_NEXT_OLDER"
+          }
+        ],
+        "trigger": {
+          "count": 1
+        }
+      }
+    }
+  ],
+  "documentation": {
+    "content": "Polymonitor public health failed for at least two checks. Use the private operations runbook configured by the operator.",
+    "mimeType": "text/markdown"
+  },
+  "notificationChannels": [
+    "REPLACE_WITH_GCP_NOTIFICATION_CHANNEL"
+  ]
+}

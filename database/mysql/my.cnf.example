@@ -1,0 +1,9 @@
+[mysqld]
+# Keep binary logs for 1 day by default. The previous 3-day window caused
+# repeated 200G+ growth during large backfills and table rebuilds.
+binlog_expire_logs_seconds = 86400
+
+# Recommended defaults for this repository's large InnoDB workload.
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+

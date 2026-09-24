@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData World Cup LOB guard and completeness worker
+After=network-online.target polydata-api.service polydata-lob-websocket.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/worldcup_lob_guard.py --watch --interval "${POLYDATA_LOB_WORLDCUP_GUARD_INTERVAL_SECONDS:-300}"'
+Restart=always
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

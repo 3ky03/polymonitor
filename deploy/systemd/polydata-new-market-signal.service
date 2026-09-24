@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData new market signal watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/new_market_signal_watcher.py --backend postgres --watch --interval 20 --limit "${POLYDATA_NEW_MARKET_SIGNAL_BATCH_LIMIT:-20}" --retention "${POLYDATA_NEW_MARKET_SIGNAL_RETENTION:-50}" --max-market-age-hours "${POLYDATA_NEW_MARKET_SIGNAL_MAX_AGE_HOURS:-72}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

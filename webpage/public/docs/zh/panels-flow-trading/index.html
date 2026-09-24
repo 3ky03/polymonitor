@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>流动与交易 Panels - polyData 文档</title>
+<meta content="polyData panels for OrderFilled flow, whale activity, alpha signals, crypto pressure, and tradeable market movement." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-flow-trading/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-flow-trading/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/panels-flow-trading/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a class="active" href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>流动与交易 Panels</h1>
+<p>这些 panels 解释谁在交易、fills 聚集在哪里、流动性是真实还是稀薄，以及哪些外部交易场所可能正在影响 Polymarket probabilities。它们围绕 OrderFilled rows、wallet flow、cross-market signals，以及 crypto/finance pressure boards 构建。</p>
+<h2 id="orderfilled-flow">OrderFilled 流动</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orderfilled Flow</strong><br/><code>global-orderfilled</code></td>
+<td>跨市场最新链上 OrderFilled activity，包含 market、side、price、size 和 recency context。</td>
+<td>作为整个平台的实时 tape 使用，再跳转到正在移动的具体 market。</td>
+</tr>
+<tr>
+<td><strong>Whale Tracker</strong><br/><code>whale-tracker</code></td>
+<td>近期最大链上 trades，突出 high-notional 或 high-impact wallet behavior。</td>
+<td>用于发现仅靠 price history 不明显的集中 flow。</td>
+</tr>
+<tr>
+<td><strong>Flow Watch</strong><br/><code>suspicious-flow</code></td>
+<td>值得额外复核的 oracle-adjacent 与 large live trade flow。</td>
+<td>适用于 market 临近 close、resolution，或因异常 fill activity 移动时。</td>
+</tr>
+<tr>
+<td><strong>PolySignal</strong><br/><code>polybeats-feed</code></td>
+<td>Smart-money flow、wallet history 和可解释 market briefs。</td>
+<td>用于把 wallet activity 连接到可读 market thesis，而不是只盯着原始地址。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="signals">信号 Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Alpha Signal</strong><br/><code>alpha-signal</code></td>
+<td>跨来源 heuristic signal stack，组合 price action、flow、external content 和 market context。</td>
+<td>作为 triage layer 使用：它不替代研究，但能告诉你哪些 markets 最值得先看。</td>
+</tr>
+<tr>
+<td><strong>AI Special Markets</strong><br/><code>sample-chain-trades</code></td>
+<td>全市场 AI radar for unusual, high-attention, and fast-moving markets.</td>
+<td>用于 find special situations that are not captured by a single category filter.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="crypto-finance-flow">Crypto 与金融流动</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Crypto Watch</strong><br/><code>crypto-watch</code></td>
+<td>Crypto spot trends and sparklines across major assets.</td>
+<td>适用于 crypto prices are likely to explain probability movement in crypto-linked Polymarket markets.</td>
+</tr>
+<tr>
+<td><strong>Crypto Funding Watch</strong><br/><code>crypto-funding-watch</code></td>
+<td>Cross-venue perpetual funding heatmap with long/short crowding bias.</td>
+<td>用于 identify crowded positioning before it appears in prediction-market odds.</td>
+</tr>
+<tr>
+<td><strong>Crypto Perps</strong><br/><code>crypto-perp-funding</code></td>
+<td>Crypto perpetual funding pressure list.</td>
+<td>可作为 a compact ranking of markets where derivatives positioning is most stretched.</td>
+</tr>
+<tr>
+<td><strong>TradFi Perps</strong><br/><code>tradfi-perp-radar</code></td>
+<td>Tokenized stock, index, and commodity perpetual radar.</td>
+<td>用于 connect synthetic-market pressure to Polymarket questions about equities, indices, and commodities.</td>
+</tr>
+<tr>
+<td><strong>Crypto ETF</strong><br/><code>crypto-etf-flow</code></td>
+<td>BTC and ETH ETF flow proxy board.</td>
+<td>用于 institutional flow context around Bitcoin, Ethereum, and ETF-related event markets.</td>
+</tr>
+<tr>
+<td><strong>Fear &amp; Greed</strong><br/><code>crypto-fear-greed</code></td>
+<td>Crypto sentiment gauge with price drivers.</td>
+<td>用于 distinguish broad sentiment pressure from market-specific news.</td>
+</tr>
+<tr>
+<td><strong>Stablecoins</strong><br/><code>stablecoin-monitor</code></td>
+<td>Stablecoin peg and supply monitor.</td>
+<td>适用于 market movement depends on crypto liquidity, depeg risk, or stablecoin supply changes.</td>
+</tr>
+<tr>
+<td><strong>DeFi Token Watch</strong><br/><code>defi-token-watch</code></td>
+<td>Compact DeFi token tape with price, 24h move, and weekly trend.</td>
+<td>用于 monitor protocol tokens that may affect DeFi, governance, or exploit-related markets.</td>
+</tr>
+<tr>
+<td><strong>DeFi Yields</strong><br/><code>defi-yield-monitor</code></td>
+<td>Protocol APY and TVL watch board.</td>
+<td>用于 track yield stress, capital rotation, and protocol-level risk appetite.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#orderfilled-flow">OrderFilled 流动</a>
+<a href="#signals">信号 Panels</a>
+<a href="#crypto-finance-flow">Crypto 与金融流动</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-match-control-panel {
+  --wc-panel-accent: #34dfff;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-control-score {
+  border-radius: 9px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(216, 173, 54, 0.15), transparent 48%),
+    linear-gradient(180deg, rgba(30, 38, 45, 0.95), rgba(15, 18, 21, 0.95));
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-control-score strong {
+  font-family: var(--wc-font-ui) !important;
+  font-size: 20px !important;
+  letter-spacing: 0 !important;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-control-score b {
+  color: var(--wc-yellow);
+  text-shadow: 0 0 18px rgba(216, 173, 54, 0.3);
+}

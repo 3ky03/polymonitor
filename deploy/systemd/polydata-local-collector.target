@@ -1,0 +1,7 @@
+[Unit]
+Description=polyData local market/orderfilled/oracle collector services
+Wants=polydata-market-sync.service polydata-oracle-sync.service polydata-trade-sync.service polydata-block-timestamps-live.service polydata-analytics-sync.service polydata-event-market-serving.service polydata-market-workspace-serving.service polydata-db-reverse-tunnel.service polydata-quant-backtest-runner.service polydata-quant-price-maintenance.service polydata-quant-price-build-runner.service polydata-quant-frontend-price-build-runner@0.service polydata-quant-frontend-price-build-runner@1.service
+After=network-online.target
+
+[Install]
+WantedBy=default.target

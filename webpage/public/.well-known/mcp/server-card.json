@@ -1,0 +1,39 @@
+{
+  "name": "polymonitor",
+  "title": "PolyMonitor Prediction-Market MCP",
+  "description": "A bounded read-only interface to canonical Polymarket market, Oracle, liquidity, data-quality, public briefing, and published Watchlist data.",
+  "version": "0.1.0",
+  "protocolVersion": "2025-06-18",
+  "transport": {
+    "type": "streamableHttp",
+    "endpoint": "https://polymonitor.club/wm-api/mcp"
+  },
+  "authentication": {
+    "type": "api_key",
+    "header": "Authorization",
+    "scheme": "Bearer",
+    "scope": "mcp:read"
+  },
+  "tools": [
+    "search_markets",
+    "get_market_overview",
+    "get_oracle_lifecycle",
+    "get_market_liquidity",
+    "get_data_quality",
+    "get_public_briefing",
+    "get_public_watchlist_snapshot"
+  ],
+  "privacy": {
+    "readOnly": true,
+    "excluded": [
+      "private workspace layouts",
+      "private Watchlists",
+      "notes",
+      "alert rules",
+      "credentials",
+      "sessions",
+      "administrator operations",
+      "arbitrary API proxying"
+    ]
+  }
+}

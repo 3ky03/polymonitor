@@ -1,0 +1,327 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="900" viewBox="0 0 2048 900" role="img" aria-labelledby="title desc">
+  <title id="title">Polymarket Market Lifecycle Overview</title>
+  <desc id="desc">A colorful lifecycle infographic showing Polymarket market inputs, processing stages, OrderFilled trading activity, oracle resolution, and polyData outputs.</desc>
+  <defs>
+    <linearGradient id="centerBg" x1="410" y1="80" x2="1580" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8ffd2"/>
+      <stop offset="0.48" stop-color="#bfeee7"/>
+      <stop offset="1" stop-color="#7ea7ff"/>
+    </linearGradient>
+    <linearGradient id="leftBg" x1="0" y1="120" x2="360" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff9dc"/>
+      <stop offset="1" stop-color="#fff2c7"/>
+    </linearGradient>
+    <linearGradient id="rightBg" x1="1580" y1="110" x2="2048" y2="810" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff2fb"/>
+      <stop offset="1" stop-color="#f5d9ee"/>
+    </linearGradient>
+    <linearGradient id="pinkBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffdc6e"/>
+      <stop offset="0.52" stop-color="#f29fc5"/>
+      <stop offset="1" stop-color="#a75cff"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.16"/>
+    </filter>
+    <filter id="pillShadow" x="-20%" y="-30%" width="140%" height="160%">
+      <feDropShadow dx="8" dy="8" stdDeviation="6" flood-color="#111827" flood-opacity="0.28"/>
+    </filter>
+    <marker id="arrowGreen" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 2 2 L 16 9 L 2 16 z" fill="#2fa88d"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 2 2 L 16 9 L 2 16 z" fill="#8a8f94"/>
+    </marker>
+    <style>
+      .bg-panel { stroke-width: 2; }
+      .title-pill { fill: #fff9e7; stroke: #f3c536; stroke-width: 3; }
+      .title-pill-blue { fill: #c7fbf0; stroke: #559e99; stroke-width: 4; }
+      .title-pill-purple { fill: #f6d9fb; stroke: #9b5aa1; stroke-width: 4; }
+      .title-text { font-family: Inter, Arial, sans-serif; font-size: 30px; font-weight: 800; fill: #0b0e12; }
+      .section-title { font-family: Inter, Arial, sans-serif; font-size: 29px; font-weight: 800; fill: #101315; }
+      .stage-title { font-family: Inter, Arial, sans-serif; font-size: 32px; font-weight: 850; fill: #101315; }
+      .small-label { font-family: Inter, Arial, sans-serif; font-size: 23px; font-weight: 750; fill: #101315; }
+      .body-text { font-family: Inter, Arial, sans-serif; font-size: 21px; font-weight: 650; fill: #13181c; }
+      .mini-text { font-family: Inter, Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #1c2422; }
+      .muted-text { font-family: Inter, Arial, sans-serif; font-size: 19px; font-weight: 600; fill: #3b4246; }
+      .input-card { fill: rgba(255,255,255,0.72); stroke: #b8b8b8; stroke-width: 3; }
+      .stage-card { fill: rgba(255,255,255,0.36); stroke: #a3a3a3; stroke-width: 3; stroke-dasharray: 12 7; }
+      .node { fill: rgba(255,255,255,0.45); stroke: #8fb7a8; stroke-width: 3; }
+      .node-strong { fill: rgba(255,255,255,0.66); stroke: #289a80; stroke-width: 4; }
+      .lane-band { fill: rgba(255,255,255,0.26); }
+      .icon-line { fill: none; stroke: #050505; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-fill { fill: #050505; }
+      .arrow { stroke: #2fa88d; stroke-width: 8; stroke-linecap: round; fill: none; marker-end: url(#arrowGreen); }
+      .thin-arrow { stroke: #2fa88d; stroke-width: 5; stroke-linecap: round; fill: none; marker-end: url(#arrowGreen); }
+      .gray-arrow { stroke: #8a8f94; stroke-width: 9; stroke-linecap: round; fill: none; marker-end: url(#arrowGray); }
+      .output-card { stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect width="2048" height="900" fill="#ffffff"/>
+
+  <rect x="0" y="34" width="350" height="832" rx="28" fill="url(#leftBg)" stroke="#f4c641" stroke-width="2" class="bg-panel"/>
+  <rect x="388" y="34" width="1146" height="832" rx="32" fill="url(#centerBg)" stroke="#1e8d72" stroke-width="2" class="bg-panel"/>
+  <rect x="1554" y="34" width="494" height="832" rx="32" fill="url(#rightBg)" stroke="#a76aa8" stroke-width="2" class="bg-panel"/>
+
+  <rect x="0" y="2" width="350" height="68" rx="34" class="title-pill"/>
+  <text x="175" y="46" text-anchor="middle" class="title-text">Data Sources (Input)</text>
+  <rect x="646" y="2" width="570" height="68" rx="34" class="title-pill-blue"/>
+  <text x="931" y="46" text-anchor="middle" class="title-text">Lifecycle Construction (Processing)</text>
+  <rect x="1560" y="2" width="478" height="68" rx="34" class="title-pill-purple"/>
+  <text x="1799" y="46" text-anchor="middle" class="title-text">polyData Panels (Output)</text>
+
+  <!-- Left source cards -->
+  <g transform="translate(22 106)">
+    <rect width="304" height="126" rx="22" class="input-card"/>
+    <g transform="translate(28 28)">
+      <rect x="0" y="0" width="52" height="70" rx="7" class="icon-line"/>
+      <path d="M38 0 L52 15 L38 15 Z" fill="#fff" stroke="#050505" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M14 22 H37 M14 38 H35 M14 54 H26" class="icon-line"/>
+      <path d="M64 58 L72 42 L85 52 L90 30 L101 65" class="icon-line"/>
+    </g>
+    <text x="144" y="45" class="section-title">Gamma</text>
+    <text x="144" y="77" class="section-title">Markets</text>
+    <text x="144" y="109" class="section-title">API</text>
+  </g>
+  <g transform="translate(22 268)">
+    <rect width="304" height="126" rx="22" class="input-card"/>
+    <g transform="translate(28 32)">
+      <rect x="0" y="0" width="78" height="58" rx="8" class="icon-line"/>
+      <path d="M10 16 H68 M14 43 L28 31 L43 40 L61 20" class="icon-line"/>
+      <circle cx="17" cy="44" r="6" class="icon-line"/>
+      <circle cx="43" cy="40" r="6" class="icon-line"/>
+      <circle cx="61" cy="20" r="6" class="icon-line"/>
+    </g>
+    <text x="144" y="54" class="section-title">CLOB</text>
+    <text x="144" y="91" class="section-title">Order Book</text>
+  </g>
+  <g transform="translate(22 430)">
+    <rect width="304" height="126" rx="22" class="input-card"/>
+    <g transform="translate(34 27)">
+      <circle cx="18" cy="20" r="14" class="icon-line"/>
+      <circle cx="62" cy="20" r="14" class="icon-line"/>
+      <circle cx="18" cy="64" r="14" class="icon-line"/>
+      <circle cx="62" cy="64" r="14" class="icon-line"/>
+      <path d="M31 20 H49 M18 34 V50 M62 34 V50 M31 64 H49" class="icon-line"/>
+      <text x="11" y="28" font-family="Inter, Arial" font-size="20" font-weight="800">$</text>
+      <text x="55" y="28" font-family="Inter, Arial" font-size="20" font-weight="800">#</text>
+    </g>
+    <text x="144" y="45" class="section-title">Polygon</text>
+    <text x="144" y="77" class="section-title">Exchange</text>
+    <text x="144" y="109" class="section-title">Logs</text>
+  </g>
+  <g transform="translate(22 592)">
+    <rect width="304" height="126" rx="22" class="input-card"/>
+    <g transform="translate(36 26)">
+      <path d="M44 8 V74 M16 26 H72" class="icon-line"/>
+      <path d="M18 26 L6 56 H30 Z M70 26 L58 56 H82 Z" class="icon-line"/>
+      <path d="M28 74 H60 M20 84 H68" class="icon-line"/>
+    </g>
+    <text x="144" y="54" class="section-title">UMA Oracle</text>
+    <text x="144" y="91" class="section-title">Events</text>
+  </g>
+  <g transform="translate(22 754)">
+    <rect width="304" height="92" rx="22" class="input-card"/>
+    <g transform="translate(40 19)">
+      <path d="M0 18 L42 0 L84 18 L42 36 Z" class="icon-line"/>
+      <path d="M14 26 V44 L42 56 L70 44 V26" class="icon-line"/>
+      <path d="M84 18 V48" class="icon-line"/>
+    </g>
+    <text x="144" y="39" class="section-title">External</text>
+    <text x="144" y="73" class="section-title">Context</text>
+  </g>
+
+  <path d="M338 454 C364 454 365 454 392 454" class="gray-arrow"/>
+
+  <!-- Center stage 1 -->
+  <text x="680" y="116" class="small-label" fill="#758178">Discovery, Identity Mapping, and Token Catalog</text>
+  <rect x="412" y="122" width="878" height="310" rx="38" class="stage-card"/>
+  <text x="438" y="164" class="stage-title">Stage 1</text>
+  <text x="570" y="164" class="section-title">Market Identity</text>
+
+  <g transform="translate(434 212)">
+    <rect width="166" height="104" rx="18" class="node"/>
+    <g transform="translate(20 22)">
+      <rect x="0" y="0" width="50" height="60" rx="8" class="icon-line"/>
+      <path d="M36 0 L50 14 L36 14 Z" fill="#dff7eb" stroke="#050505" stroke-width="5"/>
+      <path d="M68 32 H108 M98 22 L110 32 L98 42" class="icon-line"/>
+    </g>
+    <text x="83" y="76" text-anchor="middle" class="body-text">Discover</text>
+  </g>
+  <path d="M600 264 H644" class="arrow"/>
+
+  <g transform="translate(648 170)">
+    <rect width="178" height="176" rx="18" class="node"/>
+    <g transform="translate(36 26)">
+      <rect x="0" y="0" width="52" height="66" rx="8" class="icon-line"/>
+      <path d="M38 0 L52 14 L38 14 Z" fill="#eaf8ff" stroke="#050505" stroke-width="5"/>
+      <circle cx="88" cy="14" r="7" class="icon-line"/>
+      <circle cx="116" cy="42" r="7" class="icon-line"/>
+      <circle cx="86" cy="72" r="7" class="icon-line"/>
+      <path d="M52 34 L81 17 M52 40 L109 42 M52 48 L80 69 M96 18 L111 36 M111 48 L91 67" class="icon-line"/>
+    </g>
+    <text x="89" y="123" text-anchor="middle" class="body-text">Catalog</text>
+    <text x="89" y="151" text-anchor="middle" class="body-text">Market</text>
+  </g>
+  <path d="M826 264 H862" class="arrow"/>
+
+  <g transform="translate(870 154)">
+    <path d="M0 20 C0 6 188 6 188 20 L152 188 L36 188 Z" fill="rgba(255,255,255,0.32)" stroke="#8b9290" stroke-width="4"/>
+    <ellipse cx="94" cy="20" rx="94" ry="20" fill="rgba(255,255,255,0.32)" stroke="#8b9290" stroke-width="4"/>
+    <text x="94" y="86" text-anchor="middle" class="section-title">Series</text>
+    <text x="94" y="123" text-anchor="middle" class="section-title">Event</text>
+    <text x="94" y="160" text-anchor="middle" class="section-title">Market</text>
+    <text x="94" y="214" text-anchor="middle" class="mini-text">slug + conditionId + tokens</text>
+  </g>
+  <path d="M1060 264 H1092" class="arrow"/>
+
+  <g transform="translate(1098 170)">
+    <rect width="170" height="176" rx="18" class="node"/>
+    <g transform="translate(47 26)">
+      <ellipse cx="38" cy="16" rx="38" ry="14" class="icon-line"/>
+      <path d="M0 16 V76 C0 84 76 84 76 76 V16 M0 46 C0 54 76 54 76 46" class="icon-line"/>
+    </g>
+    <text x="85" y="123" text-anchor="middle" class="body-text">Snapshot</text>
+    <text x="85" y="151" text-anchor="middle" class="body-text">State</text>
+  </g>
+
+  <!-- Center stage 2 -->
+  <rect x="412" y="510" width="878" height="330" rx="38" class="stage-card"/>
+  <text x="438" y="558" class="stage-title">Stage 2</text>
+  <text x="570" y="558" class="section-title">Trading and Resolution Flow</text>
+
+  <g transform="translate(436 634)">
+    <rect width="170" height="118" rx="18" class="node"/>
+    <g transform="translate(38 23)">
+      <path d="M0 0 H84 M0 26 H84 M0 52 H84" class="icon-line"/>
+      <circle cx="18" cy="0" r="8" fill="#2fa88d"/>
+      <circle cx="56" cy="26" r="8" fill="#2fa88d"/>
+      <circle cx="34" cy="52" r="8" fill="#2fa88d"/>
+    </g>
+    <text x="85" y="96" text-anchor="middle" class="body-text">Live Book</text>
+  </g>
+  <path d="M606 694 H640" class="arrow"/>
+
+  <g transform="translate(648 598)">
+    <rect width="354" height="196" rx="18" fill="rgba(255,255,255,0.32)" stroke="#a8aca9" stroke-width="3"/>
+    <text x="28" y="56" class="body-text">Order Matching</text>
+    <text x="28" y="94" class="mini-text">maker orders</text>
+    <text x="28" y="128" class="mini-text">taker execution</text>
+    <text x="28" y="162" class="mini-text">partial fills</text>
+    <g transform="translate(196 44)">
+      <rect x="0" y="0" width="104" height="104" fill="url(#pinkBlue)" stroke="#050505" stroke-width="3"/>
+      <path d="M0 34 H104 M0 69 H104 M34 0 V104 M69 0 V104" stroke="#050505" stroke-width="3"/>
+      <text x="52" y="132" text-anchor="middle" class="mini-text">CLOB</text>
+    </g>
+  </g>
+  <path d="M1002 694 H1038" class="arrow"/>
+
+  <g transform="translate(1044 608)">
+    <rect width="188" height="166" rx="18" class="node-strong"/>
+    <g transform="translate(54 26)">
+      <rect x="0" y="0" width="80" height="92" rx="9" class="icon-line"/>
+      <path d="M16 24 H64 M16 44 H64 M16 64 H44" class="icon-line"/>
+      <circle cx="65" cy="72" r="20" fill="#bdf7d7" stroke="#050505" stroke-width="5"/>
+      <path d="M54 72 L62 80 L77 62" class="icon-line"/>
+    </g>
+    <text x="94" y="132" text-anchor="middle" class="body-text">OrderFilled</text>
+  </g>
+  <path d="M1138 608 V450" class="thin-arrow"/>
+
+  <g transform="translate(1092 440)">
+    <rect width="172" height="90" rx="18" fill="#def7eb" stroke="#2fa88d" stroke-width="3"/>
+    <text x="86" y="38" text-anchor="middle" class="body-text">Close /</text>
+    <text x="86" y="68" text-anchor="middle" class="body-text">Lock</text>
+  </g>
+  <path d="M1264 485 H1314" class="arrow"/>
+
+  <!-- Right output -->
+  <g transform="translate(1322 166)" filter="url(#pillShadow)">
+    <rect width="210" height="92" rx="26" fill="#f8fbff" stroke="#d5d8dc" stroke-width="2"/>
+    <text x="105" y="39" text-anchor="middle" font-family="Inter, Arial" font-size="27" font-weight="850" fill="#101315">polyData</text>
+    <text x="105" y="68" text-anchor="middle" font-family="Inter, Arial" font-size="22" font-weight="750" fill="#101315">Market ID</text>
+  </g>
+  <path d="M1268 258 H1320" class="arrow"/>
+
+  <g transform="translate(1322 380)" filter="url(#pillShadow)">
+    <rect width="210" height="92" rx="26" fill="#f8fbff" stroke="#d5d8dc" stroke-width="2"/>
+    <text x="105" y="38" text-anchor="middle" font-family="Inter, Arial" font-size="26" font-weight="850" fill="#101315">Unified</text>
+    <text x="105" y="68" text-anchor="middle" font-family="Inter, Arial" font-size="22" font-weight="750" fill="#101315">Lifecycle State</text>
+  </g>
+  <path d="M1232 690 C1286 690 1292 426 1322 426" class="thin-arrow"/>
+
+  <!-- Oracle lane inside center to output -->
+  <g transform="translate(1316 594)">
+    <rect width="144" height="96" rx="16" class="node"/>
+    <text x="72" y="40" text-anchor="middle" class="body-text">UMA</text>
+    <text x="72" y="68" text-anchor="middle" class="body-text">Request</text>
+  </g>
+  <path d="M1460 642 H1502" class="arrow"/>
+
+  <g transform="translate(1508 594)">
+    <rect width="150" height="96" rx="16" class="node"/>
+    <text x="75" y="40" text-anchor="middle" class="body-text">Proposal /</text>
+    <text x="75" y="68" text-anchor="middle" class="body-text">Dispute</text>
+  </g>
+  <path d="M1658 642 H1698" class="arrow"/>
+
+  <g transform="translate(1704 594)">
+    <rect width="150" height="96" rx="16" class="node-strong"/>
+    <text x="75" y="40" text-anchor="middle" class="body-text">Final</text>
+    <text x="75" y="68" text-anchor="middle" class="body-text">Outcome</text>
+  </g>
+  <path d="M1854 642 H1890" class="arrow"/>
+
+  <g transform="translate(1896 594)">
+    <rect width="128" height="96" rx="16" class="node"/>
+    <text x="64" y="40" text-anchor="middle" class="body-text">Archive</text>
+    <text x="64" y="68" text-anchor="middle" class="body-text">State</text>
+  </g>
+
+  <!-- Right output cards -->
+  <g transform="translate(1588 108)">
+    <path d="M210 0 L330 62 L210 124 L90 62 Z" fill="#f4f6f8" stroke="#8b8f91" stroke-width="2"/>
+    <path d="M90 62 L90 82 L210 144 L330 82 L330 62" fill="#d4d7d8" stroke="#8b8f91" stroke-width="2"/>
+    <text x="210" y="60" text-anchor="middle" class="body-text">Panel</text>
+    <text x="210" y="91" text-anchor="middle" class="body-text">Instruction</text>
+    <path d="M90 154 L210 216 L330 154 L210 92 Z" fill="#b9ffd2" stroke="#319f64" stroke-width="2"/>
+    <text x="150" y="166" class="mini-text">Market</text>
+    <text x="258" y="166" class="mini-text">Oracle</text>
+    <path d="M90 220 L210 282 L330 220 L210 158 Z" fill="#ffe384" stroke="#b89023" stroke-width="2"/>
+    <text x="158" y="230" class="mini-text">Fills</text>
+    <text x="250" y="230" class="mini-text">Context</text>
+  </g>
+
+  <path d="M1800 398 V424" stroke="#a86aac" stroke-width="10" marker-end="url(#arrowGray)"/>
+
+  <g transform="translate(1590 430)">
+    <rect width="398" height="138" rx="20" fill="#eed4e7" stroke="none"/>
+    <g transform="translate(22 28)">
+      <rect x="0" y="0" width="64" height="78" rx="8" class="icon-line"/>
+      <path d="M14 20 H48 M14 40 H44 M14 60 H36" class="icon-line"/>
+      <path d="M84 70 L96 46 L112 58 L118 30 L132 76" class="icon-line"/>
+    </g>
+    <text x="205" y="48" text-anchor="middle" class="section-title">Docs Panel</text>
+    <text x="205" y="88" text-anchor="middle" class="section-title">Lifecycle View</text>
+    <rect x="292" y="22" width="88" height="58" rx="24" fill="#fff71a" stroke="#dec800" stroke-width="3"/>
+    <text x="336" y="58" text-anchor="middle" class="body-text">Live</text>
+    <text x="205" y="122" text-anchor="middle" class="muted-text">Market + OrderFilled + Oracle</text>
+  </g>
+
+  <path d="M1880 568 V662" stroke="#a86aac" stroke-width="10" marker-end="url(#arrowGray)"/>
+
+  <g transform="translate(1606 698)">
+    <g transform="translate(0 0)">
+      <path d="M42 0 L78 18 L70 60 L28 60 L20 18 Z" fill="none" stroke="#050505" stroke-width="5"/>
+      <path d="M42 0 L42 30 L78 18 M42 30 L70 60 M42 30 L28 60 M42 30 L20 18" class="icon-line"/>
+      <text x="116" y="44" class="body-text">Radar</text>
+    </g>
+    <g transform="translate(212 2)">
+      <path d="M0 64 H84 M0 0 V64" class="icon-line"/>
+      <path d="M10 50 L28 34 L44 42 L62 18 L78 26" class="icon-line"/>
+      <text x="72" y="44" class="body-text">Return Curve</text>
+    </g>
+    <text x="204" y="128" text-anchor="middle" class="section-title">risk, flow, settlement, archive</text>
+  </g>
+</svg>

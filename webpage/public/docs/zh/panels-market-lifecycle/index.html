@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>市场与生命周期 Panels - polyData 文档</title>
+<meta content="polyData panels for market discovery, market identity, lifecycle state, price, and liquidity context." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-market-lifecycle/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-market-lifecycle/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/panels-market-lifecycle/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a class="active" href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>市场与生命周期 Panels</h1>
+<p>这些 panels 解释一个 Polymarket market 是什么、处在生命周期的哪个阶段，以及当前显示价格和流动性是否足以支撑分析。打开市场工作区时应首先查看它们。</p>
+<p>目标是在进入 flow、oracle 或 external context 之前，先把 market identity、event context、token identity、price surface、order-book depth 和 first-seen discovery signals 连接起来。</p>
+<h2 id="market-discovery">市场发现</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Active Markets</strong><br/><code>active-markets</code></td>
+<td>实时 active Polymarket markets，包含 category、timing、status 和 tradeability context。</td>
+<td>将它作为发现当前相关、有流动性或刚活跃 markets 的入口。</td>
+</tr>
+<tr>
+<td><strong>New Market Signals</strong><br/><code>new-market-signals</code></td>
+<td>首次发现的 markets，包含早期 YES probability 和 market catalog 中的初始 metadata。</td>
+<td>用于在仪表盘积累深度历史之前捕捉新上市 markets。</td>
+</tr>
+<tr>
+<td><strong>Polymarket Macro Market Map</strong><br/><code>polymarket-macro-map</code></td>
+<td>来自 Polymarket 的 active CPI、Fed、growth、labor 和 energy market clusters。</td>
+<td>用于从单个孤立 market 跳转到周围宏观问题族。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="focused-market">聚焦市场工作区</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Market Summary</strong><br/><code>market-summary</code></td>
+<td>选中 market 的 identifiers、category、timing、status、outcome context 和 current pricing。</td>
+<td>用于确认 question、slug、condition id、event 和 displayed outcome 是否匹配你想检查的 market。</td>
+</tr>
+<tr>
+<td><strong>Market Context</strong><br/><code>featured-market</code></td>
+<td>focused market 的 resolution rules、tags、oracle references 和人类可读上下文。</td>
+<td>在解读价格变化前使用；许多 Polymarket 误判来自对 resolution rule 的误解。</td>
+</tr>
+<tr>
+<td><strong>Price Surface</strong><br/><code>price-chart</code></td>
+<td>The focused market probability curve using the platform price-history surface.</td>
+<td>用于 separate a real regime change from a one-off fill, stale quote, or thin-book jump.</td>
+</tr>
+<tr>
+<td><strong>LOB Depth</strong><br/><code>lob-depth</code></td>
+<td>Focused market order-book depth, bid/ask ladder, spread, and near-touch liquidity.</td>
+<td>用于 judge whether a quoted probability is actionable or just a shallow midpoint.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="lifecycle-state">生命周期状态</h2>
+<p>market 不只是 active 或 inactive。polyData 将其视为生命周期对象：discovered、cataloged、tradeable、active、closing、oracle-reviewed、settled 和 archived。这些 panels 提供 flow 与 oracle panels 依赖的身份和价格锚点。</p>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#market-discovery">市场发现</a>
+<a href="#focused-market">聚焦市场工作区</a>
+<a href="#lifecycle-state">生命周期状态</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

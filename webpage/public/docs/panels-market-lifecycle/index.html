@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Market &amp; Lifecycle Panels - polyData Documentation</title>
+<meta content="polyData panels for market discovery, market identity, lifecycle state, price, and liquidity context." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-market-lifecycle/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-market-lifecycle/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/panels-market-lifecycle/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a class="active" href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/panels-cpi/">CPI</a>
+<a href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>Market &amp; Lifecycle Panels</h1>
+<p>These panels explain what a Polymarket market is, where it sits in the lifecycle, and whether the displayed price and liquidity are reliable enough for analysis. They are the first panels to check when opening a market workspace.</p>
+<p>The goal is to connect market identity, event context, token identity, price surface, order-book depth, and first-seen discovery signals before moving into flow, oracle, or external context.</p>
+<h2 id="market-discovery">Market Discovery</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Active Markets</strong><br/><code>active-markets</code></td>
+<td>Live active Polymarket markets with category, timing, status, and tradeability context.</td>
+<td>Use it as the discovery surface for markets that are currently relevant, liquid, or newly active.</td>
+</tr>
+<tr>
+<td><strong>New Market Signals</strong><br/><code>new-market-signals</code></td>
+<td>First-seen markets with early YES probability and initial metadata from the market catalog.</td>
+<td>Use it to catch newly listed markets before the rest of the dashboard has accumulated deep history.</td>
+</tr>
+<tr>
+<td><strong>Polymarket Macro Market Map</strong><br/><code>polymarket-macro-map</code></td>
+<td>Active CPI, Fed, growth, labor, and energy market clusters from Polymarket.</td>
+<td>Use it to move from one isolated market into the surrounding macro question family.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="focused-market">Focused Market Workspace</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Market Summary</strong><br/><code>market-summary</code></td>
+<td>Identifiers, category, timing, status, outcome context, and current pricing for the selected market.</td>
+<td>Use it to confirm that the question, slug, condition id, event, and displayed outcome match the market you intend to inspect.</td>
+</tr>
+<tr>
+<td><strong>Market Context</strong><br/><code>featured-market</code></td>
+<td>Resolution rules, tags, oracle references, and human-readable context for the focused market.</td>
+<td>Use it before interpreting price movement; many Polymarket errors come from misunderstanding the resolution rule.</td>
+</tr>
+<tr>
+<td><strong>Price Surface</strong><br/><code>price-chart</code></td>
+<td>The focused market probability curve using the platform price-history surface.</td>
+<td>Use it to separate a real regime change from a one-off fill, stale quote, or thin-book jump.</td>
+</tr>
+<tr>
+<td><strong>LOB Depth</strong><br/><code>lob-depth</code></td>
+<td>Focused market order-book depth, bid/ask ladder, spread, and near-touch liquidity.</td>
+<td>Use it to judge whether a quoted probability is actionable or just a shallow midpoint.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="lifecycle-state">Lifecycle State</h2>
+<p>A market is not just active or inactive. polyData treats it as a lifecycle object: discovered, cataloged, tradeable, active, closing, oracle-reviewed, settled, and archived. These panels provide the identity and price anchors used by the flow and oracle panels.</p>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#market-discovery">Market Discovery</a>
+<a href="#focused-market">Focused Market Workspace</a>
+<a href="#lifecycle-state">Lifecycle State</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

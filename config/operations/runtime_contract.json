@@ -1,0 +1,73 @@
+{
+  "contractVersion": "polymonitor.operations-runtime.v1",
+  "roles": {
+    "gcp-api": {
+      "target": "polydata-gcp.target",
+      "unitPrefix": "polydata-",
+      "systemUnits": [
+        "nginx.service",
+        "redis-server.service"
+      ],
+      "forbiddenUnits": [
+        "polydata-local-collector.target",
+        "polydata-market-sync.service",
+        "polydata-trade-sync.service",
+        "polydata-oracle-sync.service",
+        "polydata-db-reverse-tunnel.service"
+      ]
+    },
+    "local-collector": {
+      "target": "polydata-local-collector.target",
+      "unitPrefix": "polydata-",
+      "requiredUnits": [
+        "polydata-db-reverse-tunnel.service",
+        "polydata-db-reverse-tunnel-healthcheck.timer"
+      ],
+      "forbiddenUnits": [
+        "polydata-api.service",
+        "polydata-gcp.target"
+      ]
+    },
+    "external-monitor": {
+      "target": null,
+      "mustRunOutsideGcpVm": true
+    }
+  },
+  "thresholds": {
+    "snapshotMaxAgeSeconds": 180,
+    "tunnelHeartbeatMaxAgeSeconds": 300,
+    "memoryAvailableWarningPct": 15,
+    "memoryAvailableCriticalPct": 5,
+    "diskFreeWarningPct": 15,
+    "diskFreeCriticalPct": 5,
+    "loadPerCpuWarning": 1.5,
+    "loadPerCpuCritical": 3.0,
+    "externalConsecutiveFailures": 2,
+    "restartWindowSeconds": 1800,
+    "maxRestartsPerWindow": 3,
+    "recoveryBackoffSeconds": 1800
+  },
+  "state": {
+    "directoryEnv": "POLYDATA_OPERATIONS_STATE_DIR",
+    "defaultRelativeDirectory": ".local/state/polydata-operations",
+    "runtimeSnapshot": "runtime-health.json",
+    "panelSnapshot": "panel-health.json",
+    "incidentHistory": "incidents.json",
+    "tunnelHeartbeat": "tunnel-health.json",
+    "fileMode": "0600",
+    "maxSnapshotBytes": 2097152
+  },
+  "api": {
+    "public": [
+      "/health"
+    ],
+    "protected": [
+      "/system/health",
+      "/system/seed-health",
+      "/system/operations",
+      "/system/incidents"
+    ],
+    "requiredScope": "operations:read",
+    "mutationEndpointsAllowed": false
+  }
+}

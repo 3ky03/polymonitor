@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData GRID esports seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/grid_esports_watcher.py --watch --interval "${POLYDATA_GRID_ESPORTS_WATCH_INTERVAL_SECONDS:-120}" --limit "${POLYDATA_GRID_ESPORTS_LIMIT:-10}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

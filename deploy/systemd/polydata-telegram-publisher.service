@@ -1,0 +1,28 @@
+[Unit]
+Description=polyData Telegram channel publisher
+After=network-online.target polydata-api.service
+Wants=network-online.target
+StartLimitIntervalSec=1800
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+RuntimeDirectory=polydata-telegram
+RuntimeDirectoryPreserve=restart
+Environment=POLYDATA_TELEGRAM_HEARTBEAT_PATH=%t/polydata-telegram/publisher-heartbeat.json
+ExecStart=/bin/bash -lc 'exec env POLYDATA_TELEGRAM_MARKET_LINKING_ENABLED=false "${POLYDATA_PYTHON_BIN:-python3}" -m telegram.topics.publisher --watch --interval "${POLYDATA_TELEGRAM_WATCH_INTERVAL_SECONDS:-60}"'
+Restart=always
+RestartSec=15
+TimeoutStopSec=30
+KillMode=mixed
+OOMPolicy=kill
+CPUQuota=50%
+MemoryMax=256M
+TasksMax=32
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

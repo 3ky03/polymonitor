@@ -1,0 +1,100 @@
+.mobile-workspace-nav {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .mobile-workspace-nav {
+    position: fixed;
+    z-index: 90;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    min-height: 62px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--ds-color-accent) 20%, var(--ds-color-border));
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--ds-color-canvas) 92%, transparent);
+    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-workspace-nav a {
+    position: relative;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 4px;
+    min-width: 0;
+    min-height: 62px;
+    color: var(--ds-color-text-muted);
+    font-family: var(--ds-font-mono);
+    text-decoration: none;
+    transition: color var(--ds-duration-fast) var(--ds-ease-out), background var(--ds-duration-fast) var(--ds-ease-out);
+  }
+
+  .mobile-workspace-nav a + a {
+    border-left: 1px solid var(--ds-color-border-soft);
+  }
+
+  .mobile-workspace-nav a::before {
+    position: absolute;
+    top: 0;
+    right: 24%;
+    left: 24%;
+    height: 2px;
+    background: transparent;
+    content: '';
+  }
+
+  .mobile-workspace-nav a.is-active {
+    background: var(--ds-color-accent-soft);
+    color: var(--ds-color-accent);
+  }
+
+  .mobile-workspace-nav a.is-active::before {
+    background: var(--ds-color-accent);
+  }
+
+  .mobile-workspace-nav a > span {
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .mobile-workspace-nav a > strong {
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .wm-shell,
+  .market-shell,
+  .quality-shell,
+  .auth-shell,
+  .brief-shell,
+  .developer-shell {
+    padding-bottom: calc(82px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 390px) {
+  .mobile-workspace-nav {
+    right: 6px;
+    left: 6px;
+  }
+
+  .mobile-workspace-nav a > strong {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-workspace-nav a {
+    transition-duration: 0.01ms;
+  }
+}

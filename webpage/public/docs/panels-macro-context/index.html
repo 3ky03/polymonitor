@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Macro, Weather &amp; Sports Panels - polyData Documentation</title>
+<meta content="polyData panels for macro releases, commodities, weather markets, sports intelligence, and time-aware context." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-macro-context/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-macro-context/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/panels-macro-context/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/panels-cpi/">CPI</a>
+<a class="active" href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>Macro, Weather &amp; Sports Panels</h1>
+<p>Polymarket questions often depend on data outside Polymarket. These panels bring macro releases, inflation components, commodities, weather, sports, and time-zone context into the same workspace as market prices and fills.</p>
+<h2 id="macro-inflation">Macro and Inflation Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>CPI Release Command</strong><br/><code>cpi-release-command-center</code></td><td>Official release calendar plus nowcast registry for CPI, PCE, and Fed timing.</td><td>Use it before trading macro markets around release windows and consensus changes.</td></tr>
+<tr><td><strong>CPI Components</strong><br/><code>cpi-components-pressure-registry</code></td><td>Energy, food, shelter, and CPI component pressure registry.</td><td>Use it to understand which CPI component may be driving headline or core inflation probabilities.</td></tr>
+<tr><td><strong>CPI Release Calendar &amp; Consensus Baseline</strong><br/><code>cpi-release-calendar</code></td><td>Official CPI, PCE, NFP, and FOMC release timing with Polymarket implied CPI baseline.</td><td>Use it to align market-implied expectations with scheduled official data.</td></tr>
+<tr><td><strong>Inflation Nowcast</strong><br/><code>inflation-nowcast</code></td><td>Cleveland Fed CPI and PCE nowcasting panel.</td><td>Use it as a neutral nowcast reference when market odds diverge from public model estimates.</td></tr>
+<tr><td><strong>Goods / Tariff</strong><br/><code>goods-tariff-supply-watch</code></td><td>Goods inflation, tariff, import-price, and supply-chain registry.</td><td>Use it to track tradable goods inflation pressure and policy-driven import cost shocks.</td></tr>
+<tr><td><strong>Labor / Services</strong><br/><code>labor-services-inflation-monitor</code></td><td>Labor, wage, claims, and services CPI pressure registry.</td><td>Use it to judge whether services inflation risk is coming from wages, labor tightness, or claims data.</td></tr>
+<tr><td><strong>Fed / Growth Risk</strong><br/><code>fed-reaction-growth-risk-board</code></td><td>Fed, rates, growth, demand, and recession-risk registry.</td><td>Use it to connect inflation prints to Fed reaction and growth-risk markets.</td></tr>
+<tr><td><strong>Food &amp; Retail Basket Pressure</strong><br/><code>food-retail-basket-pressure</code></td><td>Official CPI food-component pressure for inflation market positioning.</td><td>Use it for food-at-home, food-away-from-home, and retail-basket questions.</td></tr>
+<tr><td><strong>Supply / Tariff</strong><br/><code>supply-tariff-import-watch</code></td><td>Supply-chain and tariff watch for CPI goods pressure.</td><td>Use it when goods inflation markets depend on shipping, import, tariff, or substitution pressure.</td></tr>
+<tr><td><strong>Shelter / OER</strong><br/><code>shelter-rent-oer-pressure</code></td><td>Rent and owners-equivalent-rent pressure for core CPI markets.</td><td>Use it to interpret sticky shelter components before official CPI release.</td></tr>
+<tr><td><strong>Labor / Wages</strong><br/><code>labor-wage-services-pressure</code></td><td>Labor-market and wage pressure for services CPI and Fed markets.</td><td>Use it to connect payroll, wage, and services-price risk in one panel.</td></tr>
+<tr><td><strong>Growth / Demand</strong><br/><code>growth-demand-recession-tracker</code></td><td>Demand and recession indicators for macro market positioning.</td><td>Use it to evaluate whether macro market odds reflect soft-landing or recession pressure.</td></tr>
+<tr><td><strong>Fed / Rates Gap</strong><br/><code>fed-rates-polymarket-gap</code></td><td>Rates tape and Polymarket Fed-market context.</td><td>Use it to compare prediction-market pricing with rate-market signals.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="market-context">Market and Commodity Context</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Commodities Watch</strong><br/><code>commodities-watch</code></td><td>Commodity price boards and sparklines.</td><td>Use it to anchor energy, metals, food, and inflation markets in live commodity prices.</td></tr>
+<tr><td><strong>Energy &amp; Gasoline Shock</strong><br/><code>energy-gasoline-shock</code></td><td>EIA WTI, gasoline, and diesel pressure for headline CPI markets.</td><td>Use it when energy-price moves may drive CPI or consumer-cost probabilities.</td></tr>
+<tr><td><strong>Global Indices</strong><br/><code>global-index-monitor</code></td><td>Global index quote board.</td><td>Use it as broad risk-on/risk-off context for macro and market-direction questions.</td></tr>
+<tr><td><strong>Commodity Equity Transmission</strong><br/><code>commodity-equity-transmission</code></td><td>Commodity shocks mapped into equity beneficiaries, cost-pressure names, spread-watch names, and related Polymarket themes.</td><td>Use it to translate commodity moves into sector and company implications.</td></tr>
+<tr><td><strong>World Clock</strong><br/><code>world-clock</code></td><td>Live market clocks for Shanghai, New York, London, and the selected weather city.</td><td>Use it to interpret whether a market is moving during an active session or during thin after-hours liquidity.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="weather">Weather Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Global Temp Monitor</strong><br/><code>global-temperature-monitor</code></td><td>Live global city temperatures, forecast highs, and Polymarket quote coverage.</td><td>Use it as the overview table for weather-linked markets and city-level temperature risk.</td></tr>
+<tr><td><strong>Weather Market Browser</strong><br/><code>weather-market-browser</code></td><td>Grouped Polymarket weather markets across temperature, precipitation, storms, climate, and disaster families.</td><td>Use it to find the relevant market family before opening a city or quote detail panel.</td></tr>
+<tr><td><strong>Weather City Snapshot</strong><br/><code>weather-city-snapshot</code></td><td>Selected city temperature, condition, daily range, and market coverage.</td><td>Use it as the city-level weather summary for a focused weather market.</td></tr>
+<tr><td><strong>Weather Quote Curve</strong><br/><code>weather-quote-detail</code></td><td>Selected city Polymarket temperature-bin midpoint curve.</td><td>Use it to see which temperature outcomes are priced as most likely.</td></tr>
+<tr><td><strong>Weather Quote Table</strong><br/><code>weather-quote-table</code></td><td>Selected city temperature market quote bins in a compact table.</td><td>Use it for precise bin-level bid, ask, midpoint, and probability comparison.</td></tr>
+<tr><td><strong>WU 1 Day</strong><br/><code>weather-trend-detail</code></td><td>Selected city one-day temperature trend chart.</td><td>Use it for intraday movement and near-term weather market timing.</td></tr>
+<tr><td><strong>WU 7 Day</strong><br/><code>weather-trend-7d</code></td><td>Selected city seven-day temperature trend chart.</td><td>Use it to compare short-term market pricing with forecast trend direction.</td></tr>
+<tr><td><strong>Weather News</strong><br/><code>weather-news</code></td><td>City weather headlines from seeded Google News RSS.</td><td>Use it when market odds may be reacting to storms, heat waves, warnings, or local forecast changes.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="sports">Sports Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>NBA Scoreboard</strong><br/><code>nba-scoreboard</code></td><td>Upcoming and live NBA games.</td><td>Use it as the schedule and live-state anchor for NBA-related markets.</td></tr>
+<tr><td><strong>NBA Intel</strong><br/><code>nba-intel</code></td><td>ESPN news, starting lineups, and pregame rumors.</td><td>Use it to connect lineup or injury information to team and player markets.</td></tr>
+<tr><td><strong>ESPN Matchup Predictor</strong><br/><code>espn-matchup-predictor</code></td><td>ESPN BPI win probability, matchup quality, projected margin, and expected score.</td><td>Use it as an external model baseline against Polymarket or sportsbook pricing.</td></tr>
+<tr><td><strong>Esports Intel</strong><br/><code>esports-intel</code></td><td>GRID official esports series state with local Polymarket matching context.</td><td>Use it to verify esports event state and match it back to local market identity.</td></tr>
+<tr><td><strong>Sports Odds</strong><br/><code>sports-odds</code></td><td>Bookmaker consensus monitor with Polymarket comparison hooks.</td><td>Use it to compare Polymarket probability with external sportsbook consensus.</td></tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#macro-inflation">Macro and Inflation Panels</a>
+<a href="#market-context">Market and Commodity Context</a>
+<a href="#weather">Weather Panels</a>
+<a href="#sports">Sports Panels</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

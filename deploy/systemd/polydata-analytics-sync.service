@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData PostgreSQL market status snapshot sync service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/db/sync_trade_analytics.py --backend postgres --market-only --max-batches 0 --watch --interval 60'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

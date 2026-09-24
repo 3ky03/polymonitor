@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData PostgreSQL single-market workspace serving sync service
+After=network-online.target polydata-analytics-sync.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/db/sync_market_workspace_serving.py --backend postgres --watch --interval "${POLYDATA_MARKET_WORKSPACE_SERVING_INTERVAL_SECONDS:-300}" --max-markets "${POLYDATA_MARKET_WORKSPACE_SERVING_MAX_MARKETS:-80}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

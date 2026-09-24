@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData LocalOrderBook websocket state-machine worker
+After=network-online.target polydata-db-tunnel.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'coverage_limit="${POLYDATA_LOB_COVERAGE_LIMIT:-250}"; minimum_limit="${POLYDATA_LOB_INTERACTIVE_MIN_MARKETS:-80}"; if (( coverage_limit < minimum_limit )); then coverage_limit="$minimum_limit"; fi; POLYDATA_LOB_COVERAGE_LIMIT="$coverage_limit" POLYDATA_LOB_WEBSOCKET_ENABLED=1 POLYDATA_LOB_RUNTIME_STATUS_PATH="${POLYDATA_LOB_RUNTIME_STATUS_PATH:-/tmp/polydata/local-orderbook-websocket-status.json}" exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/local_orderbook_websocket_watcher.py'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

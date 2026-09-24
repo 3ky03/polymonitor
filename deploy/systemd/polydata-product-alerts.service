@@ -1,0 +1,15 @@
+[Unit]
+Description=polyData product watchlist alert evaluator
+After=network-online.target polydata-api.service
+Requires=polydata-api.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/polyData
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/product_alert_watcher.py --watch --interval "${POLYDATA_PRODUCT_ALERT_INTERVAL_SECONDS:-60}"'
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=polydata-gcp.target

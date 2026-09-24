@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData Global Transport / Shipping seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/global_transport_shipping_watcher.py --watch --interval "${POLYDATA_GLOBAL_TRANSPORT_WATCH_INTERVAL_SECONDS:-3600}" --limit "${POLYDATA_GLOBAL_TRANSPORT_LIMIT:-14}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

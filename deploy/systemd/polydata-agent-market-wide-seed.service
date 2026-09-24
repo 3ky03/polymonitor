@@ -1,0 +1,12 @@
+[Unit]
+Description=polyData market-wide Agent snapshot seed
+After=network-online.target redis.service postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'if [ -n "${POLYDATA_AGENT_MARKET_WIDE_TIMER_LENSES:-}" ]; then printf "%%s" "$POLYDATA_AGENT_MARKET_WIDE_TIMER_LENSES" | tr "," " " | xargs -n1 "${POLYDATA_PYTHON_BIN:-python3}" scripts/agent/seed_market_wide_insights.py --lens; else exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/agent/seed_market_wide_insights.py; fi'
+StandardOutput=journal
+StandardError=journal

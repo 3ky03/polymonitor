@@ -1,0 +1,22 @@
+[Unit]
+Description=polyData OrderFilled ClickHouse live sync
+After=network-online.target polydata-polygon-rpc-tunnel.service
+Wants=network-online.target
+Requires=polydata-polygon-rpc-tunnel.service
+StartLimitIntervalSec=3600
+StartLimitBurst=3
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+UnsetEnvironment=NODE_URL NODE_URL2 POLYDATA_ORDERFILLED_FALLBACK_RPC_URL POLYDATA_ORDERFILLED_FALLBACK_RPC_ENV_FILE POLYDATA_ORDERFILLED_FALLBACK_RPC_ENV_NAME
+ExecStart=/bin/bash -lc 'exec scripts/trade/run_trades_indexer_clickhouse_live.sh'
+Restart=always
+RestartSec=600
+RestartPreventExitStatus=75
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

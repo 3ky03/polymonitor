@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Polymarket Agent - polyData Documentation</title>
+<meta content="A paper-style description of the polyMonitor Forecast Intelligence Graph, including task formulation, agent architecture, inference procedure, outputs, and evaluation protocol." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/polymarket-agent/" hreflang="en" rel="alternate"/><link href="/docs/zh/polymarket-agent/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/polymarket-agent/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a class="active" href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/panels-cpi/">CPI</a>
+<a href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>Polymarket Agent</h1>
+<p>We present the polyMonitor Forecast Intelligence Graph, a structured multi-agent system for generating auditable prediction-market intelligence from Polymarket data. The system combines deterministic evidence construction with model-backed specialist agents, critique, calibration, and panel generation. Its objective is not to simulate human conversation, but to produce market-level claims that are grounded in prices, fills, related markets, oracle state, and external catalysts.</p>
+<figure class="docs-figure" id="agent-architecture">
+<div class="docs-figure-frame">
+<a aria-label="Open Polymarket Agent architecture diagram" class="docs-figure-zoom" href="#agent-architecture-zoom">
+<img alt="Diagram of the polyMonitor Forecast Intelligence Graph" src="/docs-assets/images/polymarket-agent-architecture.png"/>
+</a>
+</div>
+<figcaption>Figure 1. The Forecast Intelligence Graph separates deterministic state construction from model-backed specialist reasoning, critique, and panel writing.</figcaption>
+</figure>
+<div aria-label="Polymarket Agent architecture diagram" aria-modal="true" class="docs-lightbox" id="agent-architecture-zoom" role="dialog">
+<a aria-label="Close diagram" class="docs-lightbox-backdrop" href="#agent-architecture"></a>
+<div class="docs-lightbox-panel">
+<a aria-label="Close diagram" class="docs-lightbox-close" href="#agent-architecture">x</a>
+<img alt="Diagram of the polyMonitor Forecast Intelligence Graph" src="/docs-assets/images/polymarket-agent-architecture.png"/>
+</div>
+</div>
+<h2 id="abstract">Abstract</h2>
+<p>Prediction markets expose probabilistic beliefs through prices, but market interpretation requires more than a last-traded value. A useful monitoring system must jointly reason over order-book microstructure, fill activity, sibling markets, resolution criteria, oracle state, and exogenous information. We formulate polyMonitor as a graph-structured inference system. Given a market-wide evidence packet and a dashboard lens, the graph emits a calibrated panel payload, a quant snapshot, and a replayable node-level audit log. The architecture is intentionally small: deterministic nodes build the evidence state, specialist LLM agents analyze complementary uncertainty surfaces, a skeptic agent performs critique, and a writer agent converts calibrated state into dashboard views.</p>
+<h2 id="problem-formulation">Problem Formulation</h2>
+<p>Let <code>x</code> denote a market evidence packet containing Polymarket market metadata, prices, order-book summaries, recent fills, related-market candidates, oracle state, external context, and prior forecast memory. Let <code>l</code> be a panel lens in <code>{overview, special, trend}</code>. The system learns no private market model during inference. Instead, it computes a structured mapping:</p>
+<pre class="docs-code"><code>F(x, l) -&gt; (y, q, e)</code></pre>
+<p>where <code>y</code> is a dashboard-ready intelligence payload, <code>q</code> is a quant and data-quality snapshot, and <code>e</code> is an ordered event trace containing node outputs, input hashes, model identifiers, latency, token usage, tool traces, and errors. The central design constraint is auditability: every generated claim should be attributable to a bounded input packet or an explicit model-backed reasoning node.</p>
+<h2 id="system-overview">System Overview</h2>
+<p>The production graph is a directed state machine rather than an open-ended group chat. Its nodes are executed in a fixed order so that later model calls observe compact, typed state instead of an unbounded transcript. The current graph consists of deterministic state builders, three specialist model agents, a rule-based calibration node, a skeptic model agent, and a final panel writer.</p>
+<pre class="docs-code"><code>evidence_builder
+  -&gt; related_markets
+  -&gt; quant_forecaster
+  -&gt; reflexion_memory
+  -&gt; microstructure
+  -&gt; catalyst
+  -&gt; resolution
+  -&gt; calibration_agent
+  -&gt; skeptic
+  -&gt; panel_writer</code></pre>
+<p>This design follows a research-paper view of multi-agent systems: agents are introduced only when they own distinct sources of uncertainty. Microstructure, catalyst, and resolution reasoning are separated because they fail in different ways. A liquidity signal can be real while the news catalyst is stale; a catalyst can be strong while the market wording makes settlement ambiguous.</p>
+<h2 id="architecture">Architecture</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Node</th>
+<th>Type</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence Builder</strong></td>
+<td>Deterministic</td>
+<td>Constructs the initial evidence state from market candidates, groups, prices, fills, oracle snippets, external context, and search results.</td>
+</tr>
+<tr>
+<td><strong>Related Markets</strong></td>
+<td>Deterministic code</td>
+<td>Links sibling markets, event-level groups, deadline ladders, adjacent outcomes, and cross-market relationships that may reveal inconsistent pricing.</td>
+</tr>
+<tr>
+<td><strong>Quant Forecaster</strong></td>
+<td>Deterministic code</td>
+<td>Computes price drift, fill-tape microstructure, spread indicators, related-market scores, and data-quality warnings.</td>
+</tr>
+<tr>
+<td><strong>Reflexion Memory</strong></td>
+<td>Deterministic memory</td>
+<td>Loads prior forecast episodes and summary lessons so current reasoning can be compared with historical failures and successes.</td>
+</tr>
+<tr>
+<td><strong>Microstructure Agent</strong></td>
+<td>LLM specialist</td>
+<td>Analyzes named markets through implied probability, volume, trade count, fill concentration, bid/ask quality, close probabilities, and liquidity caveats.</td>
+</tr>
+<tr>
+<td><strong>Catalyst Agent</strong></td>
+<td>LLM specialist</td>
+<td>Identifies external triggers, related-market catalysts, event timing, and evidence that would plausibly move market-implied probability.</td>
+</tr>
+<tr>
+<td><strong>Resolution Agent</strong></td>
+<td>LLM specialist</td>
+<td>Examines market wording, deadline buckets, official-source hierarchy, oracle signals, ambiguity, and settlement risk.</td>
+</tr>
+<tr>
+<td><strong>Calibration Agent</strong></td>
+<td>Rule-based aggregator</td>
+<td>Anchors confidence to market-implied prices, data warnings, related-market stress, prior Brier history, and specialist confidence.</td>
+</tr>
+<tr>
+<td><strong>Skeptic Agent</strong></td>
+<td>LLM critique</td>
+<td>Challenges weak evidence, missing price-change data, stale signals, narrative overreach, and probability miscalibration.</td>
+</tr>
+<tr>
+<td><strong>Panel Writer</strong></td>
+<td>LLM adapter</td>
+<td>Writes the final panel payload from evidence, specialist reports, calibration state, and memory without introducing ungrounded claims.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="agent-prompts">Agent Prompts</h2>
+<p>Each model-backed node receives a system role, a compact JSON user packet, and a required output schema. The prompt does not ask the model to forecast from memory. It asks the model to inspect a bounded evidence state and return compact JSON containing findings, risks, watch items, confidence, and probability-adjustment notes. The specialist roles are intentionally asymmetric:</p>
+<ul>
+<li><strong>Microstructure:</strong> price formation, fill tape, volume, trade count, liquidity concentration, and spread quality.</li>
+<li><strong>Catalyst:</strong> external events, official releases, news timing, and cross-market triggers.</li>
+<li><strong>Resolution:</strong> market wording, oracle conditions, settlement ambiguity, and official-source hierarchy.</li>
+<li><strong>Skeptic:</strong> stale evidence, unsupported causal claims, missing data, hallucination risk, and overconfident probability shifts.</li>
+<li><strong>Panel Writer:</strong> conversion from calibrated graph state into dashboard-facing English JSON.</li>
+</ul>
+<h2 id="inference-procedure">Inference Procedure</h2>
+<p>The runtime executes the graph as a stateful inference procedure. Deterministic nodes first compress raw inputs into a graph context; model nodes then operate over that context with optional tool traces; final outputs are normalized into panel schemas and stored with replay metadata.</p>
+<pre class="docs-code"><code>Algorithm 1: Forecast Intelligence Graph Inference
+Input: evidence packet x, lens l
+Output: panel payload y, quant snapshot q, event trace e
+
+1: s0 &lt;- EvidenceBuilder(x, l)
+2: r  &lt;- RelatedMarkets(s0)
+3: q  &lt;- QuantForecaster(s0, r)
+4: m  &lt;- ReflexionMemory(s0, q, r)
+5: a1 &lt;- MicrostructureAgent(s0, r, q, m)
+6: a2 &lt;- CatalystAgent(s0, r, q, m)
+7: a3 &lt;- ResolutionAgent(s0, r, q, m)
+8: c  &lt;- CalibrationAgent(q, r, m, [a1, a2, a3])
+9: k  &lt;- SkepticAgent(s0, r, q, m, [a1, a2, a3], c)
+10: y &lt;- PanelWriter(s0, r, q, m, [a1, a2, a3], c, k)
+11: e &lt;- PersistNodeEvents()
+12: return y, q, e</code></pre>
+<h2 id="panel-lenses">Panel Lenses</h2>
+<p>The dashboard views are not independent agents. They are lenses over a shared graph run. The same evidence packet and node event trace can support overview, special, and trend views, but each lens asks the final writer to emphasize a different decision surface.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>Lens</th>
+<th>What it should emphasize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Market-wide Insights</strong></td>
+<td><code>overview</code></td>
+<td>Dominant market structure, probability interpretation, top caveat, and why the board matters now.</td>
+</tr>
+<tr>
+<td><strong>Special Radar</strong></td>
+<td><code>special</code></td>
+<td>Anomalous markets, low-liquidity moves, conflicting prices, deadline ladders, and cross-market stress.</td>
+</tr>
+<tr>
+<td><strong>Trend Watch</strong></td>
+<td><code>trend</code></td>
+<td>Category rotation, attention migration, catalyst clusters, and whether isolated event interest is becoming a broader trend.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="input-representation">Input Representation</h2>
+<p>The input packet is deliberately heterogeneous. Polymarket interpretation depends on market identity, trading activity, sibling markets, and settlement semantics. The graph therefore keeps the following surfaces separate rather than collapsing them into one prose context.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Input surface</th>
+<th>Examples</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Price and liquidity</td>
+<td><code>latestPrice</code>, <code>price24hAgo</code>, volume, trade count, bid/ask, LOB spread</td>
+<td>Evidence Builder, Microstructure Agent, Quant Forecaster, Calibration Agent</td>
+</tr>
+<tr>
+<td>Fill tape</td>
+<td><code>topMarketFillTape</code>, fill VWAP, recent fill drift, paired-fill ratio, price-source conflicts</td>
+<td>Microstructure Agent, Quant Forecaster, Skeptic Agent</td>
+</tr>
+<tr>
+<td>Resolution context</td>
+<td>Market title, rules, end date, oracle events, official source hierarchy, settlement state</td>
+<td>Resolution Agent, Skeptic Agent, Panel Writer</td>
+</tr>
+<tr>
+<td>External catalysts</td>
+<td>News, official releases, match feeds, government calendars, social/media trend signals</td>
+<td>Catalyst Agent, Skeptic Agent, Panel Writer</td>
+</tr>
+<tr>
+<td>Related markets</td>
+<td>Same-event children, handicap markets, deadline ladders, adjacent category markets</td>
+<td>Related Markets, Quant Forecaster, Calibration Agent</td>
+</tr>
+<tr>
+<td>Historical memory</td>
+<td>Prior forecast episodes, realized resolution, price drift after prediction, Brier score, category reliability</td>
+<td>Reflexion Memory, Calibration Agent, Skeptic Agent</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="output-schema">Output Schema</h2>
+<p>The system emits more than a written panel. The output is a triple: the user-facing payload, the quant evidence state, and the replayable event trace. This makes the architecture inspectable under both product and research evaluation.</p>
+<pre class="docs-code"><code>{
+  "runId": "fig-...",
+  "agentArchitecture": "forecast-intelligence-graph-v2",
+  "agentGraph": {
+    "mode": "langgraph-supervisor-worker",
+    "runtime": "langgraph-supervisor-stategraph",
+    "nodes": [
+      "evidence_builder",
+      "related_markets",
+      "quant_forecaster",
+      "reflexion_memory",
+      "microstructure",
+      "catalyst",
+      "resolution",
+      "calibration_agent",
+      "skeptic",
+      "panel_writer"
+    ],
+    "events": []
+  },
+  "panelPayload": {},
+  "usage": {
+    "model": "gpt-5.5",
+    "latencyMs": 0,
+    "inputChars": 0,
+    "outputChars": 0
+  }
+}</code></pre>
+<h2 id="evaluation">Evaluation Protocol</h2>
+<p>A paper-level evaluation should not score the system by prose fluency alone. The relevant question is whether the graph improves market interpretation under uncertainty while preserving calibration and auditability. We evaluate the system along four axes.</p>
+<ul>
+<li><strong>Calibration:</strong> compare probability statements or confidence bins against realized market resolutions using Brier score, expected calibration error, and category-level reliability curves.</li>
+<li><strong>Discrimination:</strong> measure whether high-confidence claims separate from low-confidence claims under subsequent price movement, resolution outcome, or analyst review.</li>
+<li><strong>Faithfulness:</strong> audit whether each generated claim is supported by the evidence packet, a specialist output, a tool trace, or an explicit uncertainty statement.</li>
+<li><strong>Efficiency:</strong> report latency, token usage, model calls, fallback rate, and quality changes under node ablations.</li>
+</ul>
+<h2 id="ablations">Ablations</h2>
+<p>The graph is designed to be evaluated by removing or replacing components. Useful ablations include deterministic-only output, no specialist agents, no skeptic, no reflexion memory, no related-market state, and writer-only generation. These ablations reveal whether accuracy comes from data construction, specialist reasoning, critique, or final writing.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Ablation</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No specialist agents</td>
+<td>Does deterministic evidence plus a writer perform as well as agent decomposition?</td>
+</tr>
+<tr>
+<td>No skeptic</td>
+<td>Does critique reduce unsupported causal claims and overconfident language?</td>
+</tr>
+<tr>
+<td>No related markets</td>
+<td>Does cross-market context improve detection of spread, ladder, and event-level inconsistencies?</td>
+</tr>
+<tr>
+<td>No memory</td>
+<td>Does prior forecast history improve confidence discipline and repeated-market interpretation?</td>
+</tr>
+<tr>
+<td>Deterministic fallback</td>
+<td>How much value is lost when model calls are unavailable?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="limitations">Limitations</h2>
+<p>The current system should be read as a monitoring and interpretation graph, not an autonomous trading or oracle-action agent. It does not submit orders, move liquidity, or initiate UMA disputes. It can surface resolution risk, but it does not replace legal or official settlement review. Its claims remain bounded by data freshness, source coverage, CLOB availability, model reliability, and the quality of the market metadata supplied to the graph.</p>
+<h2 id="references">Related Work</h2>
+<p>The design is closest to specialized financial and forecasting-agent systems that use structured roles, bounded context, and explicit evaluation. The useful lesson is not that more agents are always better, but that decomposition can improve interpretability when each agent owns a distinct evidence surface.</p>
+<ul>
+<li><a href="https://tradingagents-ai.github.io/" rel="noopener noreferrer" target="_blank">TradingAgents</a>: financial workflow with analysts, bull/bear researchers, trader synthesis, risk review, and final decision control.</li>
+<li><a href="https://deepwiki.com/TauricResearch/TradingAgents/1.1-system-architecture/" rel="noopener noreferrer" target="_blank">TradingAgents system architecture</a>: structured reports and institutional-style coordination.</li>
+<li><a href="https://huggingface.co/papers/2407.06567" rel="noopener noreferrer" target="_blank">FinCon</a>: manager-analyst hierarchy, risk control, and verbal reinforcement for financial decision workflows.</li>
+<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6280940" rel="noopener noreferrer" target="_blank">PROPHET</a>: prediction-market modeling with price time series, event text semantics, and order-book microstructure.</li>
+<li><a href="https://www.foresightflow.org/publications/coordination-architectural-layer" rel="noopener noreferrer" target="_blank">ForesightFlow</a>: coordination layer, calibration, discriminative power, and cost-quality evaluation for forecasting agents.</li>
+<li><a href="https://huggingface.co/papers/2406.11638" rel="noopener noreferrer" target="_blank">MASAI</a>, <a href="https://huggingface.co/papers/2409.05556" rel="noopener noreferrer" target="_blank">SciAgents</a>, and <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6499821" rel="noopener noreferrer" target="_blank">DrugAgent</a>: task-specific systems that use short trajectories, explicit responsibilities, structured inputs and outputs, and domain knowledge instead of open-ended chat.</li>
+</ul>
+<h2 id="apis">Runtime APIs</h2>
+<p>The public endpoints expose the current run artifacts needed for product display and research audit. Browser deployments access these routes through the <code>/wm-api</code> prefix.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/runtime/agent/market-wide-insights/&lt;lens&gt;</code></td>
+<td>Dashboard-ready panel snapshot for <code>overview</code>, <code>special</code>, or <code>trend</code>.</td>
+</tr>
+<tr>
+<td><code>/runtime/agent/market-wide-quant/&lt;lens&gt;</code></td>
+<td>Quant snapshot with price drift, fill-tape microstructure, related-market scores, and data-quality warnings.</td>
+</tr>
+<tr>
+<td><code>/runtime/agent/market-wide-events/&lt;run_id&gt;</code></td>
+<td>Node-level audit log for replay, debugging, latency inspection, and model-output review.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#abstract">Abstract</a>
+<a href="#problem-formulation">Problem Formulation</a>
+<a href="#system-overview">System Overview</a>
+<a href="#architecture">Architecture</a>
+<a href="#agent-prompts">Agent Prompts</a>
+<a href="#inference-procedure">Inference Procedure</a>
+<a href="#panel-lenses">Panel Lenses</a>
+<a href="#input-representation">Input Representation</a>
+<a href="#output-schema">Output Schema</a>
+<a href="#evaluation">Evaluation Protocol</a>
+<a href="#ablations">Ablations</a>
+<a href="#limitations">Limitations</a>
+<a href="#references">Related Work</a>
+<a href="#apis">Runtime APIs</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData World Cup Match Ops seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/world_cup_match_ops_watcher.py --watch --interval "${POLYDATA_WORLD_CUP_MATCH_OPS_WATCH_INTERVAL_SECONDS:-300}" --limit "${POLYDATA_WORLD_CUP_MATCH_OPS_LIMIT:-12}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

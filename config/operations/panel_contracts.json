@@ -1,0 +1,264 @@
+{
+  "contractVersion": "polymonitor.panel-operations.v1",
+  "excludedPanelIds": [
+    "world-cup-match-ops"
+  ],
+  "excludedPanelPrefixes": [
+    "worldcup-"
+  ],
+  "groups": [
+    {
+      "owner": "markets",
+      "healthStrategy": "database",
+      "dataSources": ["postgres", "market-registry"],
+      "representativeProbe": "market_sync",
+      "expectedFreshnessSeconds": 1800,
+      "degradationPolicy": "Keep the last complete market snapshot and mark stale or coverage-partial.",
+      "panelIds": ["active-markets", "featured-market", "market-summary"]
+    },
+    {
+      "owner": "orderfilled",
+      "healthStrategy": "database",
+      "dataSources": ["clickhouse", "postgres", "orderfilled"],
+      "representativeProbe": "trade_sync",
+      "expectedFreshnessSeconds": 900,
+      "degradationPolicy": "Preserve the last complete trade projection and isolate failures from unrelated panels.",
+      "panelIds": ["global-orderfilled", "sample-chain-trades"]
+    },
+    {
+      "owner": "oracle",
+      "healthStrategy": "database",
+      "dataSources": ["postgres", "oracle-events"],
+      "representativeProbe": "oracle_sync",
+      "expectedFreshnessSeconds": 1800,
+      "degradationPolicy": "Show the last lifecycle state with an explicit stale or partial marker.",
+      "panelIds": ["oracle-feed", "oracle-timeline"]
+    },
+    {
+      "owner": "market-workspace",
+      "healthStrategy": "database",
+      "dataSources": ["postgres", "derived-prices"],
+      "representativeProbe": "price_sync",
+      "expectedFreshnessSeconds": 900,
+      "degradationPolicy": "Retain the last complete price or evidence snapshot and expose its age.",
+      "panelIds": ["price-chart", "price-implications", "related-news"]
+    },
+    {
+      "owner": "lob",
+      "healthStrategy": "database",
+      "dataSources": ["local-orderbook"],
+      "representativeProbe": "lob_runtime",
+      "expectedFreshnessSeconds": 30,
+      "degradationPolicy": "Never substitute an unknown book for a live one; expose stale storage evidence.",
+      "panelIds": ["lob-depth"]
+    },
+    {
+      "owner": "signals",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:signals"],
+      "serviceNames": [
+        "polydata-alpha-signal-seed.service",
+        "polydata-polybeats-feed-seed.service",
+        "polydata-whale-trades-seed.service",
+        "polydata-suspicious-trades-seed.service"
+      ],
+      "expectedFreshnessSeconds": 90,
+      "evidenceAliases": {
+        "whale-tracker": "whale-trades",
+        "suspicious-flow": "suspicious-trades"
+      },
+      "degradationPolicy": "Keep last-good signal evidence, never fabricate a current signal.",
+      "panelIds": ["alpha-signal", "polybeats-feed", "whale-tracker", "suspicious-flow"]
+    },
+    {
+      "owner": "market-groups",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:markets"],
+      "serviceNames": ["polydata-market-group-seed.service"],
+      "expectedFreshnessSeconds": 120,
+      "evidenceAliases": {
+        "commodity-equity-transmission": "commodities-watch"
+      },
+      "degradationPolicy": "Retain last-good groups with stale and source-degraded labels.",
+      "panelIds": ["commodities-watch", "commodity-equity-transmission", "crypto-watch"]
+    },
+    {
+      "owner": "finance",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:finance"],
+      "serviceNames": [
+        "polydata-defi-token-watch-seed.service",
+        "polydata-finance-watch-panels-seed.service",
+        "polydata-finance-external-sources-seed.service"
+      ],
+      "expectedFreshnessSeconds": 1800,
+      "degradationPolicy": "Preserve last-good finance snapshots and report per-source degradation.",
+      "panelIds": [
+        "broker-research-watch",
+        "crypto-etf-flow",
+        "crypto-fear-greed",
+        "crypto-perp-funding",
+        "defi-security-watch",
+        "defi-token-watch",
+        "defi-yield-monitor",
+        "global-index-monitor",
+        "ipo-news-watch",
+        "stablecoin-monitor",
+        "tradfi-perp-radar"
+      ]
+    },
+    {
+      "owner": "tech",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:tech"],
+      "serviceNames": ["polydata-tech-panels-seed.service"],
+      "expectedFreshnessSeconds": 1200,
+      "degradationPolicy": "Use last-good snapshots and show upstream source failures.",
+      "panelIds": ["ai-model-race", "big-tech-market-cap", "consumer-app-pulse"]
+    },
+    {
+      "owner": "macro",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:macro"],
+      "serviceNames": [
+        "polydata-cpi-release-calendar-seed.service",
+        "polydata-energy-gasoline-shock-seed.service",
+        "polydata-inflation-nowcast-seed.service",
+        "polydata-jin10-seed.service",
+        "polydata-macro-cpi-panels-seed.service",
+        "polydata-macro-cpi-registry-seed.service",
+        "polydata-polymarket-macro-map-seed.service"
+      ],
+      "expectedFreshnessSeconds": 43200,
+      "degradationPolicy": "Respect each payload interval; retain last-good macro data with age and partial markers.",
+      "panelIds": [
+        "cpi-components-pressure-registry",
+        "cpi-release-calendar",
+        "cpi-release-command-center",
+        "energy-gasoline-shock",
+        "fed-rates-polymarket-gap",
+        "fed-reaction-growth-risk-board",
+        "food-retail-basket-pressure",
+        "goods-tariff-supply-watch",
+        "growth-demand-recession-tracker",
+        "inflation-nowcast",
+        "jin10-flash",
+        "labor-services-inflation-monitor",
+        "labor-wage-services-pressure",
+        "polymarket-macro-map",
+        "shelter-rent-oer-pressure",
+        "supply-tariff-import-watch"
+      ]
+    },
+    {
+      "owner": "weather",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:weather"],
+      "serviceNames": [
+        "polydata-global-weather-map-seed.service",
+        "polydata-weather-news-seed.service"
+      ],
+      "expectedFreshnessSeconds": 900,
+      "evidenceAliases": {
+        "global-temperature-monitor": "global-weather-map",
+        "weather-city-snapshot": "global-weather-map",
+        "weather-market-browser": "global-weather-map",
+        "weather-quote-table": "global-weather-map",
+        "weather-trend-7d": "global-weather-map",
+        "weather-trend-detail": "global-weather-map"
+      },
+      "degradationPolicy": "Keep last-good weather observations and distinguish quote age from source failure.",
+      "panelIds": [
+        "global-temperature-monitor",
+        "weather-city-snapshot",
+        "weather-market-browser",
+        "weather-news",
+        "weather-quote-table",
+        "weather-trend-7d",
+        "weather-trend-detail"
+      ]
+    },
+    {
+      "owner": "content",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "content-snapshots"],
+      "serviceNames": [
+        "polydata-breaking-event-radar-seed.service",
+        "polydata-market-tv-wire-seed.service"
+      ],
+      "expectedFreshnessSeconds": 1800,
+      "evidenceAliases": {
+        "market-youtube-channels": "market-tv-wire"
+      },
+      "degradationPolicy": "Retain verified last-good content and expose source availability.",
+      "panelIds": ["breaking-event-radar", "market-tv-wire", "market-youtube-channels"]
+    },
+    {
+      "owner": "world-intel",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "world-snapshots"],
+      "serviceNames": [
+        "polydata-geo-sanctions-shock.service",
+        "polydata-global-transport-shipping-seed.service"
+      ],
+      "expectedFreshnessSeconds": 7200,
+      "degradationPolicy": "Retain last-good evidence and label partial upstream coverage.",
+      "panelIds": ["geo-sanctions-shock"]
+    },
+    {
+      "owner": "transport",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:transport"],
+      "serviceNames": ["polydata-global-transport-shipping-seed.service"],
+      "expectedFreshnessSeconds": 7200,
+      "degradationPolicy": "Preserve last-good transport observations and source-state details.",
+      "panelIds": ["global-transport-shipping"]
+    },
+    {
+      "owner": "sports",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:sports"],
+      "serviceNames": [
+        "polydata-f1-seed.service",
+        "polydata-grid-esports-seed.service",
+        "polydata-nba-seed.service",
+        "polydata-sports-odds-seed.service"
+      ],
+      "expectedFreshnessSeconds": 900,
+      "degradationPolicy": "Use last-good event data and keep provider errors isolated.",
+      "panelIds": [
+        "espn-matchup-predictor",
+        "esports-intel",
+        "f1-trackside",
+        "nba-intel",
+        "nba-scoreboard",
+        "sports-odds"
+      ]
+    },
+    {
+      "owner": "markets",
+      "healthStrategy": "seed",
+      "dataSources": ["redis", "seed-meta:markets"],
+      "serviceNames": ["polydata-new-market-signal.service"],
+      "expectedFreshnessSeconds": 60,
+      "degradationPolicy": "Show the last completed discovery scan without inventing new-market events.",
+      "panelIds": ["new-market-signals"]
+    },
+    {
+      "owner": "external-intel",
+      "healthStrategy": "external-api",
+      "dataSources": ["external-api", "runtime-cache"],
+      "expectedFreshnessSeconds": 1800,
+      "degradationPolicy": "Prefer last-good cache, distinguish rate limits from complete source failure.",
+      "panelIds": ["blockchain-policy-news", "crypto-funding-watch"]
+    },
+    {
+      "owner": "browser",
+      "healthStrategy": "browser",
+      "dataSources": ["static-assets", "browser-runtime"],
+      "representativeProbe": "production-build-and-browser-smoke",
+      "degradationPolicy": "No synthetic heartbeat; rely on registry, build and browser evidence.",
+      "panelIds": ["trade-policy-radar", "weather-quote-detail", "world-clock"]
+    }
+  ]
+}

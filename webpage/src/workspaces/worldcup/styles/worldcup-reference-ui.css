@@ -1,0 +1,21 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 {
+  --wc-font-terminal: "SF Mono", "Monaco", "Cascadia Code", "Fira Code", "DejaVu Sans Mono", "Liberation Mono", monospace;
+  --wc-font-cn: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wc-font-ui: var(--wc-font-terminal);
+  --wc-bg: #080a0d;
+  --wc-panel-bg: #111315;
+  --wc-panel-elevated: #17191c;
+  --wc-header-bg: #1b1b1b;
+  --wc-border: #1f2b3a;
+  --wc-border-strong: #33465e;
+  --wc-border-hot: #476b96;
+  --wc-text: #f4f6f8;
+  --wc-text-soft: #c9d0d8;
+  --wc-text-muted: #8d96a1;
+  --wc-text-faint: #68717c;
+  --wc-green: #31f28a;
+  --wc-red: #ff454f;
+  --wc-yellow: #d8ad36;
+  --wc-orange: #ff8b2b;
+  --wc-blue: #58a6ff;
+}

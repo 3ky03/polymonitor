@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData quant active frontend prices-history seed watcher
+After=network-online.target polydata-api.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/quant_frontend_active_watcher.py --watch --interval "${POLYDATA_QUANT_FRONTEND_ACTIVE_INTERVAL_SECONDS:-300}" --max-events "${POLYDATA_QUANT_FRONTEND_ACTIVE_MAX_EVENTS:-8}" --max-tokens "${POLYDATA_QUANT_FRONTEND_ACTIVE_MAX_TOKENS:-160}" --fidelity-minutes "${POLYDATA_QUANT_FRONTEND_ACTIVE_FIDELITY_MINUTES:-60}" --history-interval "${POLYDATA_QUANT_FRONTEND_ACTIVE_HISTORY_INTERVAL:-all}" --pause-seconds "${POLYDATA_QUANT_FRONTEND_ACTIVE_PAUSE_SECONDS:-0.05}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

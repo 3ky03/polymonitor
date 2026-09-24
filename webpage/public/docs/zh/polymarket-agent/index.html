@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Polymarket Agent - polyData 文档</title>
+<meta content="A paper-style description of the polyMonitor Forecast Intelligence Graph, including task formulation, agent architecture, inference procedure, outputs, and evaluation protocol." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/polymarket-agent/" hreflang="en" rel="alternate"/><link href="/docs/zh/polymarket-agent/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/polymarket-agent/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a class="active" href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>Polymarket Agent</h1>
+<p>我们提出 polyMonitor Forecast Intelligence Graph：一个用于从 Polymarket 数据生成可审计预测市场情报的结构化多 Agent 系统。系统结合确定性证据构造、模型驱动的 specialist agents、critique、calibration 和 panel generation。它的目标不是模拟多人聊天，而是生成以价格、fills、相关市场、oracle state 和外部催化因素为依据的市场级判断。</p>
+<figure class="docs-figure" id="agent-architecture">
+<div class="docs-figure-frame">
+<a aria-label="Open Polymarket Agent architecture diagram" class="docs-figure-zoom" href="#agent-architecture-zoom">
+<img alt="Diagram of the polyMonitor Forecast Intelligence Graph" src="/docs-assets/images/polymarket-agent-architecture.png"/>
+</a>
+</div>
+<figcaption>图 1. Forecast Intelligence Graph 将确定性状态构造与模型驱动的 specialist reasoning、critique 和 panel writing 分离。</figcaption>
+</figure>
+<div aria-label="Polymarket Agent architecture diagram" aria-modal="true" class="docs-lightbox" id="agent-architecture-zoom" role="dialog">
+<a aria-label="Close diagram" class="docs-lightbox-backdrop" href="#agent-architecture"></a>
+<div class="docs-lightbox-panel">
+<a aria-label="Close diagram" class="docs-lightbox-close" href="#agent-architecture">x</a>
+<img alt="Diagram of the polyMonitor Forecast Intelligence Graph" src="/docs-assets/images/polymarket-agent-architecture.png"/>
+</div>
+</div>
+<h2 id="abstract">摘要</h2>
+<p>预测市场通过价格暴露概率信念，但市场解读不能只依赖最近成交价。一个有用的监控系统必须同时推理订单簿微观结构、fill activity、兄弟市场、结算标准、oracle state 和外生信息。我们将 polyMonitor 形式化为图结构推理系统：给定全市场 evidence packet 和 dashboard lens，图会输出校准后的 panel payload、quant snapshot 和可回放的 node-level audit log。架构刻意保持小而清晰：确定性节点构建 evidence state，specialist LLM agents 分析互补的不确定性表面，skeptic agent 执行 critique，writer agent 将校准状态转成 dashboard views。</p>
+<h2 id="problem-formulation">问题定义</h2>
+<p>令 x 表示一个 market evidence packet，其中包含 Polymarket market metadata、prices、order-book summaries、recent fills、related-market candidates、oracle state、external context 和 prior forecast memory。令 l 表示 {overview, special, trend} 中的一个 panel lens。系统在推理期间不学习私有市场模型，而是计算一个结构化映射：</p>
+<pre class="docs-code"><code>F(x, l) -&gt; (y, q, e)</code></pre>
+<p>其中 y 是可直接用于仪表盘的 intelligence payload，q 是 quant 与 data-quality snapshot，e 是有序 event trace，包含 node outputs、input hashes、model identifiers、latency、token usage、tool traces 和 errors。核心设计约束是可审计性：每条 generated claim 都应能归因到有界 input packet 或明确的模型推理节点。</p>
+<h2 id="system-overview">系统概览</h2>
+<p>生产图是一个有向状态机，而不是开放式群聊。节点按固定顺序执行，使后续模型调用看到紧凑、类型化的状态，而不是无边界 transcript。当前图包含 deterministic state builders、三个 specialist model agents、一个 rule-based calibration node、一个 skeptic model agent，以及最终 panel writer。</p>
+<pre class="docs-code"><code>evidence_builder
+  -&gt; related_markets
+  -&gt; quant_forecaster
+  -&gt; reflexion_memory
+  -&gt; microstructure
+  -&gt; catalyst
+  -&gt; resolution
+  -&gt; calibration_agent
+  -&gt; skeptic
+  -&gt; panel_writer</code></pre>
+<p>这种设计遵循论文式 multi-agent system 视角：只有当某个 agent 拥有独立不确定性来源时才引入它。Microstructure、catalyst 和 resolution reasoning 被分离，因为它们的失败模式不同。流动性信号可能真实而新闻催化已经过时；催化因素可能很强，但市场措辞可能让结算变得模糊。</p>
+<h2 id="architecture">架构</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>节点</th>
+<th>类型</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence Builder</strong></td>
+<td>Deterministic</td>
+<td>从 market candidates、groups、prices、fills、oracle snippets、external context 和 search results 构造初始 evidence state。</td>
+</tr>
+<tr>
+<td><strong>Related Markets</strong></td>
+<td>Deterministic code</td>
+<td>连接 sibling markets、event-level groups、deadline ladders、adjacent outcomes 和 cross-market relationships，用来发现不一致定价。</td>
+</tr>
+<tr>
+<td><strong>Quant Forecaster</strong></td>
+<td>Deterministic code</td>
+<td>计算 price drift、fill-tape microstructure、spread indicators、related-market scores 和 data-quality warnings。</td>
+</tr>
+<tr>
+<td><strong>Reflexion Memory</strong></td>
+<td>Deterministic memory</td>
+<td>加载 prior forecast episodes 和 summary lessons，使当前推理可以与历史失败和成功案例比较。</td>
+</tr>
+<tr>
+<td><strong>Microstructure Agent</strong></td>
+<td>LLM specialist</td>
+<td>通过 implied probability、volume、trade count、fill concentration、bid/ask quality、close probabilities 和 liquidity caveats 分析指定 markets。</td>
+</tr>
+<tr>
+<td><strong>Catalyst Agent</strong></td>
+<td>LLM specialist</td>
+<td>识别 external triggers、related-market catalysts、event timing，以及可能推动 market-implied probability 的证据。</td>
+</tr>
+<tr>
+<td><strong>Resolution Agent</strong></td>
+<td>LLM specialist</td>
+<td>检查 market wording、deadline buckets、official-source hierarchy、oracle signals、ambiguity 和 settlement risk。</td>
+</tr>
+<tr>
+<td><strong>Calibration Agent</strong></td>
+<td>Rule-based aggregator</td>
+<td>将 confidence 锚定到 market-implied prices、data warnings、related-market stress、prior Brier history 和 specialist confidence。</td>
+</tr>
+<tr>
+<td><strong>Skeptic Agent</strong></td>
+<td>LLM critique</td>
+<td>质疑 weak evidence、missing price-change data、stale signals、narrative overreach 和 probability miscalibration。</td>
+</tr>
+<tr>
+<td><strong>Panel Writer</strong></td>
+<td>LLM adapter</td>
+<td>根据 evidence、specialist reports、calibration state 和 memory 写出最终 panel payload，同时避免引入无依据判断。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="agent-prompts">Agent Prompts</h2>
+<p>每个模型驱动节点都会接收 system role、紧凑 JSON user packet 和必需 output schema。prompt 不要求模型凭记忆预测，而是要求模型检查有界 evidence state，并返回包含 findings、risks、watch items、confidence 和 probability-adjustment notes 的紧凑 JSON。specialist roles 被刻意设计为不对称：</p>
+<ul>
+<li><strong>Microstructure:</strong> price formation, fill tape, volume, trade count, liquidity concentration, and spread quality.</li>
+<li><strong>Catalyst:</strong> external events, official releases, news timing, and cross-market triggers.</li>
+<li><strong>Resolution:</strong> market wording, oracle conditions, settlement ambiguity, and official-source hierarchy.</li>
+<li>Skeptic：stale evidence、unsupported causal claims、missing data、hallucination risk 和 overconfident probability shifts。</li>
+<li><strong>Panel Writer:</strong> conversion from calibrated graph state into dashboard-facing English JSON.</li>
+</ul>
+<h2 id="inference-procedure">推理流程</h2>
+<p>runtime 将该图作为有状态推理流程执行。确定性节点先把 raw inputs 压缩为 graph context；模型节点随后在该 context 上运行，并可携带 tool traces；最终输出会被规范化到 panel schemas，并和 replay metadata 一起存储。</p>
+<pre class="docs-code"><code>Algorithm 1: Forecast Intelligence Graph Inference
+Input: evidence packet x, lens l
+Output: panel payload y, quant snapshot q, event trace e
+
+1: s0 &lt;- EvidenceBuilder(x, l)
+2: r  &lt;- RelatedMarkets(s0)
+3: q  &lt;- QuantForecaster(s0, r)
+4: m  &lt;- ReflexionMemory(s0, q, r)
+5: a1 &lt;- MicrostructureAgent(s0, r, q, m)
+6: a2 &lt;- CatalystAgent(s0, r, q, m)
+7: a3 &lt;- ResolutionAgent(s0, r, q, m)
+8: c  &lt;- CalibrationAgent(q, r, m, [a1, a2, a3])
+9: k  &lt;- SkepticAgent(s0, r, q, m, [a1, a2, a3], c)
+10: y &lt;- PanelWriter(s0, r, q, m, [a1, a2, a3], c, k)
+11: e &lt;- PersistNodeEvents()
+12: return y, q, e</code></pre>
+<h2 id="panel-lenses">Panel 视角</h2>
+<p>dashboard views 不是独立 agents，而是同一次 graph run 上的不同 lenses。同一个 evidence packet 和 node event trace 可以支持 overview、special 和 trend views，但每个 lens 会要求最终 writer 强调不同决策表面。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>视角</th>
+<th>应强调什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全市场 Insights</strong></td>
+<td><code>overview</code></td>
+<td>Dominant market structure, probability interpretation, top caveat, and why the board matters now.</td>
+</tr>
+<tr>
+<td><strong>Special Radar</strong></td>
+<td><code>special</code></td>
+<td>Anomalous markets, low-liquidity moves, conflicting prices, deadline ladders, and cross-market stress.</td>
+</tr>
+<tr>
+<td><strong>Trend Watch</strong></td>
+<td><code>trend</code></td>
+<td>category rotation、attention migration、catalyst clusters，以及孤立事件关注是否正在变成更广泛趋势。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="input-representation">输入表示</h2>
+<p>input packet 被刻意设计为异构。Polymarket 解读依赖 market identity、trading activity、sibling markets 和 settlement semantics。因此图会保持以下 surfaces 分离，而不是把它们折叠成一个 prose context。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>输入表面</th>
+<th>示例</th>
+<th>使用者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Price and liquidity</td>
+<td><code>latestPrice</code>, <code>price24hAgo</code>, volume, trade count, bid/ask, LOB spread</td>
+<td>Evidence Builder, Microstructure Agent, Quant Forecaster, Calibration Agent</td>
+</tr>
+<tr>
+<td>Fill tape</td>
+<td><code>topMarketFillTape</code>, fill VWAP, recent fill drift, paired-fill ratio, price-source conflicts</td>
+<td>Microstructure Agent, Quant Forecaster, Skeptic Agent</td>
+</tr>
+<tr>
+<td>Resolution context</td>
+<td>Market title, rules, end date, oracle events, official source hierarchy, settlement state</td>
+<td>Resolution Agent, Skeptic Agent, Panel Writer</td>
+</tr>
+<tr>
+<td>External catalysts</td>
+<td>News, official releases, match feeds, government calendars, social/media trend signals</td>
+<td>Catalyst Agent, Skeptic Agent, Panel Writer</td>
+</tr>
+<tr>
+<td>Related markets</td>
+<td>Same-event children, handicap markets, deadline ladders, adjacent category markets</td>
+<td>Related Markets, Quant Forecaster, Calibration Agent</td>
+</tr>
+<tr>
+<td>Historical memory</td>
+<td>Prior forecast episodes, realized resolution, price drift after prediction, Brier score, category reliability</td>
+<td>Reflexion Memory, Calibration Agent, Skeptic Agent</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="output-schema">输出 Schema</h2>
+<p>系统输出的不只是 written panel，而是一个三元组：user-facing payload、quant evidence state 和可回放 event trace。这让架构在产品和研究评估中都可检查。</p>
+<pre class="docs-code"><code>{
+  "runId": "fig-...",
+  "agentArchitecture": "forecast-intelligence-graph-v2",
+  "agentGraph": {
+    "mode": "langgraph-supervisor-worker",
+    "runtime": "langgraph-supervisor-stategraph",
+    "nodes": [
+      "evidence_builder",
+      "related_markets",
+      "quant_forecaster",
+      "reflexion_memory",
+      "microstructure",
+      "catalyst",
+      "resolution",
+      "calibration_agent",
+      "skeptic",
+      "panel_writer"
+    ],
+    "events": []
+  },
+  "panelPayload": {},
+  "usage": {
+    "model": "gpt-5.5",
+    "latencyMs": 0,
+    "inputChars": 0,
+    "outputChars": 0
+  }
+}</code></pre>
+<h2 id="evaluation">评估协议</h2>
+<p>论文级评估不应只按文字流畅度打分。真正问题是该图是否在保持 calibration 和 auditability 的同时，提升不确定条件下的市场解读。我们沿四个轴评估系统。</p>
+<ul>
+<li>Calibration：使用 Brier score、expected calibration error 和 category-level reliability curves，将 probability statements 或 confidence bins 与实际 market resolutions 比较。</li>
+<li>Discrimination：衡量 high-confidence claims 是否能在后续 price movement、resolution outcome 或 analyst review 中与 low-confidence claims 区分开。</li>
+<li>Faithfulness：审计每条 generated claim 是否由 evidence packet、specialist output、tool trace 或明确 uncertainty statement 支撑。</li>
+<li><strong>Efficiency:</strong> report latency, token usage, model calls, fallback rate, and quality changes under node ablations.</li>
+</ul>
+<h2 id="ablations">消融实验</h2>
+<p>该图被设计为可通过移除或替换组件进行评估。有效消融包括 deterministic-only output、no specialist agents、no skeptic、no reflexion memory、no related-market state 和 writer-only generation。这些消融用于揭示准确性来自数据构造、specialist reasoning、critique 还是 final writing。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>消融项</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No specialist agents</td>
+<td>Does deterministic evidence plus a writer perform as well as agent decomposition?</td>
+</tr>
+<tr>
+<td>No skeptic</td>
+<td>Does critique reduce unsupported causal claims and overconfident language?</td>
+</tr>
+<tr>
+<td>No related markets</td>
+<td>Does cross-market context improve detection of spread, ladder, and event-level inconsistencies?</td>
+</tr>
+<tr>
+<td>No memory</td>
+<td>Does prior forecast history improve confidence discipline and repeated-market interpretation?</td>
+</tr>
+<tr>
+<td>Deterministic fallback</td>
+<td>How much value is lost when model calls are unavailable?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="limitations">局限性</h2>
+<p>当前系统应被理解为 monitoring and interpretation graph，而不是 autonomous trading 或 oracle-action agent。它不会提交订单、移动流动性或发起 UMA disputes。它可以暴露 resolution risk，但不能替代法律或官方 settlement review。其判断受 data freshness、source coverage、CLOB availability、model reliability 以及输入 market metadata 质量约束。</p>
+<h2 id="references">相关工作</h2>
+<p>该设计最接近使用结构化角色、有界上下文和明确评估的专业金融/预测 agent systems。真正有用的结论不是 agent 越多越好，而是当每个 agent 拥有独立 evidence surface 时，分解可以提升可解释性。</p>
+<ul>
+<li>TradingAgents：包含 analysts、bull/bear researchers、trader synthesis、risk review 和 final decision control 的金融工作流。</li>
+<li><a href="https://deepwiki.com/TauricResearch/TradingAgents/1.1-system-architecture/" rel="noopener noreferrer" target="_blank">TradingAgents system architecture</a>: structured reports and institutional-style coordination.</li>
+<li><a href="https://huggingface.co/papers/2407.06567" rel="noopener noreferrer" target="_blank">FinCon</a>: manager-analyst hierarchy, risk control, and verbal reinforcement for financial decision workflows.</li>
+<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6280940" rel="noopener noreferrer" target="_blank">PROPHET</a>: prediction-market modeling with price time series, event text semantics, and order-book microstructure.</li>
+<li>ForesightFlow：面向 forecasting agents 的 coordination layer、calibration、discriminative power 和 cost-quality evaluation。</li>
+<li>MASAI、SciAgents 和 DrugAgent：使用短轨迹、明确职责、结构化输入输出和领域知识的任务专用系统，而不是开放式聊天。</li>
+</ul>
+<h2 id="apis">Runtime APIs</h2>
+<p>公开 endpoints 暴露产品展示和研究审计所需的当前 run artifacts。浏览器部署通过 /wm-api 前缀访问这些 routes。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>返回内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/runtime/agent/market-wide-insights/&lt;lens&gt;</code></td>
+<td>Dashboard-ready panel snapshot for <code>overview</code>, <code>special</code>, or <code>trend</code>.</td>
+</tr>
+<tr>
+<td><code>/runtime/agent/market-wide-quant/&lt;lens&gt;</code></td>
+<td>Quant snapshot with price drift, fill-tape microstructure, related-market scores, and data-quality warnings.</td>
+</tr>
+<tr>
+<td><code>/runtime/agent/market-wide-events/&lt;run_id&gt;</code></td>
+<td>Node-level audit log for replay, debugging, latency inspection, and model-output review.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#abstract">摘要</a>
+<a href="#problem-formulation">问题定义</a>
+<a href="#system-overview">系统概览</a>
+<a href="#architecture">架构</a>
+<a href="#agent-prompts">Agent Prompts</a>
+<a href="#inference-procedure">推理流程</a>
+<a href="#panel-lenses">Panel 视角</a>
+<a href="#input-representation">输入表示</a>
+<a href="#output-schema">输出 Schema</a>
+<a href="#evaluation">评估协议</a>
+<a href="#ablations">消融实验</a>
+<a href="#limitations">局限性</a>
+<a href="#references">相关工作</a>
+<a href="#apis">Runtime APIs</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

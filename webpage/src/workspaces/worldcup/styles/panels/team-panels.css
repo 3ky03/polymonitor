@@ -1,0 +1,16 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-team-status-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-team-power-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-lineup-board-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-injury-load-panel {
+  --wc-panel-accent: #31f28a;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-team-grid section,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-power-grid section,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-load-grid section {
+  border-radius: 8px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-team-row {
+  border-radius: 6px;
+}

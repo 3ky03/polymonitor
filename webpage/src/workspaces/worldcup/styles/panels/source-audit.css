@@ -1,0 +1,18 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-source-audit-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-source-required {
+  --wc-panel-accent: #d8ad36;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-source-required {
+  border-radius: 8px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-source-required-list span {
+  border-radius: 999px;
+}
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-source-required > p,
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-empty {
+  color: #b7c0ca !important;
+  font: 650 17px/1.45 var(--wc-font-ui) !important;
+  letter-spacing: 0.01em !important;
+}

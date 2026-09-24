@@ -1,0 +1,80 @@
+# 环境与密钥（切勿提交）
+.env
+.env.local
+.env.*.local
+*.pem
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# 前端构建与依赖
+webpage/node_modules/
+webpage/dist/
+webpage/.next/
+webpage/.vite/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# 日志与临时
+*.log
+wget-log
+.cache/
+.codex/
+database/*.db
+database/*.db-wal
+database/*.db-shm
+data/*.sqlite3
+data/*.sqlite3-wal
+data/*.sqlite3-shm
+data/*.lock
+data/*.marker
+data/telegram_state.json
+data/telegram_bot_state.json
+
+runtime_logs/
+logs/
+artifacts/
+
+# PnL research scripts and outputs are still experimental.
+pnl/
+
+# 私有文档，禁止提交到 GitHub。公开文档请放 docs/。
+# 不要对 document/ 使用 git add -f。
+document/
+# Publication and local runtime boundaries.
+.env.*
+!.env.example
+# Reviewed public same-origin map-tile path; no credentials.
+!webpage/.env.production
+.codex/
+.codex-backups/
+.local/
+.planning/
+document/
+artifacts/
+test-results/
+playwright-report/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db-wal
+*.db-shm
+*.key
+secrets/

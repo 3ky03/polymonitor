@@ -1,0 +1,16 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-market-board-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-polymarket-panel {
+  --wc-panel-accent: #a98cff;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-market-card,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-market-row {
+  border-radius: 8px;
+  border-color: rgba(169, 140, 255, 0.18);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-market-card:hover,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-market-row:hover {
+  border-color: rgba(169, 140, 255, 0.38);
+  box-shadow: inset 3px 0 0 rgba(169, 140, 255, 0.7);
+}

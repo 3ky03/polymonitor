@@ -1,0 +1,14 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-group-advance-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-group-table-panel {
+  --wc-panel-accent: #31f28a;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-mini-tabs button,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-group-tabs button {
+  border-radius: 7px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-advance-table div,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-standings-row {
+  border-radius: 7px;
+}

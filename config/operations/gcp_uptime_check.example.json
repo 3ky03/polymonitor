@@ -1,0 +1,25 @@
+{
+  "displayName": "Polymonitor public health",
+  "monitoredResource": {
+    "type": "uptime_url",
+    "labels": {
+      "host": "polymonitor.club",
+      "project_id": "REPLACE_WITH_GCP_PROJECT_ID"
+    }
+  },
+  "httpCheck": {
+    "path": "/wm-api/health",
+    "port": 443,
+    "useSsl": true,
+    "validateSsl": true,
+    "requestMethod": "GET"
+  },
+  "period": "60s",
+  "timeout": "10s",
+  "checkerType": "STATIC_IP_CHECKERS",
+  "selectedRegions": [
+    "USA",
+    "EUROPE",
+    "ASIA_PACIFIC"
+  ]
+}

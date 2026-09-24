@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Intelligence &amp; News Panels - polyData Documentation</title>
+<meta content="polyData panels for oracle state, AI analysis, related news, policy, technology, and market-moving intelligence." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-intelligence-news/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-intelligence-news/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/panels-intelligence-news/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a class="active" href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/panels-cpi/">CPI</a>
+<a href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>Intelligence &amp; News Panels</h1>
+<p>These panels explain why a market may be moving and whether its resolution path is clean. They combine oracle state, related news, AI summaries, policy feeds, finance news, technology signals, and domain-specific event feeds.</p>
+<h2 id="oracle-ai">Oracle and AI Analysis</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oracle Feed</strong><br/><code>oracle-feed</code></td>
+<td>Recent oracle events across markets, including resolution-adjacent activity.</td>
+<td>Use it to verify whether market status is still trading-driven or already in an oracle/resolution phase.</td>
+</tr>
+<tr>
+<td><strong>AI Market Brief</strong><br/><code>price-implications</code></td>
+<td>Market-wide AI brief, focal points, and convergence signals.</td>
+<td>Use it to compress multiple market signals into a short analyst-readable thesis.</td>
+</tr>
+<tr>
+<td><strong>AI Trend Radar</strong><br/><code>oracle-timeline</code></td>
+<td>Market-wide AI synthesis of trend clusters, catalysts, and watch items.</td>
+<td>Use it to spot clusters of related markets moving around the same catalyst or narrative.</td>
+</tr>
+<tr>
+<td><strong>Related News</strong><br/><code>related-news</code></td>
+<td>News linked to the focused market.</td>
+<td>Use it to connect a probability move to a source, headline, or external event without leaving the workspace.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="technology-finance">Technology and Finance Intelligence</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI Model Race</strong><br/><code>ai-model-race</code></td>
+<td>AI lab release, benchmark, pricing, valuation, outage, and regulation signal feed.</td>
+<td>Use it for AI-company and model-release markets where product news moves probability quickly.</td>
+</tr>
+<tr>
+<td><strong>Big Tech Cap</strong><br/><code>big-tech-market-cap</code></td>
+<td>Mega-cap technology quote and market-cap rank board.</td>
+<td>Use it to anchor tech-market narratives in live equity context rather than only headline flow.</td>
+</tr>
+<tr>
+<td><strong>App Pulse</strong><br/><code>consumer-app-pulse</code></td>
+<td>App Store, Google Play, TikTok, consumer ranking, and regulation signals.</td>
+<td>Use it for consumer internet markets where adoption, ranking, bans, or platform changes matter.</td>
+</tr>
+<tr>
+<td><strong>IPO News</strong><br/><code>ipo-news-watch</code></td>
+<td>IPO, listing, and filing catalyst feed.</td>
+<td>Use it for listing, company, valuation, and deal-timing questions.</td>
+</tr>
+<tr>
+<td><strong>Broker Research</strong><br/><code>broker-research-watch</code></td>
+<td>Analyst rating and target-price change radar.</td>
+<td>Use it to detect TradFi analyst catalysts that may affect equity-linked or sector-linked markets.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="policy-risk">Policy, Risk, and Event Feeds</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>What it shows</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chain Policy</strong><br/><code>blockchain-policy-news</code></td>
+<td>Blockchain policy, regulation, and enforcement feed.</td>
+<td>Use it for crypto regulation, enforcement, ETF, and protocol governance markets.</td>
+</tr>
+<tr>
+<td><strong>DeFi Security</strong><br/><code>defi-security-watch</code></td>
+<td>DeFi exploit, vulnerability, and protocol risk feed.</td>
+<td>Use it to identify protocol-specific security shocks before they appear in broader crypto prices.</td>
+</tr>
+<tr>
+<td><strong>Trade Policy</strong><br/><code>trade-policy-radar</code></td>
+<td>High-signal trade policy watchlist mapped to tariffs, flows, barriers, revenue, and strategic controls.</td>
+<td>Use it when market movement depends on duties, export controls, sanctions, or supply-chain rerouting.</td>
+</tr>
+<tr>
+<td><strong>Geopolitical &amp; Sanctions Shock</strong><br/><code>geo-sanctions-shock</code></td>
+<td>Geopolitical shocks, sanctions changes, and linked macro-risk markets.</td>
+<td>Use it to connect global event risk to commodity, macro, election, and security markets.</td>
+</tr>
+<tr>
+<td><strong>Jin10 Flash</strong><br/><code>jin10-flash</code></td>
+<td>Jin10 macro flash feed in market-card form.</td>
+<td>Use it for fast macro headlines that can move rates, inflation, FX, and commodity questions.</td>
+</tr>
+<tr>
+<td><strong>BWE News</strong><br/><code>f1-trackside</code></td>
+<td>BWENews runtime RSS flashes with cached auto-refresh.</td>
+<td>Use it as a compact live news feed for fast-moving event surfaces that need headline triage.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#oracle-ai">Oracle and AI Analysis</a>
+<a href="#technology-finance">Technology and Finance Intelligence</a>
+<a href="#policy-risk">Policy, Risk, and Event Feeds</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

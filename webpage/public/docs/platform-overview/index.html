@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Platform Overview - polyData Documentation</title>
+<meta content="polyMonitor platform variants, workspace capabilities, and specialized Polymarket monitoring surfaces." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/platform-overview/" hreflang="en" rel="alternate"/><link href="/docs/zh/platform-overview/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/platform-overview/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/panels-cpi/">CPI</a>
+<a href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a class="active" href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Platform &amp; Features</div>
+<h1>Platform Overview</h1>
+<p>polyMonitor platform variants, capabilities, and specialized monitoring configurations for Polymarket intelligence, quantitative research, and event-specific coverage.</p>
+<p>polyMonitor runs three specialized workspaces from a single codebase, each optimized for different monitoring needs.</p>
+<h2 id="platform-variants">Platform Variants</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Variant</th>
+<th>URL</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><span aria-hidden="true" class="variant-icon">●</span>polyMonitor</strong></td>
+<td><a href="https://www.polymonitor.club/" rel="noopener noreferrer" target="_blank">polymonitor.club</a></td>
+<td>Market-wide Polymarket intelligence, lifecycle monitoring, chain flow, oracle state, news context, and modular dashboard panels.</td>
+</tr>
+<tr>
+<td><strong><span aria-hidden="true" class="variant-icon">↗</span>Quant Workspace</strong></td>
+<td><a href="/quant">polymonitor.club/quant</a></td>
+<td>Research and backtesting workspace for Polymarket price series, frontend price history, block-close prices, strategy runs, equity curves, and trade exports.</td>
+</tr>
+<tr>
+<td><strong><span aria-hidden="true" class="variant-icon">●</span>World Cup Workspace</strong></td>
+<td><a href="/?workspace=worldcup">polymonitor.club/?workspace=worldcup</a></td>
+<td>FIFA World Cup 2026 monitoring surface with schedule, match detail, host-city map, weather, news, market links, odds context, and tournament intelligence.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each workspace keeps the same core data model - market identity, price history, order-book state, OrderFilled flow, oracle resolution, external context, and runtime snapshots - while changing the interface around the task at hand.</p>
+<h2 id="polymonitor">polyMonitor</h2>
+<p>The default workspace is the general Polymarket monitoring surface. It is organized around market discovery, market workspace inspection, lifecycle state, chain-level OrderFilled flow, oracle state, and cross-domain context. The goal is to make a market inspectable as a living system rather than a single probability number.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Capability</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Market Lifecycle</strong></td>
+<td>Connects Gamma market identity, slug, condition id, outcome tokens, active status, close state, oracle state, settlement, and archival context.</td>
+</tr>
+<tr>
+<td><strong>Flow &amp; Trading</strong></td>
+<td>Surfaces live order book state, sample chain trades, global OrderFilled activity, suspicious flow, whale activity, and liquidity anomalies.</td>
+</tr>
+<tr>
+<td><strong>Oracle Watch</strong></td>
+<td>Tracks UMA request, proposal, dispute, settlement, final outcome, transaction hashes, and matched market context.</td>
+</tr>
+<tr>
+<td><strong>Context Panels</strong></td>
+<td>Adds news, research links, macro, crypto, finance, weather, sports, and time-aware context to explain why market probabilities are moving.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="quant-workspace">Quant Workspace</h2>
+<p>The Quant workspace is the research and backtesting variant. It focuses on reproducible price data, strategy simulation, and inspection of generated trades rather than broad dashboard surveillance.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Capability</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Price Sources</strong></td>
+<td>Compares frontend price history and block-close price series so researchers can detect source drift and choose the right backtest input.</td>
+</tr>
+<tr>
+<td><strong>Backtest Runs</strong></td>
+<td>Creates strategy runs through <code>/wm-api/quant/backtest-runs</code> and tracks status, parameters, metrics, equity, and trades.</td>
+</tr>
+<tr>
+<td><strong>Research Output</strong></td>
+<td>Shows equity curves, drawdown, performance summaries, trade tables, properties, and exportable CSV/JSON artifacts.</td>
+</tr>
+<tr>
+<td><strong>Build Monitoring</strong></td>
+<td>Exposes price-build status so users can tell whether the quant dataset is fresh, partial, or still catching up.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="worldcup-workspace">World Cup Workspace</h2>
+<p>The World Cup workspace is an event-specific variant for FIFA World Cup 2026. It treats the tournament as a monitoring surface where schedule, venues, teams, weather, news, odds, and Polymarket markets all affect interpretation.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Capability</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Schedule &amp; Match Detail</strong></td>
+<td>Loads the 2026 fixture structure, match metadata, stage/group labels, selected-match detail, and linked market context.</td>
+</tr>
+<tr>
+<td><strong>Host-city Map</strong></td>
+<td>Uses a World Cup map workspace for city-level monitoring, venue context, regional risk, and match-linked inspection.</td>
+</tr>
+<tr>
+<td><strong>Weather &amp; Venue Context</strong></td>
+<td>Surfaces host-city weather and operational context that can matter for travel, match conditions, and related prediction markets.</td>
+</tr>
+<tr>
+<td><strong>Market Intelligence</strong></td>
+<td>Connects World Cup news, odds references, Polymarket market links, roster/team context, and runtime intelligence feeds.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="shared-stack">Shared Stack</h2>
+<p>All variants share the same serving philosophy. Expensive collection and enrichment run outside the browser; the frontend reads normalized endpoints through <code>/wm-api/</code>; responses should expose fresh, cached, stale, empty, or degraded states instead of hiding missing data.</p>
+<p>This keeps the platform extensible. A new vertical workspace can reuse the same market identity, OrderFilled, oracle, snapshot, and runtime API layers while changing only the interface and panel composition.</p>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#platform-variants">Platform Variants</a>
+<a href="#polymonitor">polyMonitor</a>
+<a href="#quant-workspace">Quant Workspace</a>
+<a href="#worldcup-workspace">World Cup Workspace</a>
+<a href="#shared-stack">Shared Stack</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

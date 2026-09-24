@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CPI Panels - polyData 文档</title>
+<meta content="Detailed CPI panel documentation for polyData Monitor, including release calendar, nowcasts, actual CPI data, components, goods, labor, Fed, and growth context." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-cpi/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-cpi/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/panels-cpi/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a class="active" href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>CPI Panels</h1>
+<p>CPI panel family 解释通胀发布前已知什么、哪些官方数据已经发布，以及哪些周边宏观驱动可能影响 Polymarket 的 inflation、Fed 和 growth markets。目标不是替代 BLS、FRED 或 Cleveland Fed 数据，而是把这些来源放进操作员仪表盘，让 actuals、forecasts、nowcasts、market context 和 source health 可以在一个地方阅读。</p>
+<h2 id="coverage">CPI 覆盖包含什么</h2>
+<p>polyData 将 CPI intelligence 分成 release timing、event estimates、official actuals、component pressure 和 related macro driver panels。这很重要，因为计划中的 CPI event 在发布前可能有 forecast values，发布后才有 actual values，同时还需要前期官方分项数据，以及 energy、food、shelter、labor、rates 和 growth indicators 带来的市场影响。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>层</th>
+<th>包含内容</th>
+<th>出现位置</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Release schedule</strong></td><td>即将发布的 CPI event、reference month、release time 和 countdown。</td><td>CPI 发布指挥面板</td></tr>
+<tr><td><strong>Forecast and nowcast</strong></td><td>可用时展示 Cleveland Fed 对 CPI 与 PCE buckets 的 nowcast values。</td><td><code>CPI Release Command</code>, <code>Inflation Nowcast</code></td></tr>
+<tr><td><strong>Official actuals</strong></td><td>最新 BLS/FRED CPI series values、previous values，以及官方发布时间后的 released actuals。</td><td><code>CPI Release Command</code>, <code>CPI Components</code></td></tr>
+<tr><td><strong>Component pressure</strong></td><td>Energy、gasoline、diesel、food、shelter、goods 和 services pressure rows。</td><td><code>CPI Components</code>, <code>Food</code>, <code>Energy</code>, <code>Shelter</code></td></tr>
+<tr><td><strong>Macro drivers</strong></td><td>Goods、tariff、labor、services、Fed、rates、growth 和 recession-risk rows。</td><td><code>Goods / Tariff</code>, <code>Labor / Services</code>, <code>Fed / Growth Risk</code></td></tr>
+<tr><td><strong>Source health</strong></td><td>Coverage counts、source count、row count、cache mode 和 degraded source flags。</td><td>All CPI registry panels</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="sources">数据源</h2>
+<p>CPI panels 使用公开宏观来源和 seed caches。一个值可能是 official、forecast、nowcast 或 registry context，因此 panel 会显示 source labels 和 metadata，而不是把每个数字都当成同一种事实。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>来源</th>
+<th>用途</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>BLS / FRED CPI series</strong></td><td>CPI actuals、previous values、index levels、month-over-month、year-over-year 和选中的 component rows。</td><td>Official historical data once released.</td></tr>
+<tr><td><strong>BLS calendar</strong></td><td>CPI release timing、reference period 和 scheduled release time。</td><td>Official release metadata.</td></tr>
+<tr><td><strong>Cleveland Fed Inflation Nowcasting</strong></td><td>CPI and PCE nowcast values before official release.</td><td>Model nowcast, not an official actual.</td></tr>
+<tr><td><strong>EIA</strong></td><td>用于 headline CPI context 的 energy、gasoline、diesel 和 WTI pressure。</td><td>Official energy data and market context.</td></tr>
+<tr><td><strong>Federal Reserve / Treasury / BEA / FRED</strong></td><td>Fed reaction, yield-curve, growth, demand, and recession rows.</td><td>Official public macro series and calendar context.</td></tr>
+<tr><td><strong>Federal Register</strong></td><td>Tariff, import, and policy events that can affect goods prices.</td><td>Official public policy events.</td></tr>
+<tr><td><strong>Redis seed / SQLite seed</strong></td><td>Runtime snapshots served quickly to the dashboard.</td><td>Cache mode, not a separate data source.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="release-command">CPI 发布指挥面板</h2>
+<p>cpi-release-command-center 是下次 CPI 发布的事件面板。它组合 release calendar data、nowcast 或 forecast data，以及事件结束后的 official actual series。发布前，panel 可以显示 forecast 或 nowcast，而 actual 字段保持为空；到达官方发布时间后，panel 可以从 BLS/FRED series 填充 actual values。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>重要说明</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Actual</strong></td><td>Official released value when available.</td><td>发布前显示为空；官方公布前 actual 为空是预期状态。</td></tr>
+<tr><td><strong>Forecast</strong></td><td>Panel forecast source, usually Cleveland Fed nowcast where mapped.</td><td>This is an estimate, not an official BLS actual.</td></tr>
+<tr><td><strong>Previous</strong></td><td>Prior official value or latest known value depending on release state.</td><td>Useful for surprise calculation after actuals arrive.</td></tr>
+<tr><td><strong>Surprise</strong></td><td>actual 减 forecast；适用时以百分点显示。</td><td>Only meaningful after actual and forecast are both present.</td></tr>
+<tr><td><strong>Reference period</strong></td><td>The CPI month the release refers to.</td><td>Example: a June event may reference May CPI.</td></tr>
+<tr><td><strong>Hours to event</strong></td><td>Countdown to official release time.</td><td>Used to separate scheduled, live, and released states.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="components">CPI 分项</h2>
+<p>cpi-components-pressure-registry 解释通胀篮子的哪些部分正在形成压力。它将 energy、food、shelter、goods 和相关 CPI component rows 聚合到一个 registry 中；每行展示 value labels、change labels、source labels、age labels，以及 hot、cool、watch 或 neutral 等 tone。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>分项区域</th>
+<th>示例</th>
+<th>如何解读</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Energy</strong></td><td>WTI, gasoline, diesel, EIA weekly indicators.</td><td>Energy shocks 可以快速推动 headline CPI，并影响 inflation-market probabilities。</td></tr>
+<tr><td><strong>Food</strong></td><td>Food at home, food away from home, food CPI components.</td><td>Food rows 解释仅靠 headline CPI 不一定能看出的 basket pressure。</td></tr>
+<tr><td><strong>Shelter</strong></td><td>Rent and owners-equivalent-rent proxies.</td><td>Shelter is sticky and often matters most for core CPI interpretation.</td></tr>
+<tr><td><strong>Goods</strong></td><td>Goods CPI, nondurables, apparel, imports, tariff-linked rows.</td><td>Goods rows connect supply pressure and policy changes to CPI risk.</td></tr>
+<tr><td><strong>Services</strong></td><td>Services CPI, labor-related services pressure, wage context.</td><td>Services rows help judge core and Fed-reaction risk.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="driver-panels">CPI 驱动 Panels</h2>
+<p>CPI registry 还暴露 focused driver panels。它们不全是 CPI actuals，而是 macro context panels，用来解释 CPI 或 Fed markets 为什么可能移动。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>Panel ID</th>
+<th>补充内容</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Goods / Tariff</strong></td><td><code>goods-tariff-supply-watch</code></td><td>Goods inflation、import-price、tariff、supply-chain 和 Federal Register policy context。</td></tr>
+<tr><td><strong>Labor / Services</strong></td><td><code>labor-services-inflation-monitor</code></td><td>Labor-market, wage, claims, unemployment, and services CPI pressure.</td></tr>
+<tr><td><strong>Fed / Growth Risk</strong></td><td><code>fed-reaction-growth-risk-board</code></td><td>Fed calendar、rates context、yield-curve spread、growth demand、sentiment、industrial production 和 recession-risk rows。</td></tr>
+<tr><td><strong>Food &amp; Retail Basket</strong></td><td><code>food-retail-basket-pressure</code></td><td>Food and retail-basket CPI pressure from official component data.</td></tr>
+<tr><td><strong>Shelter / OER</strong></td><td><code>shelter-rent-oer-pressure</code></td><td>Rent and owners-equivalent-rent pressure for core CPI markets.</td></tr>
+<tr><td><strong>Energy &amp; Gasoline</strong></td><td><code>energy-gasoline-shock</code></td><td>Energy-price shock monitor for headline CPI sensitivity.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="truth-model">实际值、预测、Nowcast 与缓存</h2>
+<p>CPI 系统按角色标记数据，避免把发布前 nowcast 当作 official actual，也避免把 cached runtime snapshot 当作新的数据源。</p>
+<ul>
+<li>Actual 指来自 BLS/FRED 或其他官方公开来源的已发布数值。</li>
+<li>Forecast 指发布前使用的估计值，目前主要从 Cleveland Fed nowcast registry 映射 CPI/PCE buckets。</li>
+<li><strong>Nowcast</strong> means a live model estimate, not an official number.</li>
+<li>Previous 指作为基准使用的前一个官方值或最新已知值。</li>
+<li>Redis seed 和 SQLite seed 指用于加速仪表盘的 cached snapshots；row source 仍会标识真实 upstream source。</li>
+<li>Coverage 统计该 panel 有多少 upstream source checks 可用；它是 source health，不是 CPI 发布次数。</li>
+</ul>
+<h2 id="fields">Runtime 字段</h2>
+<p>大多数 CPI registry rows 共享同一套 runtime schema，使前端可以一致渲染。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>value</strong></td><td>Raw numeric level or event value.</td><td><code>0.41</code></td></tr>
+<tr><td><strong>valueLabel</strong></td><td>Formatted display value with the correct unit.</td><td><code>0.41pp</code></td></tr>
+<tr><td><strong>change</strong></td><td>Raw change used for ranking and display.</td><td><code>0.03</code></td></tr>
+<tr><td><strong>changeLabel</strong></td><td>Formatted change label.</td><td><code>+0.03pp</code> for a spread, <code>-6.57%</code> for a percentage change.</td></tr>
+<tr><td><strong>unit</strong></td><td>Value unit such as percent, index, dollars, or percentage points.</td><td><code>pp</code>, <code>idx</code>, <code>%</code></td></tr>
+<tr><td><strong>metadata.rawChange</strong></td><td>Original source-level change before display formatting.</td><td>Used so spread rows display as percentage-point deltas.</td></tr>
+<tr><td><strong>metadata.rawChangePct</strong></td><td>Original percent change when available.</td><td>Preserved for context but not used for <code>unit=pp</code> display.</td></tr>
+<tr><td><strong>tone</strong></td><td>Panel classification for the row.</td><td><code>hot</code>, <code>cool</code>, <code>watch</code>, <code>neutral</code></td></tr>
+<tr><td><strong>source</strong></td><td>Human-readable upstream data source.</td><td><code>FRED CSV / public macro series</code></td></tr>
+<tr><td><strong>cacheMode</strong></td><td>Runtime delivery mode for the whole panel.</td><td><code>redis-seed</code>, <code>sqlite-seed</code>, <code>composed-seed</code></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="api">API Panel ID</h2>
+<p>仪表盘通过 runtime panel API 请求 CPI registry panels。典型查询使用下面这些 panel ids。</p>
+<pre class="docs-code"><code>/wm-api/runtime/panels?ids=cpi-release-command-center,cpi-components-pressure-registry,goods-tariff-supply-watch,labor-services-inflation-monitor,fed-reaction-growth-risk-board</code></pre>
+<p>调试 payload 或对照 live dashboard 检查文档时使用这些 ids。</p>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#coverage">CPI 覆盖包含什么</a>
+<a href="#sources">数据源</a>
+<a href="#release-command">CPI 发布指挥面板</a>
+<a href="#components">CPI 分项</a>
+<a href="#driver-panels">CPI 驱动 Panels</a>
+<a href="#truth-model">实际值、预测、Nowcast 与缓存</a>
+<a href="#fields">Runtime 字段</a>
+<a href="#api">API Panel ID</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

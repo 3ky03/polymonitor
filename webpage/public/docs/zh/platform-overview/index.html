@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>平台概览 - polyData 文档</title>
+<meta content="polyMonitor platform variants, workspace capabilities, and specialized Polymarket monitoring surfaces." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/platform-overview/" hreflang="en" rel="alternate"/><link href="/docs/zh/platform-overview/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/platform-overview/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a class="active" href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">平台与功能</div>
+<h1>平台概览</h1>
+<p>polyMonitor 的平台版本、能力和专用监控配置，覆盖 Polymarket 情报、量化研究与事件专属监控。</p>
+<p>polyMonitor 从同一套代码运行三个专用工作区，每个工作区都针对不同监控需求优化。</p>
+<h2 id="platform-variants">平台版本</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>版本</th>
+<th>URL</th>
+<th>重点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><span aria-hidden="true" class="variant-icon">●</span>polyMonitor</strong></td>
+<td><a href="https://www.polymonitor.club/" rel="noopener noreferrer" target="_blank">polymonitor.club</a></td>
+<td>全市场 Polymarket 情报、生命周期监控、链上流动、oracle 状态、新闻上下文和模块化仪表盘 panels。</td>
+</tr>
+<tr>
+<td><strong><span aria-hidden="true" class="variant-icon">↗</span>Quant 工作区</strong></td>
+<td><a href="/quant">polymonitor.club/quant</a></td>
+<td>面向 Polymarket 价格序列、前端价格历史、block-close 价格、策略运行、权益曲线和交易导出的研究与回测工作区。</td>
+</tr>
+<tr>
+<td><strong><span aria-hidden="true" class="variant-icon">●</span>世界杯工作区</strong></td>
+<td><a href="/?workspace=worldcup">polymonitor.club/?workspace=worldcup</a></td>
+<td>FIFA 2026 世界杯监控界面，包含赛程、比赛详情、主办城市地图、天气、新闻、市场链接、赔率上下文和赛事情报。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>每个工作区保留同一套核心数据模型，包括 market identity、price history、order-book state、OrderFilled flow、oracle resolution、external context 和 runtime snapshots，同时围绕具体任务调整界面。</p>
+<h2 id="polymonitor">polyMonitor</h2>
+<p>默认工作区是通用 Polymarket 监控界面，围绕市场发现、市场工作区检查、生命周期状态、链上 OrderFilled flow、oracle 状态和跨领域上下文组织。目标是把市场作为一个活系统来检查，而不是只看一个概率数字。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市场生命周期</td>
+<td>连接 Gamma market identity、slug、condition id、outcome tokens、active status、close state、oracle state、settlement 与 archival context。</td>
+</tr>
+<tr>
+<td>流动与交易</td>
+<td>展示实时订单簿状态、样本链上交易、全局 OrderFilled 活动、可疑流动、鲸鱼活动和流动性异常。</td>
+</tr>
+<tr>
+<td>Oracle 观察</td>
+<td>追踪 UMA request、proposal、dispute、settlement、final outcome、transaction hashes 和匹配到的市场上下文。</td>
+</tr>
+<tr>
+<td>上下文 Panels</td>
+<td>加入新闻、研究链接、宏观、crypto、finance、weather、sports 和时间上下文，用来解释市场概率为什么移动。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="quant-workspace">Quant 工作区</h2>
+<p>Quant 工作区是研究和回测版本。它聚焦可复现价格数据、策略模拟和生成交易检查，而不是宽泛的仪表盘巡检。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格来源</td>
+<td>比较前端价格历史和 block-close 价格序列，帮助研究者发现来源漂移并选择正确回测输入。</td>
+</tr>
+<tr>
+<td>回测运行</td>
+<td>通过 /wm-api/quant/backtest-runs 创建策略运行，并追踪状态、参数、指标、权益和交易。</td>
+</tr>
+<tr>
+<td>研究输出</td>
+<td>展示权益曲线、回撤、性能摘要、交易表、属性以及可导出的 CSV/JSON artifacts。</td>
+</tr>
+<tr>
+<td>构建监控</td>
+<td>暴露 price-build 状态，让用户判断 quant 数据集是新鲜、部分完成，还是仍在追赶。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="worldcup-workspace">世界杯工作区</h2>
+<p>世界杯工作区是面向 FIFA 2026 世界杯的事件专属版本。它将赛事作为一个监控界面，赛程、场馆、球队、天气、新闻、赔率和 Polymarket markets 都会影响解读。</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>赛程与比赛详情</td>
+<td>加载 2026 赛程结构、比赛 metadata、阶段/小组标签、选中比赛详情和关联市场上下文。</td>
+</tr>
+<tr>
+<td>主办城市地图</td>
+<td>使用世界杯地图工作区进行城市级监控、场馆上下文、区域风险和比赛关联检查。</td>
+</tr>
+<tr>
+<td>天气与场馆上下文</td>
+<td>展示主办城市天气和运营上下文，这些因素可能影响旅行、比赛条件和相关预测市场。</td>
+</tr>
+<tr>
+<td>市场情报</td>
+<td>连接世界杯新闻、赔率参考、Polymarket 市场链接、阵容/球队上下文和 runtime intelligence feeds。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="shared-stack">共享技术栈</h2>
+<p>所有版本共享同一种服务理念：昂贵的采集和 enrichment 在浏览器外运行；前端通过 /wm-api/ 读取标准化 endpoints；响应应暴露 fresh、cached、stale、empty 或 degraded 状态，而不是隐藏缺失数据。</p>
+<p>这让平台保持可扩展。新的垂直工作区可以复用同样的 market identity、OrderFilled、oracle、snapshot 和 runtime API 层，只改变界面和 panel 组合。</p>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#platform-variants">平台版本</a>
+<a href="#polymonitor">polyMonitor</a>
+<a href="#quant-workspace">Quant 工作区</a>
+<a href="#worldcup-workspace">世界杯工作区</a>
+<a href="#shared-stack">共享技术栈</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

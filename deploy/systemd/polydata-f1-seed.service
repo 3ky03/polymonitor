@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData F1 trackside seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/f1_watcher.py --watch --interval "${POLYDATA_F1_WATCH_INTERVAL_SECONDS:-180}" --limit "${POLYDATA_F1_LIMIT:-10}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

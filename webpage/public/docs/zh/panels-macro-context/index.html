@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>宏观、天气与体育 Panels - polyData 文档</title>
+<meta content="polyData panels for macro releases, commodities, weather markets, sports intelligence, and time-aware context." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-macro-context/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-macro-context/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/panels-macro-context/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a class="active" href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>宏观、天气与体育 Panels</h1>
+<p>Polymarket 问题经常依赖 Polymarket 之外的数据。这些 panels 将宏观发布、通胀分项、大宗商品、天气、体育和时区上下文带入与 market prices 和 fills 相同的工作区。</p>
+<h2 id="macro-inflation">宏观与通胀 Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>CPI 发布指挥面板</strong><br/><code>cpi-release-command-center</code></td><td>CPI、PCE 和 Fed timing 的官方 release calendar 与 nowcast registry。</td><td>用于在 trading macro markets around release windows and consensus changes.</td></tr>
+<tr><td><strong>CPI 分项</strong><br/><code>cpi-components-pressure-registry</code></td><td>Energy, food, shelter, and CPI component pressure registry.</td><td>用于理解哪个 CPI component 可能正在驱动 headline 或 core inflation probabilities。</td></tr>
+<tr><td><strong>CPI Release Calendar &amp; Consensus Baseline</strong><br/><code>cpi-release-calendar</code></td><td>官方 CPI、PCE、NFP 和 FOMC release timing，并带 Polymarket implied CPI baseline。</td><td>用于 align market-implied expectations with scheduled official data.</td></tr>
+<tr><td><strong>Inflation Nowcast</strong><br/><code>inflation-nowcast</code></td><td>Cleveland Fed CPI and PCE nowcasting panel.</td><td>当 market odds 偏离公开模型估计时，作为中性 nowcast reference。</td></tr>
+<tr><td><strong>Goods / Tariff</strong><br/><code>goods-tariff-supply-watch</code></td><td>Goods inflation, tariff, import-price, and supply-chain registry.</td><td>用于追踪 tradable goods inflation pressure 和政策驱动的 import cost shocks。</td></tr>
+<tr><td><strong>Labor / Services</strong><br/><code>labor-services-inflation-monitor</code></td><td>Labor, wage, claims, and services CPI pressure registry.</td><td>用于判断 services inflation risk 是否来自 wages、labor tightness 或 claims data。</td></tr>
+<tr><td><strong>Fed / Growth Risk</strong><br/><code>fed-reaction-growth-risk-board</code></td><td>Fed, rates, growth, demand, and recession-risk registry.</td><td>用于 connect inflation prints to Fed reaction and growth-risk markets.</td></tr>
+<tr><td><strong>Food &amp; Retail Basket Pressure</strong><br/><code>food-retail-basket-pressure</code></td><td>用于 inflation market positioning 的官方 CPI food-component pressure。</td><td>用于 food-at-home, food-away-from-home, and retail-basket questions.</td></tr>
+<tr><td><strong>Supply / Tariff</strong><br/><code>supply-tariff-import-watch</code></td><td>Supply-chain and tariff watch for CPI goods pressure.</td><td>当 goods inflation markets 依赖 shipping、import、tariff 或 substitution pressure 时使用。</td></tr>
+<tr><td><strong>Shelter / OER</strong><br/><code>shelter-rent-oer-pressure</code></td><td>Rent and owners-equivalent-rent pressure for core CPI markets.</td><td>用于 interpret sticky shelter components before official CPI release.</td></tr>
+<tr><td><strong>Labor / Wages</strong><br/><code>labor-wage-services-pressure</code></td><td>Labor-market and wage pressure for services CPI and Fed markets.</td><td>用于 connect payroll, wage, and services-price risk in one panel.</td></tr>
+<tr><td><strong>Growth / Demand</strong><br/><code>growth-demand-recession-tracker</code></td><td>Demand and recession indicators for macro market positioning.</td><td>用于评估 macro market odds 反映的是 soft-landing 还是 recession pressure。</td></tr>
+<tr><td><strong>Fed / Rates Gap</strong><br/><code>fed-rates-polymarket-gap</code></td><td>Rates tape and Polymarket Fed-market context.</td><td>用于 compare prediction-market pricing with rate-market signals.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="market-context">市场与大宗商品上下文</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Commodities Watch</strong><br/><code>commodities-watch</code></td><td>Commodity price boards and sparklines.</td><td>用于把 energy、metals、food 和 inflation markets 锚定到 live commodity prices。</td></tr>
+<tr><td><strong>Energy &amp; Gasoline Shock</strong><br/><code>energy-gasoline-shock</code></td><td>EIA WTI, gasoline, and diesel pressure for headline CPI markets.</td><td>适用于 energy-price moves may drive CPI or consumer-cost probabilities.</td></tr>
+<tr><td><strong>Global Indices</strong><br/><code>global-index-monitor</code></td><td>Global index quote board.</td><td>可作为 broad risk-on/risk-off context for macro and market-direction questions.</td></tr>
+<tr><td><strong>Commodity Equity Transmission</strong><br/><code>commodity-equity-transmission</code></td><td>将 commodity shocks 映射到 equity beneficiaries、cost-pressure names、spread-watch names 和相关 Polymarket themes。</td><td>用于 translate commodity moves into sector and company implications.</td></tr>
+<tr><td><strong>World Clock</strong><br/><code>world-clock</code></td><td>上海、纽约、伦敦和选中天气城市的 live market clocks。</td><td>用于判断 market 是在 active session 中移动，还是在 after-hours 薄流动性中移动。</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="weather">天气 Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Global Temp Monitor</strong><br/><code>global-temperature-monitor</code></td><td>全球城市实时温度、forecast highs 和 Polymarket quote coverage。</td><td>作为 weather-linked markets 和 city-level temperature risk 的概览表。</td></tr>
+<tr><td><strong>Weather Market Browser</strong><br/><code>weather-market-browser</code></td><td>按 temperature、precipitation、storms、climate 和 disaster families 分组的 Polymarket weather markets。</td><td>用于在打开 city 或 quote detail panel 前找到相关 market family。</td></tr>
+<tr><td><strong>Weather City Snapshot</strong><br/><code>weather-city-snapshot</code></td><td>Selected city temperature, condition, daily range, and market coverage.</td><td>可作为 the city-level weather summary for a focused weather market.</td></tr>
+<tr><td><strong>Weather Quote Curve</strong><br/><code>weather-quote-detail</code></td><td>Selected city Polymarket temperature-bin midpoint curve.</td><td>用于 see which temperature outcomes are priced as most likely.</td></tr>
+<tr><td><strong>Weather Quote Table</strong><br/><code>weather-quote-table</code></td><td>Selected city temperature market quote bins in a compact table.</td><td>用于 precise bin-level bid, ask, midpoint, and probability comparison.</td></tr>
+<tr><td><strong>WU 1 Day</strong><br/><code>weather-trend-detail</code></td><td>Selected city one-day temperature trend chart.</td><td>用于 intraday movement and near-term weather market timing.</td></tr>
+<tr><td><strong>WU 7 Day</strong><br/><code>weather-trend-7d</code></td><td>Selected city seven-day temperature trend chart.</td><td>用于 compare short-term market pricing with forecast trend direction.</td></tr>
+<tr><td><strong>Weather News</strong><br/><code>weather-news</code></td><td>City weather headlines from seeded Google News RSS.</td><td>当 market odds 可能对 storms、heat waves、warnings 或 local forecast changes 反应时使用。</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="sports">体育 Panels</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>NBA Scoreboard</strong><br/><code>nba-scoreboard</code></td><td>Upcoming and live NBA games.</td><td>可作为 the schedule and live-state anchor for NBA-related markets.</td></tr>
+<tr><td><strong>NBA Intel</strong><br/><code>nba-intel</code></td><td>ESPN news, starting lineups, and pregame rumors.</td><td>用于 connect lineup or injury information to team and player markets.</td></tr>
+<tr><td><strong>ESPN Matchup Predictor</strong><br/><code>espn-matchup-predictor</code></td><td>ESPN BPI win probability、matchup quality、projected margin 和 expected score。</td><td>可作为 an external model baseline against Polymarket or sportsbook pricing.</td></tr>
+<tr><td><strong>Esports Intel</strong><br/><code>esports-intel</code></td><td>GRID 官方 esports series state，并带本地 Polymarket matching context。</td><td>用于 verify esports event state and match it back to local market identity.</td></tr>
+<tr><td><strong>Sports Odds</strong><br/><code>sports-odds</code></td><td>Bookmaker consensus monitor with Polymarket comparison hooks.</td><td>用于 compare Polymarket probability with external sportsbook consensus.</td></tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#macro-inflation">宏观与通胀 Panels</a>
+<a href="#market-context">市场与大宗商品上下文</a>
+<a href="#weather">天气 Panels</a>
+<a href="#sports">体育 Panels</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

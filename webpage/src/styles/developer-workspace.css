@@ -1,0 +1,281 @@
+.developer-shell {
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
+  background:
+    linear-gradient(rgba(57, 255, 115, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 115, 0.028) 1px, transparent 1px),
+    var(--ds-color-canvas);
+  background-size: 48px 48px;
+  color: var(--ds-color-text);
+}
+
+.developer-topbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  min-height: 58px;
+  align-items: center;
+  gap: var(--ds-space-4);
+  border-bottom: 1px solid var(--ds-color-border);
+  background: rgba(7, 10, 8, 0.92);
+  padding: 0 clamp(12px, 3vw, 40px);
+}
+
+.developer-topbar > * {
+  min-width: 0;
+}
+
+.developer-topbar > a,
+.developer-topbar > div,
+.developer-topbar select {
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+}
+
+.developer-topbar > div {
+  text-align: center;
+}
+
+.developer-topbar > div span {
+  margin-left: 10px;
+  color: var(--ds-color-text-muted);
+  font-size: 9px;
+}
+
+.developer-topbar select,
+.wm-language-switch select {
+  min-height: 34px;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-sm);
+  background: var(--ds-color-surface-1);
+  padding: 0 9px;
+}
+
+.developer-main {
+  width: min(1380px, calc(100% - 40px));
+  min-width: 0;
+  margin: 0 auto;
+  padding: clamp(26px, 5vw, 72px) 0 80px;
+}
+
+.developer-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--ds-color-accent) 30%, var(--ds-color-border));
+  background:
+    radial-gradient(circle at 90% 10%, rgba(57, 255, 115, 0.12), transparent 34%),
+    var(--ds-color-surface-1);
+  box-shadow: var(--ds-shadow-panel);
+  padding: clamp(26px, 5vw, 68px);
+}
+
+.developer-hero > span,
+.developer-panel > span,
+.developer-endpoint small,
+.developer-metrics span {
+  color: var(--ds-color-accent);
+  font-family: var(--ds-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.developer-hero h1 {
+  max-width: 900px;
+  margin: 18px 0;
+  font-family: var(--ds-font-display);
+  font-size: clamp(46px, 8vw, 112px);
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.developer-hero > p {
+  max-width: 780px;
+  color: var(--ds-color-text-secondary);
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.7;
+}
+
+.developer-endpoint {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  max-width: 850px;
+  align-items: center;
+  gap: var(--ds-space-2);
+  margin-top: var(--ds-space-8);
+  border: 1px solid var(--ds-color-border);
+  background: rgba(0, 0, 0, 0.28);
+  padding: var(--ds-space-3);
+}
+
+.developer-endpoint small {
+  grid-column: 1 / -1;
+}
+
+.developer-endpoint code {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-mono);
+  font-size: 12px;
+  text-overflow: ellipsis;
+}
+
+.developer-endpoint button,
+.developer-actions a {
+  min-height: 44px;
+  border: 1px solid var(--ds-color-accent);
+  background: var(--ds-color-accent);
+  color: #07100a;
+  font-family: var(--ds-font-mono);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.developer-metrics,
+.developer-grid {
+  display: grid;
+  gap: var(--ds-space-3);
+  margin-top: var(--ds-space-3);
+}
+
+.developer-metrics {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.developer-metrics article,
+.developer-panel {
+  border: 1px solid var(--ds-color-border);
+  background: color-mix(in srgb, var(--ds-color-surface-1) 94%, transparent);
+  box-shadow: var(--ds-shadow-panel);
+  padding: var(--ds-space-5);
+}
+
+.developer-metrics strong {
+  display: block;
+  margin-top: var(--ds-space-3);
+  font-family: var(--ds-font-mono);
+  font-size: clamp(18px, 2.2vw, 30px);
+}
+
+.developer-grid {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.developer-panel h2 {
+  margin: var(--ds-space-3) 0;
+  font-family: var(--ds-font-display);
+  font-size: clamp(27px, 4vw, 48px);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.developer-panel p {
+  color: var(--ds-color-text-secondary);
+  line-height: 1.7;
+}
+
+.developer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  margin-top: var(--ds-space-5);
+}
+
+.developer-actions a + a {
+  background: transparent;
+  color: var(--ds-color-accent);
+}
+
+.developer-tool-list,
+.developer-security-list {
+  margin: var(--ds-space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.developer-tool-list li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  min-height: 42px;
+  align-items: center;
+  border-top: 1px solid var(--ds-color-border-soft);
+  color: var(--ds-color-text-secondary);
+  font-size: 12px;
+}
+
+.developer-tool-list b {
+  color: var(--ds-color-accent);
+  font-family: var(--ds-font-mono);
+}
+
+.developer-quickstart pre,
+.developer-sdk pre {
+  overflow: auto;
+  margin: var(--ds-space-5) 0 0;
+  border: 1px solid var(--ds-color-border);
+  background: #050706;
+  color: var(--ds-color-accent);
+  font: 11px/1.7 var(--ds-font-mono);
+  padding: var(--ds-space-4);
+}
+
+.developer-sdk {
+  margin-top: var(--ds-space-3);
+}
+
+.developer-security-list li {
+  position: relative;
+  border-bottom: 1px solid var(--ds-color-border-soft);
+  color: var(--ds-color-text-secondary);
+  line-height: 1.55;
+  padding: 14px 0 14px 24px;
+}
+
+.developer-security-list li::before {
+  position: absolute;
+  left: 0;
+  color: var(--ds-color-accent);
+  content: '✓';
+}
+
+@media (max-width: 780px) {
+  .developer-topbar > div span {
+    display: none;
+  }
+
+  .developer-main {
+    width: min(100% - 20px, 1380px);
+  }
+
+  .developer-hero h1 {
+    font-size: clamp(42px, 13vw, 72px);
+  }
+
+  .developer-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .developer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .developer-endpoint {
+    grid-template-columns: 1fr;
+  }
+
+  .developer-endpoint button {
+    width: 100%;
+  }
+}

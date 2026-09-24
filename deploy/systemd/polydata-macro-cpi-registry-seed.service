@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData macro CPI registry seed watcher
+After=network-online.target redis-server.service polydata-cpi-release-calendar-seed.service polydata-energy-gasoline-shock-seed.service polydata-food-retail-basket-seed.service polydata-macro-cpi-panels-seed.service polydata-inflation-nowcast-seed.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/macro_cpi_registry_watcher.py --watch --interval "${POLYDATA_MACRO_CPI_REGISTRY_WATCH_INTERVAL_SECONDS:-1800}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

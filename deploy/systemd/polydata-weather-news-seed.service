@@ -1,0 +1,22 @@
+[Unit]
+Description=polyData weather news seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+# Bound process-level recovery when storage or a startup dependency is unavailable.
+StartLimitIntervalSec=1800
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+# The dedicated Telegram publisher consumes the cached snapshot. Keep collection
+# latency independent from Telegram rate limits and publisher state locking.
+ExecStart=/bin/bash -lc 'exec env POLYDATA_TELEGRAM_PUBLISH_ON_PANEL_CACHE=false "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/weather_news_watcher.py --watch --interval "${POLYDATA_WEATHER_NEWS_WATCH_INTERVAL_SECONDS:-300}"'
+Restart=always
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

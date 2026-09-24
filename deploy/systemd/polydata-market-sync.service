@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData market sync service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/market/market_discovery.py --backend postgres --incremental --watch --interval "${POLYDATA_MARKET_SYNC_INTERVAL_SECONDS:-900}" --batch-size "${POLYDATA_MARKET_SYNC_BATCH_SIZE:-500}" --delay "${POLYDATA_MARKET_SYNC_REQUEST_DELAY_SECONDS:-1.0}" --skip-onchain-registry-supplement --post-repair-limit "${POLYDATA_MARKET_POST_REPAIR_LIMIT:-500}" --post-repair-workers "${POLYDATA_MARKET_POST_REPAIR_WORKERS:-2}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

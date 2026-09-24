@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>情报与新闻 Panels - polyData 文档</title>
+<meta content="polyData panels for oracle state, AI analysis, related news, policy, technology, and market-moving intelligence." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-intelligence-news/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-intelligence-news/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/panels-intelligence-news/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a class="active" href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>情报与新闻 Panels</h1>
+<p>这些 panels 解释 market 为什么可能正在移动，以及它的 resolution path 是否清晰。它们组合 oracle state、related news、AI summaries、policy feeds、finance news、technology signals 和 domain-specific event feeds。</p>
+<h2 id="oracle-ai">Oracle 与 AI 分析</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oracle Feed</strong><br/><code>oracle-feed</code></td>
+<td>跨市场近期 oracle events，包含 resolution-adjacent activity。</td>
+<td>用于验证 market status 仍由交易驱动，还是已经进入 oracle/resolution phase。</td>
+</tr>
+<tr>
+<td><strong>AI Market Brief</strong><br/><code>price-implications</code></td>
+<td>全市场 AI brief, focal points, and convergence signals.</td>
+<td>用于 compress multiple market signals into a short analyst-readable thesis.</td>
+</tr>
+<tr>
+<td><strong>AI Trend Radar</strong><br/><code>oracle-timeline</code></td>
+<td>全市场 AI synthesis of trend clusters, catalysts, and watch items.</td>
+<td>用于发现围绕同一 catalyst 或 narrative 移动的 related market clusters。</td>
+</tr>
+<tr>
+<td><strong>Related News</strong><br/><code>related-news</code></td>
+<td>News linked to the focused market.</td>
+<td>用于在不离开工作区的情况下，将 probability move 连接到 source、headline 或 external event。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="technology-finance">科技与金融情报</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI Model Race</strong><br/><code>ai-model-race</code></td>
+<td>AI lab release、benchmark、pricing、valuation、outage 和 regulation signal feed。</td>
+<td>用于 AI-company 和 model-release markets，尤其是 product news 会快速推动 probability 的场景。</td>
+</tr>
+<tr>
+<td><strong>Big Tech Cap</strong><br/><code>big-tech-market-cap</code></td>
+<td>Mega-cap technology quote and market-cap rank board.</td>
+<td>用于把 tech-market narratives 锚定到 live equity context，而不只是 headline flow。</td>
+</tr>
+<tr>
+<td><strong>App Pulse</strong><br/><code>consumer-app-pulse</code></td>
+<td>App Store, Google Play, TikTok, consumer ranking, and regulation signals.</td>
+<td>用于 adoption、ranking、bans 或 platform changes 重要的 consumer internet markets。</td>
+</tr>
+<tr>
+<td><strong>IPO News</strong><br/><code>ipo-news-watch</code></td>
+<td>IPO, listing, and filing catalyst feed.</td>
+<td>用于 listing, company, valuation, and deal-timing questions.</td>
+</tr>
+<tr>
+<td><strong>Broker Research</strong><br/><code>broker-research-watch</code></td>
+<td>Analyst rating and target-price change radar.</td>
+<td>用于发现可能影响 equity-linked 或 sector-linked markets 的 TradFi analyst catalysts。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="policy-risk">政策、风险与事件 feeds</h2>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>显示内容</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chain Policy</strong><br/><code>blockchain-policy-news</code></td>
+<td>Blockchain policy, regulation, and enforcement feed.</td>
+<td>用于 crypto regulation, enforcement, ETF, and protocol governance markets.</td>
+</tr>
+<tr>
+<td><strong>DeFi Security</strong><br/><code>defi-security-watch</code></td>
+<td>DeFi exploit, vulnerability, and protocol risk feed.</td>
+<td>用于在更广泛 crypto prices 反映之前识别 protocol-specific security shocks。</td>
+</tr>
+<tr>
+<td><strong>Trade Policy</strong><br/><code>trade-policy-radar</code></td>
+<td>高信号 trade policy watchlist，映射到 tariffs、flows、barriers、revenue 和 strategic controls。</td>
+<td>当 market movement 依赖 duties、export controls、sanctions 或 supply-chain rerouting 时使用。</td>
+</tr>
+<tr>
+<td><strong>Geopolitical &amp; Sanctions Shock</strong><br/><code>geo-sanctions-shock</code></td>
+<td>Geopolitical shocks, sanctions changes, and linked macro-risk markets.</td>
+<td>用于把 global event risk 连接到 commodity、macro、election 和 security markets。</td>
+</tr>
+<tr>
+<td><strong>Jin10 Flash</strong><br/><code>jin10-flash</code></td>
+<td>Jin10 macro flash feed in market-card form.</td>
+<td>用于可能推动 rates、inflation、FX 和 commodity questions 的快速宏观 headline。</td>
+</tr>
+<tr>
+<td><strong>BWE News</strong><br/><code>f1-trackside</code></td>
+<td>BWENews runtime RSS flashes with cached auto-refresh.</td>
+<td>作为紧凑 live news feed，用于需要 headline triage 的 fast-moving event surfaces。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#oracle-ai">Oracle 与 AI 分析</a>
+<a href="#technology-finance">科技与金融情报</a>
+<a href="#policy-risk">政策、风险与事件 feeds</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

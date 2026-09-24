@@ -1,0 +1,156 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-movement-panel {
+  --wc-panel-accent: #68daf4;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-status {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px 86px;
+  gap: 6px;
+  margin-bottom: 7px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-status span {
+  min-width: 0;
+  padding: 7px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgba(104, 218, 244, 0.075), transparent 48%),
+    rgba(255, 255, 255, 0.022);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-status em,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards header span,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards header em {
+  display: block;
+  overflow: hidden;
+  color: rgba(235, 235, 235, 0.5);
+  font-family: var(--wm-font-mono, monospace);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-status strong {
+  display: block;
+  overflow: hidden;
+  color: #f4f6f8;
+  font-family: var(--wm-font-mono, monospace);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards {
+  display: grid;
+  gap: 6px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards article {
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 5px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(49, 242, 138, 0.1), transparent 42%),
+    rgba(255, 255, 255, 0.02);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards header {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 72px;
+  gap: 6px;
+  align-items: center;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards header span {
+  color: #68daf4;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-cards header strong {
+  overflow: hidden;
+  color: #f4f6f8;
+  font-family: var(--wm-font-mono, monospace);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-spark {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 3px;
+  align-items: end;
+  height: 30px;
+  margin: 6px 0;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-spark i {
+  display: block;
+  min-height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(180deg, #31f28a, #68daf4);
+  box-shadow: 0 0 10px rgba(49, 242, 138, 0.14);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-outcomes {
+  display: flex;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-outcomes b {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  padding: 2px 5px;
+  border: 1px solid rgba(104, 218, 244, 0.18);
+  border-radius: 3px;
+  color: rgba(235, 235, 235, 0.72);
+  font-family: var(--wm-font-mono, monospace);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-outcomes strong {
+  margin-left: 4px;
+  color: #f6c445;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-note {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 7px;
+  align-items: center;
+  margin-top: 7px;
+  padding: 7px;
+  border: 1px solid rgba(246, 196, 69, 0.22);
+  border-radius: 4px;
+  background: rgba(246, 196, 69, 0.045);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-note b {
+  color: #f6c445;
+  font-family: var(--wm-font-mono, monospace);
+  font-size: 10px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-line-note span {
+  overflow: hidden;
+  color: rgba(235, 235, 235, 0.62);
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

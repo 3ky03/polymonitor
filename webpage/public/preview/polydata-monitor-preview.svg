@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="polyData Monitor preview">
+  <defs>
+    <linearGradient id="shell" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#102718"/>
+      <stop offset="0.42" stop-color="#080b0c"/>
+      <stop offset="1" stop-color="#02030e"/>
+    </linearGradient>
+    <radialGradient id="globe" cx="50%" cy="45%" r="50%">
+      <stop offset="0" stop-color="#1e5f91"/>
+      <stop offset="0.48" stop-color="#09223b"/>
+      <stop offset="0.78" stop-color="#04101e"/>
+      <stop offset="1" stop-color="#01030a"/>
+    </radialGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0v42" fill="none" stroke="#39ff73" stroke-opacity="0.09" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="scan" x1="0" x2="1">
+      <stop offset="0" stop-color="#39ff73" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#39ff73" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#39ff73" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#shell)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="0" y="0" width="1200" height="64" fill="#0b2312"/>
+  <rect x="36" y="17" width="78" height="30" rx="6" fill="#39ff73"/>
+  <text x="75" y="38" text-anchor="middle" font-family="JetBrains Mono, SF Mono, monospace" font-size="18" font-weight="800" fill="#061108">PRO</text>
+  <text x="138" y="38" font-family="JetBrains Mono, SF Mono, monospace" font-size="19" font-weight="700" fill="#b9d6b9">PolyMonitor Pro - sharper Polymarket signal, less noise</text>
+  <rect x="30" y="96" width="1140" height="62" fill="#111413" stroke="#27342b"/>
+  <text x="50" y="133" font-family="JetBrains Mono, SF Mono, monospace" font-size="22" font-weight="900" letter-spacing="5" fill="#f4f7fb">POLYDATA MONITOR</text>
+  <circle cx="356" cy="126" r="8" fill="#39ff73" filter="url(#softGlow)"/>
+  <text x="376" y="133" font-family="JetBrains Mono, SF Mono, monospace" font-size="18" font-weight="800" fill="#39ff73">LIVE</text>
+  <rect x="30" y="158" width="1140" height="84" fill="#121313" stroke="#252b27"/>
+  <text x="50" y="193" font-family="JetBrains Mono, SF Mono, monospace" font-size="17" font-weight="900" letter-spacing="4" fill="#75ff95">LIVE ODDS &amp; ORACLE MONITOR</text>
+  <text x="50" y="229" font-family="JetBrains Mono, SF Mono, monospace" font-size="42" font-weight="900" fill="#ffffff">Polymarket Signal Atlas</text>
+  <rect x="30" y="242" width="1140" height="358" rx="20" fill="#020315" stroke="#121b2e"/>
+  <circle cx="650" cy="420" r="172" fill="url(#globe)" stroke="#214f8f" stroke-opacity="0.6" filter="url(#softGlow)"/>
+  <circle cx="650" cy="420" r="220" fill="none" stroke="#335cff" stroke-opacity="0.08" stroke-width="30"/>
+  <g stroke-linecap="round" stroke-width="5">
+    <path d="M650 248 C710 320 760 355 840 368" stroke="#ff8f24" stroke-opacity="0.8" fill="none"/>
+    <path d="M650 248 C586 320 520 366 440 430" stroke="#58a6ff" stroke-opacity="0.8" fill="none"/>
+    <path d="M650 248 C690 420 742 470 850 520" stroke="#ff4b4b" stroke-opacity="0.75" fill="none"/>
+  </g>
+  <g>
+    <circle cx="840" cy="368" r="12" fill="#ff8f24"/>
+    <circle cx="440" cy="430" r="12" fill="#58a6ff"/>
+    <circle cx="850" cy="520" r="12" fill="#ff4b4b"/>
+    <circle cx="615" cy="315" r="10" fill="#39ff73"/>
+    <circle cx="710" cy="455" r="10" fill="#f6b61f"/>
+  </g>
+  <rect x="62" y="390" width="270" height="154" rx="8" fill="#070908" stroke="#2a3430"/>
+  <text x="84" y="424" font-family="JetBrains Mono, SF Mono, monospace" font-size="18" font-weight="900" fill="#9ca3ad">LAYERS</text>
+  <text x="84" y="462" font-family="JetBrains Mono, SF Mono, monospace" font-size="17" font-weight="800" fill="#39ff73">✓ POLYMARKET MARKETS</text>
+  <text x="84" y="496" font-family="JetBrains Mono, SF Mono, monospace" font-size="17" font-weight="800" fill="#39ff73">✓ ORACLE EVENTS</text>
+  <text x="84" y="530" font-family="JetBrains Mono, SF Mono, monospace" font-size="17" font-weight="800" fill="#39ff73">✓ ORDERFILLED TAPE</text>
+  <rect x="-280" y="0" width="260" height="630" fill="url(#scan)">
+    <animate attributeName="x" values="-280;1220" dur="5s" repeatCount="indefinite"/>
+  </rect>
+</svg>

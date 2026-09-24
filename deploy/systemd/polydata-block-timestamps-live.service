@@ -1,0 +1,22 @@
+[Unit]
+Description=polyData ClickHouse block timestamp live sync
+After=network-online.target polydata-polygon-rpc-tunnel.service polydata-trade-sync.service
+Wants=network-online.target
+Requires=polydata-polygon-rpc-tunnel.service
+StartLimitIntervalSec=3600
+StartLimitBurst=3
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+UnsetEnvironment=NODE_URL NODE_URL2 BLOCK_TIMESTAMPS_RPC_URLS
+ExecStart=/bin/bash -lc 'exec scripts/clickhouse/run_block_timestamps_live.sh'
+Restart=always
+RestartSec=600
+RestartPreventExitStatus=75
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

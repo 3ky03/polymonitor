@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData Jin10 flash seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/jin10_watcher.py --watch --interval "${POLYDATA_JIN10_WATCH_INTERVAL_SECONDS:-60}" --limit "${POLYDATA_JIN10_LIMIT:-24}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

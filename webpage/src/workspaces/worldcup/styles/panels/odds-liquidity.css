@@ -1,0 +1,14 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-odds-liquidity-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-odds-panel {
+  --wc-panel-accent: #34dfff;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-liquidity-strip span,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-odds-table article {
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.042), rgba(255, 255, 255, 0.014));
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-odds-table article:hover {
+  border-color: rgba(52, 223, 255, 0.28);
+}

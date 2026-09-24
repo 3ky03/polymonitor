@@ -1,0 +1,12 @@
+[Unit]
+Description=Audit Polymonitor Panel health every two minutes
+
+[Timer]
+OnCalendar=*-*-* *:0/2:50
+AccuracySec=1s
+RandomizedDelaySec=2s
+Persistent=true
+Unit=polydata-operations-panel-health.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData quant live OrderFilled block close worker shard %i
+After=network-online.target polydata-db-reverse-tunnel.service polydata-quant-price-maintenance.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" -m quant.workers.build_runner --daemon --source-mode orderfilled_block_close --skip-maintenance --skip-orderfilled-market-stats-refresh --since-ts "${POLYDATA_QUANT_PRICE_BUILD_SINCE_TS:-1756684800}" --block-token-limit "${POLYDATA_QUANT_BLOCK_LIVE_TOKEN_LIMIT:-1000}" --sleep-seconds "${POLYDATA_QUANT_BLOCK_LIVE_SLEEP_SECONDS:-5}" --block-min-orderfilled-trades "${POLYDATA_QUANT_BLOCK_MIN_ORDERFILLED_TRADES:-1}" --block-window "${POLYDATA_QUANT_BLOCK_LIVE_WINDOW:-50000000}" --block-overlap "${POLYDATA_QUANT_BLOCK_LIVE_OVERLAP:-5000}" --block-live-only --block-live-lookback-days "${POLYDATA_QUANT_BLOCK_LIVE_LOOKBACK_DAYS:-7}" --shard-index "%i" --shard-count "${POLYDATA_QUANT_BLOCK_LIVE_SHARD_COUNT:-1}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

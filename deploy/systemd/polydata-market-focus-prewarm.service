@@ -1,0 +1,15 @@
+[Unit]
+Description=polyData prewarm active market focus tiles
+After=network-online.target polydata-api.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/ops/prewarm_market_focus_tiles.py --base-url "${POLYDATA_LOCAL_API_URL:-http://127.0.0.1:18500}" --limit "${POLYDATA_PREWARM_MARKET_FOCUS_LIMIT:-80}" --workers "${POLYDATA_PREWARM_MARKET_FOCUS_WORKERS:-2}" --timeout-seconds "${POLYDATA_PREWARM_MARKET_FOCUS_TIMEOUT_SECONDS:-10}" --lob-limit "${POLYDATA_PREWARM_MARKET_LOB_LIMIT:-80}" --catalog-refresh-seconds "${POLYDATA_PREWARM_MARKET_CATALOG_REFRESH_SECONDS:-300}"'
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData LocalOrderBook snapshot rollup and retention worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/lob_snapshot_maintenance.py --watch --interval "${POLYDATA_LOB_MAINTENANCE_INTERVAL_SECONDS:-21600}"'
+Restart=always
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

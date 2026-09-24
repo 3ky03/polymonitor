@@ -1,0 +1,39 @@
+{
+  "contractVersion": "polymonitor.external-monitor.v1",
+  "mustRunOutsideGcpVm": true,
+  "intervalSeconds": 60,
+  "failureThreshold": 2,
+  "probes": [
+    {
+      "category": "website",
+      "path": "/",
+      "expectedHttpStatus": 200
+    },
+    {
+      "category": "apiHealth",
+      "path": "/wm-api/health",
+      "expectedHttpStatus": 200
+    },
+    {
+      "category": "dbBackedMarkets",
+      "path": "/wm-api/markets?limit=1",
+      "expectedHttpStatus": 200
+    }
+  ],
+  "allowedAlertFields": [
+    "environment",
+    "endpointCategory",
+    "httpStatus",
+    "latencyMs",
+    "firstFailureAt",
+    "consecutiveFailures",
+    "runbookUrl"
+  ],
+  "forbiddenAlertFields": [
+    "responseBody",
+    "apiKey",
+    "cookie",
+    "sshTarget",
+    "databaseAddress"
+  ]
+}

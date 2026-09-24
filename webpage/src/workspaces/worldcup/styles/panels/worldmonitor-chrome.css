@@ -1,0 +1,888 @@
+/*
+ * WorldCup panel chrome aligned to the original WorldMonitor panel system.
+ * Keep this file last in panels/index.css. It intentionally scopes every rule
+ * to the panel matrix so the host atlas / 2D map keeps its own typography.
+ */
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix {
+  --wc-monitor-bg: #0a0a0a;
+  --wc-monitor-surface: #141414;
+  --wc-monitor-surface-soft: #171717;
+  --wc-monitor-border: #2a2a2a;
+  --wc-monitor-border-subtle: #1a1a1a;
+  --wc-monitor-text: #e8e8e8;
+  --wc-monitor-secondary: #ccc;
+  --wc-monitor-dim: #888;
+  --wc-monitor-muted: #666;
+  --wc-monitor-green: #44ff88;
+  --wc-monitor-yellow: #ffaa00;
+  --wc-monitor-red: #ff4444;
+  --wc-monitor-mono: "SF Mono", Monaco, "Cascadia Code", "Fira Code", "DejaVu Sans Mono", "Liberation Mono", monospace;
+  --wc-monitor-cn: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+
+  gap: 4px !important;
+  padding: 4px !important;
+  background: var(--wc-monitor-bg) !important;
+  font-family: var(--wc-monitor-mono) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell {
+  min-height: 274px !important;
+  height: 274px !important;
+  background: var(--wc-monitor-bg) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel.wm-worldcup-panel {
+  min-height: 0 !important;
+  height: 100% !important;
+  border: 1px solid var(--wc-monitor-border) !important;
+  border-radius: 0 !important;
+  background: var(--wc-monitor-surface) !important;
+  box-shadow: none !important;
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  overflow: hidden !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel.wm-worldcup-panel:hover {
+  border-color: var(--wc-monitor-border) !important;
+  box-shadow: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel.wm-worldcup-panel::after {
+  display: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-header {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  height: auto !important;
+  min-height: 31px !important;
+  max-height: none !important;
+  padding: 6px 10px !important;
+  border-bottom: 1px solid var(--wc-monitor-border) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: none !important;
+  cursor: grab !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title-side {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title {
+  min-width: 0 !important;
+  max-width: 176px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.18 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  text-shadow: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title.is-cn {
+  max-width: 156px !important;
+  font-family: var(--wc-monitor-cn) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title-controls,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-actions {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-actions {
+  gap: 5px !important;
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-live {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: auto !important;
+  height: auto !important;
+  padding: 2px 6px !important;
+  border: 1px solid rgba(86, 217, 130, 0.45) !important;
+  border-radius: 10px !important;
+  background: rgba(86, 217, 130, 0.12) !important;
+  box-shadow: none !important;
+  color: #56d982 !important;
+  font-family: var(--wc-monitor-cn) !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.4px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-tool {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 3px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--wc-monitor-dim) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-tool:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: var(--wc-monitor-text) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-tool--summary {
+  color: var(--wc-monitor-dim) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 24px !important;
+  height: auto !important;
+  padding: 2px 6px !important;
+  border: 0 !important;
+  border-radius: 2px !important;
+  background: var(--wc-monitor-border) !important;
+  box-shadow: none !important;
+  color: var(--wc-monitor-dim) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-badge,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-new,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-tag,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-card-head b,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-source-required > strong {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 16px !important;
+  padding: 1px 5px !important;
+  border-radius: 2px !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.4px !important;
+  text-transform: uppercase !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-new {
+  border-radius: 10px !important;
+  background: #f4f4f4 !important;
+  color: #0a0a0a !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-body {
+  height: calc(100% - 31px) !important;
+  padding: 0 !important;
+  background: var(--wc-monitor-bg) !important;
+  color: var(--wc-monitor-secondary) !important;
+  overflow: auto !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  scrollbar-color: #333 transparent !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-body::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-body::-webkit-scrollbar-thumb {
+  background: #333 !important;
+  border-radius: 3px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-filter-strip,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-tabs,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-group-tabs {
+  display: grid !important;
+  gap: 2px !important;
+  padding: 6px 8px 0 !important;
+  border-bottom: 1px solid var(--wc-monitor-border) !important;
+  background: var(--wc-monitor-bg) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-filter-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-filter-strip button,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-tabs button,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-group-tabs button {
+  min-height: 24px !important;
+  padding: 6px 10px !important;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--wc-monitor-dim) !important;
+  box-shadow: none !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-filter-strip button:hover,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-tabs button:hover,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-group-tabs button:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: var(--wc-monitor-text) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-filter-strip button.active,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-tabs button.active,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-group-tabs button.active {
+  color: var(--wc-monitor-green) !important;
+  border-bottom-color: var(--wc-monitor-green) !important;
+  background: rgba(68, 255, 136, 0.08) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 8px rgba(68, 255, 136, 0.18) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-list {
+  height: calc(100% - 37px) !important;
+  overflow: auto !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-row {
+  grid-template-columns: 70px minmax(0, 1fr) !important;
+  min-height: 62px !important;
+  padding: 8px 10px 8px 13px !important;
+  border-left: 3px solid transparent !important;
+  border-bottom: 1px solid var(--wc-monitor-border-subtle) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-row.active {
+  border-left-color: var(--wc-monitor-green) !important;
+  background: rgba(68, 255, 136, 0.08) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-row:not(.active):hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-time strong {
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-time em,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-main em {
+  color: #9aa3ad !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-kicker {
+  color: #c7a537 !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.3px !important;
+  text-transform: uppercase !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-main strong {
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-main i {
+  color: var(--wc-monitor-yellow) !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-row,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-signal-row,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-impact-list article,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-market-row,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-odds-row {
+  min-height: 70px !important;
+  padding: 9px 10px !important;
+  border-bottom: 1px solid var(--wc-monitor-border-subtle) !important;
+  border-left-width: 3px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-row:hover,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-signal-row:hover,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-market-row:hover,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-odds-row:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-meta,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-card-head,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-signal-foot {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  min-height: 17px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-meta span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-card-head span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-source-required-list span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-market-row span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-odds-row span {
+  color: var(--wc-monitor-muted) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0.4px !important;
+  text-transform: uppercase !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-row > strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-signal-row > strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-impact-list article > strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-market-row > strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-odds-row > strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-weather-row strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-feed strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-load-list strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table strong {
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  line-height: 1.24 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-feed-row > em,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-signal-row > em,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-impact-list article > em {
+  color: var(--wc-monitor-dim) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-feed,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-load-list,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-model-table,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table {
+  gap: 0 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-feed span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-load-list span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-model-table div,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table div {
+  min-height: 29px !important;
+  border-bottom: 1px solid var(--wc-monitor-border-subtle) !important;
+  color: var(--wc-monitor-dim) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table div {
+  display: grid !important;
+  grid-template-columns: 52px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 0 !important;
+  overflow: hidden !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table span {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: var(--wc-monitor-muted) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.4px !important;
+  text-overflow: ellipsis !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table strong {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  font-size: 12px !important;
+  font-weight: 650 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Final density correction for schedule and standings panels. These two panels
+   are the most sensitive to old WorldCup table/calendar overrides. */
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-row {
+  grid-template-columns: 70px minmax(0, 1fr) !important;
+  min-height: 64px !important;
+  padding: 9px 10px 9px 13px !important;
+  align-items: start !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-time {
+  display: grid !important;
+  gap: 5px !important;
+  min-width: 0 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-time strong {
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-time em {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-main {
+  display: grid !important;
+  gap: 3px !important;
+  min-width: 0 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-kicker,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-main strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-main em {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-kicker {
+  font-size: 9px !important;
+  font-weight: 650 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.28px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-main strong {
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-schedule-panel .wm-worldcup-match-main em {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.15 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-tabs,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-group-tabs {
+  gap: 4px !important;
+  padding: 7px 10px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-tabs button,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-group-tabs button {
+  min-height: 27px !important;
+  padding: 0 10px !important;
+  font-size: 10.5px !important;
+  font-weight: 650 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table {
+  gap: 0 !important;
+  padding: 0 12px 10px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table header,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table div {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.4fr) 36px 40px 36px 54px !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table header {
+  min-height: 32px !important;
+  background: rgba(40, 56, 72, 0.28) !important;
+  color: #9aa8b8 !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.35px !important;
+  text-transform: uppercase !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table div {
+  min-height: 40px !important;
+  color: var(--wc-monitor-text-soft) !important;
+  border-bottom: 1px solid var(--wc-monitor-border-subtle) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table strong {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11.5px !important;
+  font-weight: 650 !important;
+  line-height: 1.18 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table b,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table em {
+  color: var(--wc-monitor-text-soft) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-style: normal !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-advance-table i {
+  width: 3px !important;
+  height: 3px !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-mini-feed b,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-load-list b,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-model-table b,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-status-table b {
+  color: var(--wc-monitor-muted) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.4px !important;
+  text-transform: uppercase !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-source-required {
+  border-left-width: 3px !important;
+  padding: 10px 12px !important;
+  background: transparent !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-source-required > p,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-empty {
+  color: #aab2bb !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-board-stats span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-liquidity-strip span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-risk-grid span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-ops-metrics span,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-control-grid div,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-facts div,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-market-card,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-venue-card {
+  border: 1px solid var(--wc-monitor-border) !important;
+  border-radius: 3px !important;
+  background: var(--wc-monitor-surface-soft) !important;
+  box-shadow: none !important;
+}
+
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-board-stats strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-liquidity-strip strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-risk-grid strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-ops-metrics strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-scoreboard strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-control-grid strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-match-facts strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-market-card > strong,
+.wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-worldcup-venue-card strong {
+  color: var(--wc-monitor-text) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  line-height: 1.2 !important;
+}
+
+@media (max-width: 1280px) {
+  .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-actions {
+    gap: 4px !important;
+  }
+}
+
+/* Final chrome lock: this intentionally outranks older WorldCup layout rules
+   that used html/body selectors and !important for a heavier blue dashboard. */
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel {
+  border: 1px solid var(--wc-monitor-border) !important;
+  background: var(--wc-monitor-surface) !important;
+  box-shadow: none !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel:hover {
+  border-color: #343434 !important;
+  box-shadow: none !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel > .wc-panel-header {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 6px 10px !important;
+  border-bottom: 1px solid var(--wc-monitor-border) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: none !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel > .wc-panel-body {
+  height: auto !important;
+  min-height: 0 !important;
+  background: var(--wc-monitor-bg) !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title {
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title.is-cn {
+  font-family: var(--wc-monitor-cn) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-live {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 2px 6px !important;
+  border: 1px solid rgba(0, 255, 136, 0.34) !important;
+  border-radius: 999px !important;
+  background: rgba(0, 255, 136, 0.09) !important;
+  color: var(--wc-monitor-green) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.7px !important;
+  box-shadow: none !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-tool {
+  width: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.075) !important;
+  border-radius: 2px !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  color: var(--wc-monitor-dim) !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-tool--summary {
+  color: var(--wc-monitor-yellow) !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-count {
+  width: auto !important;
+  min-width: 24px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 2px 6px !important;
+  border: 0 !important;
+  border-radius: 2px !important;
+  background: var(--wc-monitor-border) !important;
+  color: #b5bdc7 !important;
+  font-family: var(--wc-monitor-mono) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: none !important;
+}
+
+/* panels.css is imported into @layer base and uses !important. Important
+   layered declarations outrank unlayered important declarations, so these
+   scoped rules intentionally join base as the final WorldCup panel layer. */
+@layer base {
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel,
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel.wm-panel {
+    border: 1px solid #2a2a2a !important;
+    background: #141414 !important;
+    box-shadow: none !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel > .wc-panel-header,
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel > .wm-panel-header {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 6px 10px !important;
+    border-bottom: 1px solid #2a2a2a !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    box-shadow: none !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel > .wc-panel-body,
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix > .wm-worldcup-matrix-cell > .wc-panel.wm-worldcup-panel > .wm-panel-body {
+    height: auto !important;
+    min-height: 0 !important;
+    background: #0a0a0a !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title,
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-panel-title.wc-panel-title {
+    color: #e8e8e8 !important;
+    font-family: "SF Mono", Monaco, "Cascadia Code", "Fira Code", "DejaVu Sans Mono", "Liberation Mono", monospace !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 1.15 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-title.is-cn,
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-panel-title.wc-panel-title.is-cn {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-live {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 2px 6px !important;
+    border: 1px solid rgba(0, 255, 136, 0.34) !important;
+    border-radius: 999px !important;
+    background: rgba(0, 255, 136, 0.09) !important;
+    color: #44ff88 !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.7px !important;
+    box-shadow: none !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-tool {
+    width: 20px !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.075) !important;
+    border-radius: 2px !important;
+    background: rgba(255, 255, 255, 0.025) !important;
+    box-shadow: none !important;
+    color: #888 !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+  }
+
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wc-panel-count,
+  html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel-matrix .wm-panel-count.wc-panel-count {
+    width: auto !important;
+    min-width: 24px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 2px 6px !important;
+    border: 0 !important;
+    border-radius: 2px !important;
+    background: #2a2a2a !important;
+    color: #b5bdc7 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.3px !important;
+    box-shadow: none !important;
+  }
+}

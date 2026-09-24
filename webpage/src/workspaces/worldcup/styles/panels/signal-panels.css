@@ -1,0 +1,51 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-media-wire-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-news-impact-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-news-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-model-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-tempo-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-ref-cards-panel,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-travel-load-panel {
+  --wc-panel-accent: #34dfff;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-signal-row,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-feed-row,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-impact-list article,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-model-table div {
+  border-radius: 8px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-signal-row:hover,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-feed-row:hover {
+  border-color: rgba(52, 223, 255, 0.28);
+}
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-signal-row,
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-feed-row {
+  min-height: 126px !important;
+  padding: 18px 18px 14px !important;
+  border-left-width: 4px !important;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.016), rgba(255, 255, 255, 0.003) 70%) !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-signal-row > strong,
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-feed-row > strong,
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-impact-list article > strong {
+  color: #f5f6f8 !important;
+  font: 760 21px/1.25 var(--wc-font-ui) !important;
+  letter-spacing: -0.018em !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-feed-meta span {
+  color: #9299a2 !important;
+  font: 620 14px/1 var(--wc-font-terminal) !important;
+  letter-spacing: 0.075em !important;
+}
+
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-feed-tag,
+html body .wm-shell-worldcup .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-card-head b {
+  height: 25px !important;
+  padding: 0 8px !important;
+  border-radius: 2px !important;
+  font: 900 13px/1 var(--wc-font-terminal) !important;
+  letter-spacing: 0.035em !important;
+}

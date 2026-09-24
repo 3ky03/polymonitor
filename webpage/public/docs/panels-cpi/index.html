@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CPI Panels - polyData Documentation</title>
+<meta content="Detailed CPI panel documentation for polyData Monitor, including release calendar, nowcasts, actual CPI data, components, goods, labor, Fed, and growth context." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/panels-cpi/" hreflang="en" rel="alternate"/><link href="/docs/zh/panels-cpi/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">Search...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">Ask Assistant</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">Blog</a>
+<a href="/">Dashboard</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">Get Early Access</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/zh/panels-cpi/">ZH</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/documentation/">Documentation</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API Reference</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">Changelog</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>Getting Started</h2>
+<a href="/docs/documentation/">Introduction</a>
+<a href="/docs/what-polydata-tracks/">What polyData tracks</a>
+<a href="/docs/data-coverage/">Data Coverage</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket Concepts</h2>
+<a href="/docs/Polymarket%20Concepts/">Polymarket Concepts</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/panels-market-lifecycle/">Market &amp; Lifecycle</a>
+<a href="/docs/panels-flow-trading/">Flow &amp; Trading</a>
+<a href="/docs/panels-intelligence-news/">Intelligence &amp; News</a>
+<a href="/docs/polymarket-agent/">Polymarket Agent</a>
+<a class="active" href="/docs/panels-cpi/">CPI</a>
+<a href="/docs/panels-macro-context/">Macro, Weather &amp; Sports</a>
+</div>
+<div class="sidebar-group">
+<h2>Platform &amp; Features</h2>
+<a href="/docs/platform-overview/">Platform Overview</a>
+<a href="/docs/features-interface/">Features &amp; Interface</a>
+<a href="/docs/panel-modules/">Panel Modules</a>
+<a href="/docs/deployment/">Deployment</a>
+</div>
+<div class="sidebar-group">
+<h2>Intelligence &amp; Analysis</h2>
+<a href="/docs/signal-intelligence/">Signal Intelligence</a>
+<a href="/docs/oracle-watch/">Oracle Watch</a>
+<a href="/docs/research-links/">Research Links</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Panels</div>
+<h1>CPI Panels</h1>
+<p>The CPI panel family explains what is known before an inflation print, what official data has already been released, and which surrounding macro drivers may move Polymarket inflation, Fed, and growth markets. The goal is not to replace BLS, FRED, or Cleveland Fed data. The goal is to put those sources into an operator dashboard where actuals, forecasts, nowcasts, market context, and source health can be read in one place.</p>
+<h2 id="coverage">What CPI Coverage Includes</h2>
+<p>polyData separates CPI intelligence into release timing, event estimates, official actuals, component pressure, and related macro driver panels. This matters because a scheduled CPI event can have forecast values before release, actual values after release, component data from prior official prints, and market impact from energy, food, shelter, labor, rates, and growth indicators.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Layer</th>
+<th>What it contains</th>
+<th>Where it appears</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Release schedule</strong></td><td>Upcoming CPI release event, reference month, release time, and countdown.</td><td><code>CPI Release Command</code></td></tr>
+<tr><td><strong>Forecast and nowcast</strong></td><td>Cleveland Fed nowcast values for CPI and PCE buckets when available.</td><td><code>CPI Release Command</code>, <code>Inflation Nowcast</code></td></tr>
+<tr><td><strong>Official actuals</strong></td><td>Latest BLS/FRED CPI series values, previous values, and released actuals after the official event time.</td><td><code>CPI Release Command</code>, <code>CPI Components</code></td></tr>
+<tr><td><strong>Component pressure</strong></td><td>Energy, gasoline, diesel, food, shelter, goods, and services pressure rows.</td><td><code>CPI Components</code>, <code>Food</code>, <code>Energy</code>, <code>Shelter</code></td></tr>
+<tr><td><strong>Macro drivers</strong></td><td>Goods, tariff, labor, services, Fed, rates, growth, and recession-risk rows.</td><td><code>Goods / Tariff</code>, <code>Labor / Services</code>, <code>Fed / Growth Risk</code></td></tr>
+<tr><td><strong>Source health</strong></td><td>Coverage counts, source count, row count, cache mode, and degraded source flags.</td><td>All CPI registry panels</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="sources">Data Sources</h2>
+<p>CPI panels use public macro sources and seed caches. A value can be official, forecast, nowcast, or registry context, so the panel displays source labels and metadata rather than presenting every number as the same kind of truth.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Source</th>
+<th>Used for</th>
+<th>Data type</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>BLS / FRED CPI series</strong></td><td>CPI actuals, previous values, index levels, month-over-month, year-over-year, and selected component rows.</td><td>Official historical data once released.</td></tr>
+<tr><td><strong>BLS calendar</strong></td><td>CPI release timing, reference period, and scheduled release time.</td><td>Official release metadata.</td></tr>
+<tr><td><strong>Cleveland Fed Inflation Nowcasting</strong></td><td>CPI and PCE nowcast values before official release.</td><td>Model nowcast, not an official actual.</td></tr>
+<tr><td><strong>EIA</strong></td><td>Energy, gasoline, diesel, and WTI pressure used in headline CPI context.</td><td>Official energy data and market context.</td></tr>
+<tr><td><strong>Federal Reserve / Treasury / BEA / FRED</strong></td><td>Fed reaction, yield-curve, growth, demand, and recession rows.</td><td>Official public macro series and calendar context.</td></tr>
+<tr><td><strong>Federal Register</strong></td><td>Tariff, import, and policy events that can affect goods prices.</td><td>Official public policy events.</td></tr>
+<tr><td><strong>Redis seed / SQLite seed</strong></td><td>Runtime snapshots served quickly to the dashboard.</td><td>Cache mode, not a separate data source.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="release-command">CPI Release Command</h2>
+<p><code>cpi-release-command-center</code> is the event panel for the next CPI print. It combines release calendar data, nowcast or forecast data, and official actual series when the event has passed. Before the release, the panel can show forecast or nowcast values while actual fields remain empty. After the scheduled official release time, the panel can populate actual values from BLS/FRED series.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+<th>Important note</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Actual</strong></td><td>Official released value when available.</td><td>Shown as empty before release; empty actual is expected before official publication.</td></tr>
+<tr><td><strong>Forecast</strong></td><td>Panel forecast source, usually Cleveland Fed nowcast where mapped.</td><td>This is an estimate, not an official BLS actual.</td></tr>
+<tr><td><strong>Previous</strong></td><td>Prior official value or latest known value depending on release state.</td><td>Useful for surprise calculation after actuals arrive.</td></tr>
+<tr><td><strong>Surprise</strong></td><td>Actual minus forecast, displayed in percentage points where applicable.</td><td>Only meaningful after actual and forecast are both present.</td></tr>
+<tr><td><strong>Reference period</strong></td><td>The CPI month the release refers to.</td><td>Example: a June event may reference May CPI.</td></tr>
+<tr><td><strong>Hours to event</strong></td><td>Countdown to official release time.</td><td>Used to separate scheduled, live, and released states.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="components">CPI Components</h2>
+<p><code>cpi-components-pressure-registry</code> explains which parts of the inflation basket are creating pressure. It aggregates energy, food, shelter, goods, and related CPI component rows into one registry. Rows show value labels, change labels, source labels, age labels, and a tone such as hot, cool, watch, or neutral.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Component area</th>
+<th>Examples</th>
+<th>How to read it</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Energy</strong></td><td>WTI, gasoline, diesel, EIA weekly indicators.</td><td>Energy shocks can move headline CPI quickly and can affect inflation-market probabilities.</td></tr>
+<tr><td><strong>Food</strong></td><td>Food at home, food away from home, food CPI components.</td><td>Food rows explain basket pressure that may not be visible from headline CPI alone.</td></tr>
+<tr><td><strong>Shelter</strong></td><td>Rent and owners-equivalent-rent proxies.</td><td>Shelter is sticky and often matters most for core CPI interpretation.</td></tr>
+<tr><td><strong>Goods</strong></td><td>Goods CPI, nondurables, apparel, imports, tariff-linked rows.</td><td>Goods rows connect supply pressure and policy changes to CPI risk.</td></tr>
+<tr><td><strong>Services</strong></td><td>Services CPI, labor-related services pressure, wage context.</td><td>Services rows help judge core and Fed-reaction risk.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="driver-panels">CPI Driver Panels</h2>
+<p>The CPI registry also exposes focused driver panels. These are not all CPI actuals. They are macro context panels designed to explain why CPI or Fed markets may move.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Panel</th>
+<th>Panel id</th>
+<th>What it adds</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Goods / Tariff</strong></td><td><code>goods-tariff-supply-watch</code></td><td>Goods inflation, import-price, tariff, supply-chain, and Federal Register policy context.</td></tr>
+<tr><td><strong>Labor / Services</strong></td><td><code>labor-services-inflation-monitor</code></td><td>Labor-market, wage, claims, unemployment, and services CPI pressure.</td></tr>
+<tr><td><strong>Fed / Growth Risk</strong></td><td><code>fed-reaction-growth-risk-board</code></td><td>Fed calendar, rates context, yield-curve spread, growth demand, sentiment, industrial production, and recession-risk rows.</td></tr>
+<tr><td><strong>Food &amp; Retail Basket</strong></td><td><code>food-retail-basket-pressure</code></td><td>Food and retail-basket CPI pressure from official component data.</td></tr>
+<tr><td><strong>Shelter / OER</strong></td><td><code>shelter-rent-oer-pressure</code></td><td>Rent and owners-equivalent-rent pressure for core CPI markets.</td></tr>
+<tr><td><strong>Energy &amp; Gasoline</strong></td><td><code>energy-gasoline-shock</code></td><td>Energy-price shock monitor for headline CPI sensitivity.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="truth-model">Actuals, Forecasts, Nowcasts, and Caches</h2>
+<p>The CPI system labels data by role. This avoids treating a pre-release nowcast as an official actual, and it avoids treating a cached runtime snapshot as a new source.</p>
+<ul>
+<li><strong>Actual</strong> means an official released value from BLS/FRED or another official public source.</li>
+<li><strong>Forecast</strong> means an estimate used before release, currently mapped mainly from the Cleveland Fed nowcast registry for CPI/PCE buckets.</li>
+<li><strong>Nowcast</strong> means a live model estimate, not an official number.</li>
+<li><strong>Previous</strong> means the previous official value or latest known value used as a baseline.</li>
+<li><strong>Redis seed</strong> and <strong>SQLite seed</strong> mean cached snapshots used to make the dashboard fast; the row source still identifies the real upstream source.</li>
+<li><strong>Coverage</strong> counts how many upstream source checks are usable for the panel; it is source health, not a count of CPI releases.</li>
+</ul>
+<h2 id="fields">Runtime Fields</h2>
+<p>Most CPI registry rows share the same runtime schema so the frontend can render them consistently.</p>
+<div class="docs-table-wrap">
+<table class="docs-table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>value</strong></td><td>Raw numeric level or event value.</td><td><code>0.41</code></td></tr>
+<tr><td><strong>valueLabel</strong></td><td>Formatted display value with the correct unit.</td><td><code>0.41pp</code></td></tr>
+<tr><td><strong>change</strong></td><td>Raw change used for ranking and display.</td><td><code>0.03</code></td></tr>
+<tr><td><strong>changeLabel</strong></td><td>Formatted change label.</td><td><code>+0.03pp</code> for a spread, <code>-6.57%</code> for a percentage change.</td></tr>
+<tr><td><strong>unit</strong></td><td>Value unit such as percent, index, dollars, or percentage points.</td><td><code>pp</code>, <code>idx</code>, <code>%</code></td></tr>
+<tr><td><strong>metadata.rawChange</strong></td><td>Original source-level change before display formatting.</td><td>Used so spread rows display as percentage-point deltas.</td></tr>
+<tr><td><strong>metadata.rawChangePct</strong></td><td>Original percent change when available.</td><td>Preserved for context but not used for <code>unit=pp</code> display.</td></tr>
+<tr><td><strong>tone</strong></td><td>Panel classification for the row.</td><td><code>hot</code>, <code>cool</code>, <code>watch</code>, <code>neutral</code></td></tr>
+<tr><td><strong>source</strong></td><td>Human-readable upstream data source.</td><td><code>FRED CSV / public macro series</code></td></tr>
+<tr><td><strong>cacheMode</strong></td><td>Runtime delivery mode for the whole panel.</td><td><code>redis-seed</code>, <code>sqlite-seed</code>, <code>composed-seed</code></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="api">API Panel IDs</h2>
+<p>The dashboard requests CPI registry panels from the runtime panel API. A typical query uses the panel ids below.</p>
+<pre class="docs-code"><code>/wm-api/runtime/panels?ids=cpi-release-command-center,cpi-components-pressure-registry,goods-tariff-supply-watch,labor-services-inflation-monitor,fed-reaction-growth-risk-board</code></pre>
+<p>Use these ids when debugging payloads or comparing the docs against the live dashboard.</p>
+</main>
+<aside aria-label="On this page" class="docs-toc">
+<div class="toc-title">On this page</div>
+<a class="active" href="#coverage">What CPI Coverage Includes</a>
+<a href="#sources">Data Sources</a>
+<a href="#release-command">CPI Release Command</a>
+<a href="#components">CPI Components</a>
+<a href="#driver-panels">CPI Driver Panels</a>
+<a href="#truth-model">Actuals, Forecasts, Nowcasts, and Caches</a>
+<a href="#fields">Runtime Fields</a>
+<a href="#api">API Panel IDs</a>
+</aside>
+</div>
+</div>
+</body>
+</html>

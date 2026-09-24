@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the polyData GCP serving bounded healthcheck
+
+[Timer]
+OnCalendar=*-*-* *:*:10
+AccuracySec=1s
+RandomizedDelaySec=2s
+Unit=polydata-serving-healthcheck.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData PostgreSQL event market serving sync service
+After=network-online.target polydata-market-sync.service polydata-analytics-sync.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/db/sync_event_market_serving.py --backend postgres --watch --interval "${POLYDATA_EVENT_MARKET_SERVING_INTERVAL_SECONDS:-300}" --max-markets "${POLYDATA_EVENT_MARKET_SERVING_MAX_MARKETS:-80000}" --skip-gamma-supplement --prune'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

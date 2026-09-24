@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData crypto funding seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/crypto_funding_watcher.py --watch --interval "${POLYDATA_CRYPTO_FUNDING_WATCH_INTERVAL_SECONDS:-30}" --limit "${POLYDATA_CRYPTO_FUNDING_LIMIT:-18}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

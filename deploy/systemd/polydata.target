@@ -1,0 +1,7 @@
+[Unit]
+Description=polyData compatibility target for GCP serving services
+Wants=polydata-gcp.target
+After=network-online.target polydata-gcp.target
+
+[Install]
+WantedBy=default.target

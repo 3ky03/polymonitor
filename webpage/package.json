@@ -1,0 +1,48 @@
+{
+  "name": "polydata-world-terminal",
+  "version": "0.2.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "20.19.1",
+    "npm": ">=10 <11"
+  },
+  "scripts": {
+    "dev": "vite",
+    "check:locales": "node scripts/check-locales.mjs",
+    "check:map-bundle": "node scripts/check-map-bundle.mjs",
+    "test:map": "vitest run src/features/world-event-map",
+    "test:map:e2e": "playwright test e2e/world-event-map.spec.ts",
+    "perf:map": "node scripts/measure-map-performance.mjs",
+    "build": "npm run check:locales && tsc && vite build && npm run check:map-bundle",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@deck.gl/core": "9.3.10",
+    "@deck.gl/layers": "9.3.10",
+    "@deck.gl/mapbox": "9.3.10",
+    "@fontsource-variable/noto-sans-sc": "^5.3.0",
+    "@protomaps/basemaps": "^5.7.2",
+    "d3-geo": "^3.1.1",
+    "globe.gl": "^2.45.3",
+    "hls.js": "^1.6.16",
+    "lightweight-charts": "^5.2.0",
+    "maplibre-gl": "^5.24.0",
+    "pmtiles": "^4.4.1",
+    "preact": "^10.26.4",
+    "supercluster": "^8.0.1",
+    "three": "^0.183.2",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@preact/preset-vite": "^2.10.2",
+    "@types/d3-geo": "^3.1.0",
+    "@types/supercluster": "^7.1.3",
+    "@types/topojson-client": "^3.1.5",
+    "typescript": "^5.8.2",
+    "vite": "^6.3.5",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run polyData PostgreSQL reverse tunnel healthcheck
+
+[Timer]
+OnBootSec=45s
+OnUnitActiveSec=120s
+AccuracySec=10s
+Unit=polydata-db-reverse-tunnel-healthcheck.service
+
+[Install]
+WantedBy=timers.target

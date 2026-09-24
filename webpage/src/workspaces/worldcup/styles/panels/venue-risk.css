@@ -1,0 +1,193 @@
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-venue-risk-panel {
+  --wc-panel-accent: #34dfff;
+  --risk-accent: #23f07e;
+  --risk-muted: rgba(160, 174, 190, 0.68);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack {
+  display: grid;
+  gap: 4px;
+  min-height: 0;
+  padding: 8px 9px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  min-height: 70px;
+  padding: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(35, 240, 126, 0.2);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(35, 240, 126, 0.18), transparent 38%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+    #111518;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero.risk-watch {
+  --risk-accent: #ffb32b;
+  border-color: rgba(255, 179, 43, 0.25);
+  background:
+    radial-gradient(circle at 18% 50%, rgba(255, 179, 43, 0.16), transparent 38%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+    #111518;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero.risk-high {
+  --risk-accent: #ff4d5e;
+  border-color: rgba(255, 77, 94, 0.28);
+  background:
+    radial-gradient(circle at 18% 50%, rgba(255, 77, 94, 0.16), transparent 38%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+    #111518;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-ring {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, #111518 58%, transparent 60%),
+    conic-gradient(var(--risk-accent) var(--risk-score), rgba(255, 255, 255, 0.09) 0);
+  color: var(--risk-accent);
+  font: 850 21px/1 var(--wc-font-terminal);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 18px color-mix(in srgb, var(--risk-accent) 45%, transparent);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero div:last-child {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero em,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero b,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-meta em,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-metric-grid em,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-metric-grid small {
+  overflow: hidden;
+  font-style: normal;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero em {
+  color: var(--risk-muted);
+  font: 760 8px/1 var(--wc-font-terminal);
+  letter-spacing: 0;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero strong {
+  overflow: hidden;
+  color: #f4f8fb;
+  font: 820 13px/1.05 var(--wc-font-ui);
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero b {
+  color: var(--risk-accent);
+  font: 760 9px/1 var(--wc-font-terminal);
+  letter-spacing: 0;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-meta span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 5px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-meta em,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-metric-grid em,
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-metric-grid small {
+  color: var(--risk-muted);
+  font: 740 8px/1 var(--wc-font-terminal);
+  letter-spacing: 0;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-meta strong {
+  overflow: hidden;
+  color: #f2f5f6;
+  font: 720 9px/1.05 var(--wc-font-ui);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  padding: 0 !important;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid span {
+  display: grid !important;
+  grid-template-rows: auto auto auto 3px !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  min-height: 42px !important;
+  padding: 5px 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.085) !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    #14181b !important;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid span.green { color: #23f07e; border-top: 2px solid rgba(35, 240, 126, 0.7) !important; }
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid span.blue { color: #37d7f2; border-top: 2px solid rgba(55, 215, 242, 0.7) !important; }
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid span.gold { color: #ffb32b; border-top: 2px solid rgba(255, 179, 43, 0.72) !important; }
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid span.purple { color: #9b7aff; border-top: 2px solid rgba(155, 122, 255, 0.72) !important; }
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid strong {
+  overflow: hidden !important;
+  color: #f7fafb !important;
+  font: 800 12px/1 var(--wc-font-ui) !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid i {
+  display: block !important;
+  width: 4%;
+  height: 2px !important;
+  margin-top: 0 !important;
+  border-radius: 999px !important;
+  background: currentColor !important;
+  opacity: 0.84 !important;
+}
+
+@media (max-width: 720px) {
+  .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-hero {
+    grid-template-columns: 78px minmax(0, 1fr);
+    min-height: 104px;
+  }
+
+  .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-risk-ring {
+    width: 72px;
+    font-size: 28px;
+  }
+
+  .wm-worldcup-dashboard.wm-worldcup-v5 .wm-worldcup-panel.wm-worldcup-venue-risk-panel .wm-worldcup-venue-risk-stack .wm-worldcup-risk-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

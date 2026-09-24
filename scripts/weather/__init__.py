@@ -1,0 +1,2 @@
+"""Weather panel shared helpers."""
+

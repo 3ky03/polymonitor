@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07130b" />
+    <title>PolyMonitor · Offline</title>
+    <style>
+      :root{color-scheme:dark;font-family:"JetBrains Mono",ui-monospace,monospace;background:#070a08;color:#edf4ef}
+      body{min-height:100vh;margin:0;display:grid;place-items:center;background-image:linear-gradient(rgba(57,255,115,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,115,.035) 1px,transparent 1px);background-size:48px 48px}
+      main{width:min(620px,calc(100vw - 40px));border:1px solid #26302a;background:rgba(13,17,15,.96);box-shadow:0 28px 80px rgba(0,0,0,.52);padding:clamp(24px,6vw,52px)}
+      span{color:#39ff73;font-size:11px;font-weight:800;letter-spacing:.14em}h1{font-family:system-ui,sans-serif;font-size:clamp(34px,8vw,72px);line-height:.95;letter-spacing:-.05em;margin:18px 0}
+      p{color:#a7b2aa;line-height:1.7}button{min-height:44px;margin-top:18px;border:1px solid #39ff73;background:#39ff73;color:#07100a;font:700 12px inherit;padding:0 18px;cursor:pointer}
+    </style>
+  </head>
+  <body>
+    <main>
+      <span>NETWORK DEGRADED / 网络已断开</span>
+      <h1>Offline shell<br />离线外壳</h1>
+      <p>PolyMonitor 的应用外壳仍可使用，但实时市场、Oracle 和流动性数据始终保持 NetworkOnly，不会显示缓存行情。</p>
+      <p>The application shell remains available. Live markets, Oracle state and liquidity stay NetworkOnly and are never presented as cached facts.</p>
+      <button type="button" onclick="location.reload()">RETRY / 重试</button>
+    </main>
+  </body>
+</html>

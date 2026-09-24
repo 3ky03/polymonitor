@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData quant event chart tile seed watcher
+After=network-online.target redis-server.service polydata-api.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/quant_event_tile_watcher.py --watch --interval "${POLYDATA_QUANT_EVENT_TILE_INTERVAL_SECONDS:-30}" --ttl "${POLYDATA_QUANT_EVENT_TILE_TTL_SECONDS:-90}" --max-events "${POLYDATA_QUANT_EVENT_TILE_MAX_EVENTS:-80}" --price-source "${POLYDATA_QUANT_EVENT_TILE_PRICE_SOURCE:-orderfilled_block_close}" --limit "${POLYDATA_QUANT_EVENT_TILE_LIMIT:-2500}" --max-outcomes "${POLYDATA_QUANT_EVENT_TILE_MAX_OUTCOMES:-100}" --top-n "${POLYDATA_QUANT_EVENT_TILE_TOP_N:-12}" --max-points "${POLYDATA_QUANT_EVENT_TILE_MAX_POINTS:-600}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

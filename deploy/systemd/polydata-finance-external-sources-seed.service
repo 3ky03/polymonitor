@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData finance external sources seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/finance_external_sources_watcher.py --watch --interval "${POLYDATA_FINANCE_EXTERNAL_SOURCES_WATCH_INTERVAL_SECONDS:-900}"'
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

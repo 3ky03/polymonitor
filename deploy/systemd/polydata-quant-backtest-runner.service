@@ -1,0 +1,20 @@
+[Unit]
+Description=polyData quant backtest queued-run worker
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=3600
+StartLimitBurst=6
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" -m quant.workers.backtest_runner --daemon --limit "${POLYDATA_QUANT_BACKTEST_RUNNER_LIMIT:-5}" --sleep-seconds "${POLYDATA_QUANT_BACKTEST_RUNNER_SLEEP_SECONDS:-2}" --error-sleep-seconds "${POLYDATA_QUANT_BACKTEST_RUNNER_ERROR_SLEEP_SECONDS:-60}"'
+Restart=always
+RestartSec=120
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target
+WantedBy=polydata-local-collector.target

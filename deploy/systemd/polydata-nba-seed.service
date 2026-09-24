@@ -1,0 +1,20 @@
+[Unit]
+Description=polyData NBA sports seed watcher
+After=network-online.target redis-server.service
+Wants=network-online.target
+# Bound process-level recovery when storage or a startup dependency is unavailable.
+StartLimitIntervalSec=1800
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/runtime/nba_watcher.py --watch --interval "${POLYDATA_NBA_WATCH_INTERVAL_SECONDS:-60}" --scoreboard-limit "${POLYDATA_NBA_SCOREBOARD_LIMIT:-10}" --intel-limit "${POLYDATA_NBA_INTEL_LIMIT:-12}" --predictor-limit "${POLYDATA_NBA_PREDICTOR_LIMIT:-8}"'
+Restart=always
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-gcp.target

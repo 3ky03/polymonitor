@@ -1,0 +1,17 @@
+[Unit]
+Description=polyData PostgreSQL reverse tunnel to GCP API host
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/polydata/polydata.env
+ExecCondition=/bin/bash -lc 'test -n "${POLYDATA_GCP_SSH_TARGET:-}"'
+ExecStartPre=-/bin/bash -lc 'ssh -o BatchMode=yes -o ConnectTimeout=8 -o ConnectionAttempts=2 "${POLYDATA_GCP_SSH_TARGET}" "sudo -n fuser -k ${POLYDATA_REMOTE_POSTGRES_PORT:-45432}/tcp >/dev/null 2>&1 || fuser -k ${POLYDATA_REMOTE_POSTGRES_PORT:-45432}/tcp >/dev/null 2>&1 || true"'
+ExecStart=/bin/bash -lc 'exec ssh -N -R "127.0.0.1:${POLYDATA_REMOTE_POSTGRES_PORT:-45432}:127.0.0.1:${POLYDATA_LOCAL_POSTGRES_PORT:-45432}" -o BatchMode=yes -o ConnectTimeout=10 -o ConnectionAttempts=3 -o ExitOnForwardFailure=yes -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -o TCPKeepAlive=yes "${POLYDATA_GCP_SSH_TARGET}"'
+Restart=always
+RestartSec=8
+
+[Install]
+WantedBy=polydata-local-collector.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=polyData PostgreSQL reverse tunnel healthcheck
+After=network-online.target polydata-db-reverse-tunnel.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/polydata/polydata.env
+WorkingDirectory=%h/develop/polymarket/githubProjects/polymonitor
+ExecStart=%h/develop/polymarket/githubProjects/polymonitor/scripts/ops/postgres_reverse_tunnel_healthcheck.sh

@@ -1,0 +1,31 @@
+[Unit]
+Description=Polymonitor read-only Panel contract health audit
+After=network-online.target polydata-api.service polydata-operations-runtime-health.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+Environment=POLYDATA_OPERATIONS_STATE_DIR=%S/polydata-operations
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/ops/audit_panel_health.py'
+TimeoutStartSec=60
+Nice=10
+IOSchedulingClass=idle
+CPUQuota=20%
+MemoryMax=128M
+UMask=0077
+StateDirectory=polydata-operations
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%S/polydata-operations
+ProtectControlGroups=true
+ProtectKernelTunables=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictSUIDSGID=true
+LockPersonality=true
+StandardOutput=journal
+StandardError=journal

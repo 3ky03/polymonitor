@@ -1,0 +1,63 @@
+.watchlist-main { width:min(1440px,calc(100% - 40px)); margin:0 auto; padding:42px 0 80px; color:var(--text-primary,#edf7f0); }
+.watchlist-hero { display:flex; justify-content:space-between; gap:32px; padding:36px; border:1px solid var(--border-subtle,#26362d); background:linear-gradient(115deg,rgba(10,28,18,.96),rgba(8,13,10,.98)); }
+.watchlist-kicker,.watchlist-panel header span,.watchlist-metrics span { color:var(--accent,#42f57b); font:600 11px/1.4 monospace; letter-spacing:.13em; }
+.watchlist-hero h1 { margin:10px 0 8px; font-size:clamp(40px,6vw,76px); line-height:.95; letter-spacing:-.055em; }
+.watchlist-hero p { max-width:760px; margin:0; color:var(--text-secondary,#9aaba0); line-height:1.6; }
+.watchlist-hero-actions { display:flex; align-items:flex-start; gap:8px; }
+.watchlist-main button,.watchlist-main a { min-height:44px; border:1px solid #2e4738; border-radius:5px; background:#0c1510; color:#dcebe1; padding:0 14px; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; cursor:pointer; }
+.watchlist-main button:hover,.watchlist-main a:hover { border-color:#42f57b; color:#42f57b; }
+.watchlist-main button:disabled { opacity:.45; cursor:not-allowed; }
+.watchlist-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:14px 0; }
+.watchlist-metrics div,.watchlist-panel { border:1px solid #25352c; background:rgba(9,15,11,.96); }
+.watchlist-metrics div { padding:20px; display:grid; gap:5px; }
+.watchlist-metrics strong { font:700 34px/1 monospace; }
+.watchlist-metrics small,.watchlist-panel em { color:#7f9186; font-style:normal; }
+.watchlist-grid { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(330px,.75fr); gap:14px; }
+.watchlist-panel { padding:0; }
+.watchlist-panel header { min-height:72px; padding:16px 20px; border-bottom:1px solid #1f2e25; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.watchlist-panel h2 { margin:4px 0 0; font-size:20px; }
+.watchlist-add,.watchlist-rule-form,.watchlist-preferences form { display:flex; gap:10px; align-items:flex-end; padding:18px 20px; border-bottom:1px solid #1f2e25; }
+.watchlist-main label { display:grid; gap:6px; flex:1; color:#8fa096; font-size:12px; }
+.watchlist-main input,.watchlist-main select { min-height:44px; border:1px solid #2a3b31; border-radius:4px; background:#070c09; color:#e8f2eb; padding:0 12px; }
+.watchlist-market-list article { display:grid; grid-template-columns:minmax(0,1fr) 120px auto; gap:14px; align-items:center; padding:14px 18px; border-bottom:1px solid #18251d; }
+.watchlist-market-list article.is-selected { background:rgba(66,245,123,.055); box-shadow:inset 3px 0 #42f57b; }
+.watchlist-market-select { border:0!important; background:transparent!important; padding:0!important; min-height:0!important; display:grid!important; justify-items:start!important; text-align:left; }
+.watchlist-market-select strong { margin:5px 0; }
+.watchlist-stage { color:#9caf9f; font:600 10px monospace; text-transform:uppercase; }
+.watchlist-stage.is-disputed,.watchlist-stage.is-awaiting-oracle { color:#ffbd40; }
+.watchlist-stage.is-resolved { color:#42f57b; }
+.watchlist-market-price { display:grid; text-align:right; }
+.watchlist-market-price strong { font:700 24px monospace; }
+.watchlist-market-price small { color:#87988d; }
+.watchlist-market-links { display:flex; gap:5px; }
+.watchlist-market-links a,.watchlist-market-links button { min-height:34px; padding:0 9px; font-size:11px; }
+.watchlist-rules>h3 { padding:18px 20px 0; margin:0; font-size:15px; }
+.watchlist-rule-form { flex-wrap:wrap; }
+.watchlist-rule-form button { width:100%; }
+.watchlist-rule-list div { display:grid; grid-template-columns:80px 1fr auto; align-items:center; gap:8px; padding:12px 20px; border-top:1px solid #18251d; }
+.watchlist-rule-list span { font:600 10px monospace; color:#819087; }
+.watchlist-rule-list span.is-live { color:#ffbd40; }
+.watchlist-rule-list button { min-height:32px; padding:0 8px; font-size:11px; }
+.watchlist-inbox,.watchlist-preferences { margin-top:14px; }
+.watchlist-alert-list article { display:grid; grid-template-columns:75px 1fr auto; gap:18px; align-items:center; padding:16px 20px; border-bottom:1px solid #18251d; }
+.watchlist-alert-list article>span { color:#ffbd40; font:600 10px monospace; text-transform:uppercase; }
+.watchlist-alert-list article.is-critical>span { color:#ff6868; }
+.watchlist-alert-list article.is-positive>span { color:#42f57b; }
+.watchlist-alert-list article.is-read { opacity:.58; }
+.watchlist-alert-list p { margin:5px 0; color:#9aaba0; }
+.watchlist-alert-list small { color:#74857a; }
+.watchlist-preferences form { border:0; flex-wrap:wrap; }
+.watchlist-preferences form label { min-width:145px; }
+.watchlist-switch { display:flex!important; flex-direction:row; align-items:center; min-width:250px!important; }
+.watchlist-switch input { min-height:20px; width:20px; }
+.watchlist-push { display:flex; align-items:center; justify-content:space-between; gap:20px; margin:0 20px; padding:18px 0; border-top:1px solid #1f2e25; }
+.watchlist-push strong { color:#e8f2eb; font-size:14px; }
+.watchlist-push p { margin:6px 0 0; color:#83958a; font-size:12px; }
+.watchlist-push button { flex:0 0 auto; }
+.watchlist-preferences>p,.watchlist-empty { color:#83958a; padding:20px; }
+.watchlist-empty strong { color:#e2eee6; }
+.watchlist-error { margin:14px 0; border:1px solid #7f3333; background:#2b1010; padding:14px; color:#ffc0c0; }
+.watchlist-gate { min-height:60vh; display:grid; align-content:center; justify-items:start; }
+@media(max-width:900px){.watchlist-main{width:min(100% - 20px,700px);padding-top:20px}.watchlist-hero{display:grid;padding:24px}.watchlist-metrics{grid-template-columns:repeat(2,1fr)}.watchlist-grid{grid-template-columns:1fr}.watchlist-market-list article{grid-template-columns:1fr auto}.watchlist-market-links{grid-column:1/-1}.watchlist-preferences form{display:grid;align-items:stretch}.watchlist-preferences form label{min-width:0}.watchlist-push{align-items:flex-start;flex-direction:column}}
+@media(max-width:560px){.watchlist-hero-actions,.watchlist-add{display:grid}.watchlist-metrics{grid-template-columns:1fr 1fr}.watchlist-market-list article,.watchlist-alert-list article{grid-template-columns:1fr;text-align:left}.watchlist-market-price{text-align:left}.watchlist-rule-list div{grid-template-columns:1fr auto}.watchlist-rule-list span{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){.watchlist-main *{scroll-behavior:auto!important;transition:none!important}}

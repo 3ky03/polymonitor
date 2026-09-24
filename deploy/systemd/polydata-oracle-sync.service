@@ -1,0 +1,21 @@
+[Unit]
+Description=polyData oracle sync service
+After=network-online.target polydata-polygon-rpc-tunnel.service
+Wants=network-online.target polydata-polygon-rpc-tunnel.service
+# The watcher already retries transient RPC failures.  Do not use Requires=
+# here: restarting the SSH tunnel would propagate SIGTERM to the oracle worker.
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/__POLYDATA_REPO_ROOT__
+EnvironmentFile=%h/.config/polydata/polydata.env
+UnsetEnvironment=NODE_URL NODE_URL2
+ExecStart=/bin/bash -lc 'exec "${POLYDATA_PYTHON_BIN:-python3}" scripts/oracle/fetch_uma_oracle_chain.py --backend postgres --continue-sync --include-updown --watch --interval "${POLYDATA_ORACLE_SYNC_INTERVAL_SECONDS:-600}" --catchup-interval "${POLYDATA_ORACLE_CATCHUP_INTERVAL_SECONDS:-1}" --confirmations "${POLYDATA_ORACLE_SYNC_CONFIRMATIONS:-20}" --continue-sync-rewind-blocks "${POLYDATA_ORACLE_SYNC_REWIND_BLOCKS:-100}" --continue-sync-max-blocks "${POLYDATA_ORACLE_SYNC_MAX_BLOCKS:-10000}" --batch-adapter "${POLYDATA_ORACLE_BATCH_ADAPTER_BLOCKS:-1000}" --batch-oracle "${POLYDATA_ORACLE_BATCH_ORACLE_BLOCKS:-1000}" --max-workers "${POLYDATA_ORACLE_MAX_WORKERS:-4}"'
+Restart=always
+RestartSec=600
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=polydata-local-collector.target

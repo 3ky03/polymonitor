@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Polymarket 概念 - polyData 文档</title>
+<meta content="Core Polymarket concepts for polyData." name="description"/>
+<link href="/icons/polydata-monitor.svg" rel="icon" type="image/svg+xml"/>
+<link href="/docs-page.css?v=20260610-i18n-zh" rel="stylesheet"/>
+<link href="/docs/Polymarket%20Concepts/" hreflang="en" rel="alternate"/><link href="/docs/zh/Polymarket%20Concepts/" hreflang="zh-CN" rel="alternate"/></head>
+<body>
+<div class="docs-shell">
+<header class="docs-topbar">
+<a class="docs-brand" href="/">
+<img alt="" src="/icons/polydata-monitor.svg"/>
+<span>POLYDATA</span>
+</a>
+<div aria-label="Documentation actions" class="docs-actions">
+<div aria-label="Search documentation" class="docs-search">
+<svg aria-hidden="true" class="docs-search-icon" height="22" viewbox="0 0 24 24" width="22">
+<circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle>
+<path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="docs-search-placeholder">搜索...</span>
+<kbd>Ctrl K</kbd>
+</div>
+<button class="docs-assistant" type="button">问助手</button>
+</div>
+<nav aria-label="Top navigation" class="docs-nav">
+<a href="/blog/">博客</a>
+<a href="/">仪表盘</a>
+<a href="/pro/">Pro</a>
+<a href="https://github.com/3ky03/polymonitor" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="docs-cta" href="/">抢先体验</a>
+<a aria-label="Switch language" class="docs-lang-switch" href="/docs/Polymarket%20Concepts/">EN</a><button aria-label="Toggle theme" class="docs-theme-toggle" type="button"></button>
+</nav>
+</header>
+<nav aria-label="Documentation sections" class="docs-tabs">
+<a class="docs-tab active" href="/docs/zh/documentation/">文档</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/tree/main/docs" rel="noopener noreferrer" target="_blank">API 参考</a>
+<a class="docs-tab" href="https://github.com/3ky03/polymonitor/blob/main/docs/updates.md" rel="noopener noreferrer" target="_blank">更新日志</a>
+</nav>
+<div class="docs-layout">
+<aside aria-label="Documentation navigation" class="docs-sidebar">
+<div class="sidebar-group">
+<h2>开始使用</h2>
+<a href="/docs/zh/documentation/">介绍</a>
+<a href="/docs/zh/what-polydata-tracks/">polyData 追踪什么</a>
+<a href="/docs/zh/data-coverage/">数据覆盖</a>
+</div>
+<div class="sidebar-group">
+<h2>Polymarket 概念</h2>
+<a class="active" href="/docs/zh/Polymarket%20Concepts/">Polymarket 概念</a>
+</div>
+<div class="sidebar-group">
+<h2>Panels</h2>
+<a href="/docs/zh/panels-market-lifecycle/">市场与生命周期</a>
+<a href="/docs/zh/panels-flow-trading/">流动与交易</a>
+<a href="/docs/zh/panels-intelligence-news/">情报与新闻</a>
+<a href="/docs/zh/polymarket-agent/">Polymarket Agent</a>
+<a href="/docs/zh/panels-cpi/">CPI</a>
+<a href="/docs/zh/panels-macro-context/">宏观、天气与体育</a>
+</div>
+<div class="sidebar-group">
+<h2>平台与功能</h2>
+<a href="/docs/zh/platform-overview/">平台概览</a>
+<a href="/docs/zh/features-interface/">功能与界面</a>
+<a href="/docs/zh/panel-modules/">Panel 模块</a>
+<a href="/docs/zh/deployment/">部署</a>
+</div>
+<div class="sidebar-group">
+<h2>情报与分析</h2>
+<a href="/docs/zh/signal-intelligence/">信号情报</a>
+<a href="/docs/zh/oracle-watch/">Oracle 观察</a>
+<a href="/docs/zh/research-links/">研究链接</a>
+</div>
+</aside>
+<main class="docs-content">
+<div class="docs-kicker">Polymarket 概念</div>
+<h1>Polymarket 概念</h1>
+<h2 id="lifecycle-overview">生命周期概览</h2>
+<figure class="docs-figure">
+<div class="docs-figure-frame">
+<img alt="Polymarket market lifecycle overview with Market, OrderFilled, and Oracle lanes" height="861" loading="lazy" src="/docs-assets/images/paperbanana/polymarket-market-lifecycle-overview-v2.svg" width="1772"/>
+</div>
+<figcaption>polyData Monitor 中的 Polymarket 市场生命周期：市场身份、OrderFilled 交易活动与 oracle 结算状态。</figcaption>
+</figure>
+<h2 id="market">Market</h2>
+<p>Polymarket 中有五个容易混淆的概念：market、event、series、slug 和 token。token 是最低层的可结算资产；market 是可交易的问题；event 用来组织一个或多个相关 market；series 是更大的集合，可跨赛季、重复主题、选举、赛事或长期专题组织 event；slug 是用于 URL 和 API 的人类可读查询键。</p>
+<p>market 是最小可交易单位。在常见二元市场中，它对应一个具体的 Yes/No 问题，并拥有两个 outcome token。event 是用户在 Polymarket 前端通常看到的页面级容器。slug 不是链上 ID，也不是钱包真正持有的资产；token 才是真正的结果资产。</p>
+<pre class="docs-code"><code>Series
+- title: 2028 U.S. Presidential Election
+- slug: us-presidential-election-2028
+
+  Event
+  - title: Who will win the 2028 U.S. presidential election?
+  - slug: who-will-win-the-2028-us-presidential-election
+
+    Market
+    - question: Will Donald Trump win the 2028 U.S. presidential election?
+    - slug: will-donald-trump-win-the-2028-us-presidential-election
+    - conditionId: 0xabc...
+    - token A: YES
+    - token B: NO</code></pre>
+<p>Polymarket 的历史价格不是传统 OHLCV K 线，而是以 midpoint 为核心的价格历史。midpoint 是当前最优买价和最优卖价的平均值。前端通常显示 midpoint，当 spread 大于 0.10 美元时会回退显示最近成交价。实时订单簿是另一层数据，Polymarket 并不提供完整官方历史 LOB 档案。</p>
+<h2 id="orderfilled">OrderFilled</h2>
+<p>trade 是成交结果视角：它描述哪个市场发生了成交、涉及哪个 outcome、taker 的方向、撮合价格、总成交数量，以及吃掉了哪些 maker 订单。</p>
+<p>OrderFilled 是链上 fill 事件视角。当成交通过 Exchange 合约结算时，合约会发出 fill 级事件，包含 orderHash、maker、taker、makerAssetId、takerAssetId、makerAmountFilled、takerAmountFilled 和 fee。简言之：trade 是成交回执；OrderFilled 是 fill 级账本。</p>
+<pre class="docs-code"><code>Aggregated trade:
+- side: BUY
+- price: 0.52
+- size: 100
+- maker_orders: A 30, B 20, C 50
+
+OrderFilled rows:
+- A_SELL filled for 30
+- B_SELL filled for 20
+- C_SELL filled for 50</code></pre>
+<p>maker 和 taker 是某次成交中的角色，不是永久用户类别。order、trade、fill 和 transaction 也是不同层级：order 是指令，trade 是撮合结果，OrderFilled 是链上 fill 事件，transaction 是区块链结算记录。</p>
+<h2 id="oracle">Oracle</h2>
+<p>Oracle 数据解释市场如何离开交易阶段并形成最终结算结果。价格本身不能证明结算。oracle 层记录请求了什么答案、提出了什么结果、是否发生争议，以及最终如何结算。</p>
+<p>许多 Polymarket 市场通过 UMA 相关 adapter 和 oracle 合约结算。生命周期可能包含问题初始化、请求、提议、争议和结算。polyData 会保存这些事件的交易哈希、日志索引、区块号、事件时间、提议价格、结算价格、参与者以及匹配元数据。</p>
+<p>难点在身份匹配。有些 oracle 事件可以通过 question id 或 condition id 直接匹配；另一些则需要 adapter 映射、ancillary data 解码、标题/日期匹配，或 neg-risk request 映射。</p>
+<pre class="docs-code"><code>Market lifecycle:
+1. Discovered from Gamma, CLOB, or on-chain registry events
+2. Made tradeable through condition id and outcome tokens
+3. Actively traded through CLOB prices and OrderFilled flow
+4. Closed or locked near the market end date
+5. Reviewed through oracle request, proposal, dispute, and settlement
+6. Resolved, final, and archived for historical analysis</code></pre>
+</main>
+<aside aria-label="本页目录" class="docs-toc">
+<div class="toc-title">本页目录</div>
+<a class="active" href="#lifecycle-overview">生命周期概览</a>
+<a href="#market">Market</a>
+<a href="#orderfilled">OrderFilled</a>
+<a href="#oracle">Oracle</a>
+</aside>
+</div>
+</div>
+</body>
+</html>
